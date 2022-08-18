@@ -32,11 +32,8 @@ static const int MATCH_COUNT = 2;
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-
   unsigned long chosenButtonIndex = [self.cards indexOfObject: sender];
-  
 //  NSLog(@"Choose at index: %ld", chosenButtonIndex);
-
   [self.game chooseCardAtIndex: chosenButtonIndex];
   [self updateUI];
 }
@@ -47,15 +44,25 @@ static const int MATCH_COUNT = 2;
 }
 
 - (void)updateUI {
+  BOOL hasWon = true;
   for (UIButton *cardButton in self.cards) {
     unsigned long cardButtonIndex = [self.cards indexOfObject:cardButton];
     Card *card = [self.game cardAtIndex:cardButtonIndex];
     [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
     [cardButton setBackgroundImage: [self backgroundImageForCard: card] forState:UIControlStateNormal];
     cardButton.enabled = !card.isMatched;
+    if (cardButton.enabled) {
+      hasWon = false;
+    }
   }
-  _moveDescribingText.text = _game.lastMoveDescription;
+
   _score.text = [NSString stringWithFormat:@"Score: %ld", (long)_game.score];
+
+  if (hasWon) {
+  _moveDescribingText.text = @"Congrats, you won! 🎉";
+  } else {
+  _moveDescribingText.text = _game.lastMoveDescription;
+  }
 }
 
 - (NSString *)titleForCard: (Card *)card {
@@ -66,6 +73,5 @@ static const int MATCH_COUNT = 2;
   NSString * cardName = card.isChosen ? @"cardfront" : @"cardback";
   return [UIImage imageNamed: cardName];
 }
-
 
 @end
