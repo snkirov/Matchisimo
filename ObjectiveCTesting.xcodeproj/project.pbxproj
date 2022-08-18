@@ -19,6 +19,7 @@
 		4FDCAE8928AB8F610041B31B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8728AB8F610041B31B /* LaunchScreen.storyboard */; };
 		4FDCAE8C28AB8F610041B31B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8B28AB8F610041B31B /* main.m */; };
 		4FDCAE9728AB8FD90041B31B /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE9628AB8FD90041B31B /* Card.m */; };
+		4FE762E628AE9DC8009A9789 /* HistoryViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FE762E428AE9DC8009A9789 /* HistoryViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		4FDCAE8B28AB8F610041B31B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FDCAE9228AB8FA50041B31B /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		4FDCAE9628AB8FD90041B31B /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		4FE762E428AE9DC8009A9789 /* HistoryViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HistoryViewController.mm; sourceTree = "<group>"; };
+		4FE762E528AE9DC8009A9789 /* HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 		4FDCAE7828AB8F600041B31B /* ObjectiveCTesting */ = {
 			isa = PBXGroup;
 			children = (
+				4FE762E328AE9DA5009A9789 /* History */,
 				4FB79B6028ABD0ED00BB1766 /* Model */,
 				4FB79B5F28ABB75300BB1766 /* Supporting Files */,
 				4FDCAE7F28AB8F600041B31B /* CardViewController.h */,
@@ -115,6 +119,15 @@
 				4FDCAE8A28AB8F610041B31B /* Info.plist */,
 			);
 			path = ObjectiveCTesting;
+			sourceTree = "<group>";
+		};
+		4FE762E328AE9DA5009A9789 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				4FE762E528AE9DC8009A9789 /* HistoryViewController.h */,
+				4FE762E428AE9DC8009A9789 /* HistoryViewController.mm */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FDCAE8128AB8F600041B31B /* CardViewController.m in Sources */,
+				4FE762E628AE9DC8009A9789 /* HistoryViewController.mm in Sources */,
 				4FBFED1528ABFAB100D22997 /* PlayingCardDeck.mm in Sources */,
 				4FBFED1228ABF2F500D22997 /* PlayingCard.mm in Sources */,
 				4FDCAE9728AB8FD90041B31B /* Card.m in Sources */,

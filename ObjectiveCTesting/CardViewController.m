@@ -9,38 +9,53 @@
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
+#import "History/HistoryViewController.h"
 
 @interface CardViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
 @property (weak, nonatomic) IBOutlet UILabel *score;
 @property (weak, nonatomic) IBOutlet UILabel *moveDescribingText;
 @property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) NSMutableString *history;
 @end
 
 @implementation CardViewController
-- (void)viewDidLoad {
-	[super viewDidLoad];
-  [self startGame];
-	// Do any additional setup after loading the view.
-}
 
 static const int MATCH_COUNT = 2;
 
-- (void)startGame {
-  Deck *playingDeck = [[PlayingCardDeck alloc] init];
-  _game = [[CardMatchingGame alloc] initWithCardCount: _cards.count usingDeck: playingDeck withMatchCount: MATCH_COUNT];
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  [self startGame];
+  self.navigationItem.title = @"Match Two";
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
   unsigned long chosenButtonIndex = [self.cards indexOfObject: sender];
-//  NSLog(@"Choose at index: %ld", chosenButtonIndex);
   [self.game chooseCardAtIndex: chosenButtonIndex];
   [self updateUI];
 }
 
 - (IBAction)resetGame:(id)sender {
+  NSLog(@"History: %@", _history);
   [self startGame];
   [self updateUI];
+}
+- (IBAction)showHistory:(id)sender {
+//  let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//  let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView") as! NextViewController
+//  self.present(nextViewController, animated:true, completion:nil)
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  HistoryViewController *historyViewController = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+  historyViewController.history = _history;
+  [self.navigationController pushViewController:historyViewController animated:true];
+}
+
+- (void)startGame {
+  Deck *playingDeck = [[PlayingCardDeck alloc] init];
+  _history = [[NSMutableString alloc] init];
+  _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
+                                            usingDeck:playingDeck withMatchCount: MATCH_COUNT];
 }
 
 - (void)updateUI {
@@ -63,6 +78,7 @@ static const int MATCH_COUNT = 2;
   } else {
   _moveDescribingText.text = _game.lastMoveDescription;
   }
+  [_history appendString: [NSString stringWithFormat:@"%@\n", _moveDescribingText.text]];
 }
 
 - (NSString *)titleForCard: (Card *)card {
