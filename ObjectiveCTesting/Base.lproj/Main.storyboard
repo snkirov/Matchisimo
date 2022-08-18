@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-1595" y="93"/>
         </scene>
-        <!--Playing Cards-->
+        <!--Card View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Playing Cards" id="BYZ-38-t0r" customClass="CardViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CardViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -383,11 +383,14 @@
             <point key="canvasLocation" x="145.79439252336448" y="92.656587473002162"/>
         </scene>
     </scenes>
-    <color key="tintColor" systemColor="systemTealColor"/>
+    <color key="tintColor" systemColor="systemGray4Color"/>
     <resources>
         <image name="cardback" width="42.666667938232422" height="64"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

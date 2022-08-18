@@ -13,7 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _historyTextView.text = _history;
+  if (![_history isEqualToString:@""]) {
+    _historyTextView.text = _history;
+  } else {
+    _historyTextView.text = @"No history to show.";
+  }
+
 }
 
 @end

@@ -16,7 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *score;
 @property (weak, nonatomic) IBOutlet UILabel *moveDescribingText;
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (strong, nonatomic) NSMutableString *history;
+@property (strong, nonatomic) NSString *history;
 @end
 
 @implementation CardViewController
@@ -53,7 +53,7 @@ static const int MATCH_COUNT = 2;
 
 - (void)startGame {
   Deck *playingDeck = [[PlayingCardDeck alloc] init];
-  _history = [[NSMutableString alloc] init];
+  _history = @"";
   _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
                                             usingDeck:playingDeck withMatchCount: MATCH_COUNT];
 }
@@ -76,9 +76,13 @@ static const int MATCH_COUNT = 2;
   if (hasWon) {
   _moveDescribingText.text = @"Congrats, you won! 🎉";
   } else {
-  _moveDescribingText.text = _game.lastMoveDescription;
+    if (_game.lastMoveDescription) {
+      _moveDescribingText.text = _game.lastMoveDescription;
+    }
   }
-  [_history appendString: [NSString stringWithFormat:@"%@\n", _moveDescribingText.text]];
+  if (![_moveDescribingText.text isEqualToString:@""]) {
+    _history = [_moveDescribingText.text stringByAppendingString:[NSString stringWithFormat:@"\n%@", _history]];
+  }
 }
 
 - (NSString *)titleForCard: (Card *)card {
