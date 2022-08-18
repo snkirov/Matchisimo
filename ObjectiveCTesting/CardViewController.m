@@ -76,11 +76,11 @@ static const int MATCH_COUNT = 2;
   if (hasWon) {
   _moveDescribingText.text = @"Congrats, you won! 🎉";
   } else {
-    if (_game.lastMoveDescription) {
       _moveDescribingText.text = _game.lastMoveDescription;
-    }
   }
-  if (![_moveDescribingText.text isEqualToString:@""]) {
+  // Check that the last move report is non null and not an empty string
+  if (_game.lastMoveDescription && ![_game.lastMoveDescription isEqualToString:@""]) {
+    // We do it this way to append the old history to the back
     _history = [_moveDescribingText.text stringByAppendingString:[NSString stringWithFormat:@"\n%@", _history]];
   }
 }
