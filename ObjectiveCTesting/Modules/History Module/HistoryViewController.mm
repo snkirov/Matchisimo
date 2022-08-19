@@ -7,7 +7,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HistoryViewController()
 @property (weak, nonatomic) IBOutlet UITextView *historyTextView;
-@property (nonatomic) BOOL isFromAttributedString;
+@property (nonatomic) BOOL shouldShowAttributed;
 @property (nonatomic, strong) NSString *history;
 @property (nonatomic, strong) NSAttributedString *attributedHistory;
 @end
@@ -15,34 +15,39 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation HistoryViewController
 
 - (void)setupWithAttributedHistory:(NSAttributedString *)attributedHistory {
-  _isFromAttributedString = true;
+  _shouldShowAttributed = true;
   _attributedHistory = attributedHistory;
 }
 
 - (void)setupWithHistory:(NSString *)history {
-  _isFromAttributedString = false;
+  _shouldShowAttributed = false;
   _history = history;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  if (!_isFromAttributedString) {
-    if ([_history isEqualToString:@""]) {
-      _historyTextView.text = @"No history to show.";
-    } else {
-      _historyTextView.text = _history;
-    }
-    return;
+  if (_shouldShowAttributed) {
+    [self loadAttributedHistory];
+  } else {
+    [self loadHistory];
   }
+}
 
+- (void)loadHistory {
+  if ([_history isEqualToString:@""]) {
+    _historyTextView.text = @"No history to show.";
+  } else {
+    _historyTextView.text = _history;
+  }
+}
+
+- (void)loadAttributedHistory {
   if ([_attributedHistory.string isEqualToString:@""]) {
     _historyTextView.text = @"No history to show.";
   } else {
     [_historyTextView setAttributedText:_attributedHistory];
   }
-
 }
-
 @end
 
 NS_ASSUME_NONNULL_END
