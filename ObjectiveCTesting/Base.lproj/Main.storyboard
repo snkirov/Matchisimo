@@ -423,10 +423,10 @@
             </objects>
             <point key="canvasLocation" x="-1595" y="-624"/>
         </scene>
-        <!--Playing Card Game View Controller-->
+        <!--Set Card Game View Controller-->
         <scene sceneID="Fkg-1l-OqC">
             <objects>
-                <viewController id="lVW-6Y-xeG" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
+                <viewController id="lVW-6Y-xeG" customClass="SetCardGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T1C-sC-xFa">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

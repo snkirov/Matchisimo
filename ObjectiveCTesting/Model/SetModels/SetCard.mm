@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation SetCard
 
 - (instancetype)initWithShape:(NSString *)shape withColor:(UIColor *)color
-                  withStroke:(UIColor *)stroke {
+                   withStroke:(UIColor *)stroke {
 
   if (self = [super init]) {
 
@@ -27,32 +27,36 @@ NS_ASSUME_NONNULL_BEGIN
       self = nil;
       return self;
     }
+    _shape = shape;
+    _color = color;
+    _stroke = stroke;
 
-      _shape = shape;
-      _color = color;
-      _stroke = stroke;
-      _attributedContents = [[[NSMutableAttributedString alloc] init] initWithString:_shape];
-      NSRange range;
-      range.length = _shape.length;
-      range.location = 0;
-      [_attributedContents addAttributes:@{ NSForegroundColorAttributeName : _color,
-                                            NSStrokeColorAttributeName : _stroke,
-                                            NSStrokeWidthAttributeName : @-5 } range: range];
-    }
-    return self;
+    _attributedContents = [[[NSMutableAttributedString alloc] init] initWithString:_shape];
+    NSRange range;
+    range.length = _shape.length;
+    range.location = 0;
+    [_attributedContents addAttributes:@{ NSForegroundColorAttributeName : _color,
+                                          NSStrokeColorAttributeName : _stroke,
+                                          NSStrokeWidthAttributeName : @-5 } range: range];
   }
+  return self;
+}
 
-  + (NSArray<NSString *> *)validShapes {
-    return @[@"▲", @"●", @"■"];
-  }
+- (NSString *)contents {
+  return _shape;
+}
 
-  + (NSArray<UIColor *>  *)validColors {
-    return @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor], [UIColor purpleColor]];
-  }
-  + (NSArray<UIColor *> *)validStrokes {
-    return @[[UIColor blackColor], [UIColor grayColor], [UIColor darkGrayColor]];
-  }
++ (NSArray<NSString *> *)validShapes {
+  return @[@"▲", @"●", @"■"];
+}
 
-  @end
++ (NSArray<UIColor *>  *)validColors {
+  return @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor], [UIColor purpleColor]];
+}
++ (NSArray<UIColor *> *)validStrokes {
+  return @[[UIColor blackColor], [UIColor grayColor], [UIColor darkGrayColor]];
+}
 
-  NS_ASSUME_NONNULL_END
+@end
+
+NS_ASSUME_NONNULL_END
