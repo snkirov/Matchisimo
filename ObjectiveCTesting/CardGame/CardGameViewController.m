@@ -6,9 +6,9 @@
 //
 
 #import "CardGameViewController.h"
-#import "PlayingCard.h"
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
+#import "SetCardDeck.h"
 
 @interface CardGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
@@ -41,7 +41,8 @@ static const int MATCH_COUNT = 2;
 }
 - (IBAction)showHistory:(id)sender {
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-  HistoryViewController *historyViewController = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+  HistoryViewController *historyViewController =
+      [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
   historyViewController.history = _history;
   [self.navigationController pushViewController:historyViewController animated:true];
 }
@@ -60,11 +61,7 @@ static const int MATCH_COUNT = 2;
 - (void)updateUI {
   BOOL hasWon = true;
   for (UIButton *cardButton in self.cards) {
-    unsigned long cardButtonIndex = [self.cards indexOfObject:cardButton];
-    Card *card = [self.game cardAtIndex:cardButtonIndex];
-    [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
-    [cardButton setBackgroundImage: [self backgroundImageForCard: card] forState:UIControlStateNormal];
-    cardButton.enabled = !card.isMatched;
+    [self updateButton:cardButton];
     if (cardButton.enabled) {
       hasWon = false;
     }
@@ -82,6 +79,14 @@ static const int MATCH_COUNT = 2;
     // We do it this way to append the old history to the back
     _history = [_moveDescribingText.text stringByAppendingString:[NSString stringWithFormat:@"\n%@", _history]];
   }
+}
+
+- (void)updateButton: (UIButton *)cardButton {
+  unsigned long cardButtonIndex = [self.cards indexOfObject:cardButton];
+  Card *card = [self.game cardAtIndex:cardButtonIndex];
+  [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
+  [cardButton setBackgroundImage: [self backgroundImageForCard: card] forState:UIControlStateNormal];
+  cardButton.enabled = !card.isMatched;
 }
 
 - (NSString *)titleForCard: (Card *)card {

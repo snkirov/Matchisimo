@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DiE-SY-XtQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4QN-XZ-FfL">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="WOo-wu-UzF">
+            <objects>
+                <tabBarController id="4QN-XZ-FfL" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w4W-1A-oQW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="DiE-SY-XtQ" kind="relationship" relationship="viewControllers" id="nYC-sW-Qff"/>
+                        <segue destination="6D7-KZ-GCn" kind="relationship" relationship="viewControllers" id="e6m-4j-W1x"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jcq-i5-3UP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3423" y="-213"/>
+        </scene>
+        <!--Set Three-->
         <scene sceneID="1ct-rz-MaF">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kku-dW-gMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="DiE-SY-XtQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Set Three" id="ogp-pC-a3x">
+                        <imageReference key="image" image="suit.club.fill" catalog="system" renderingMode="original"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iw5-sU-el4">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -33,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e59-bw-XhH">
-                                <rect key="frame" x="19.999999999999996" y="871.66666666666663" width="63.666666666666657" height="20.333333333333371"/>
+                                <rect key="frame" x="19.999999999999996" y="802.66666666666663" width="63.666666666666657" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -275,7 +297,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P35-yu-B50">
-                                <rect key="frame" x="343" y="862" width="65" height="30"/>
+                                <rect key="frame" x="343" y="793" width="65" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Reshuffle">
                                     <color key="titleColor" systemColor="systemBackgroundColor"/>
@@ -298,11 +320,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                         <constraints>
-                            <constraint firstItem="e59-bw-XhH" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2wE-Ao-1a7"/>
                             <constraint firstItem="u75-rg-fiZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FM9-3H-7uJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="P35-yu-B50" secondAttribute="bottom" constant="20" id="LGC-Bw-0lR"/>
                             <constraint firstItem="O62-uX-sJU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NiI-mj-49S"/>
                             <constraint firstAttribute="bottom" secondItem="nF9-3Y-BL9" secondAttribute="bottom" constant="174" id="PF8-Xl-RYX"/>
-                            <constraint firstItem="P35-yu-B50" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PYt-iw-KuH"/>
                             <constraint firstItem="3eW-LI-nao" firstAttribute="top" secondItem="O62-uX-sJU" secondAttribute="bottom" constant="8" symbolic="YES" id="V3Y-sA-myq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P35-yu-B50" secondAttribute="trailing" constant="20" id="YL0-6C-Zyb"/>
                             <constraint firstItem="e59-bw-XhH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Zac-5j-75o"/>
@@ -313,6 +334,7 @@
                             <constraint firstItem="O62-uX-sJU" firstAttribute="top" secondItem="u75-rg-fiZ" secondAttribute="bottom" constant="8" symbolic="YES" id="tSc-Qk-s5w"/>
                             <constraint firstItem="u75-rg-fiZ" firstAttribute="top" secondItem="5LI-Jb-1gC" secondAttribute="bottom" constant="8" symbolic="YES" id="tu3-34-N1a"/>
                             <constraint firstItem="5LI-Jb-1gC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ucr-w9-Eub"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="e59-bw-XhH" secondAttribute="bottom" constant="20" id="vst-An-cEL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="H9f-pS-ntv">
@@ -382,10 +404,356 @@
             </objects>
             <point key="canvasLocation" x="145.79439252336448" y="92.656587473002162"/>
         </scene>
+        <!--Match Two-->
+        <scene sceneID="ZTS-FS-DIK">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OIl-no-VOh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController id="6D7-KZ-GCn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Match Two" id="rae-o5-SNh">
+                        <imageReference key="image" image="suit.heart.fill" catalog="system" renderingMode="original"/>
+                    </tabBarItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f8c-fc-Pco">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lVW-6Y-xeG" kind="relationship" relationship="rootViewController" id="bbF-kl-lVO"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-1595" y="-624"/>
+        </scene>
+        <!--Playing Card Game View Controller-->
+        <scene sceneID="Fkg-1l-OqC">
+            <objects>
+                <viewController id="lVW-6Y-xeG" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T1C-sC-xFa">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5D5-FI-QpR">
+                                <rect key="frame" x="19.999999999999996" y="802.66666666666663" width="63.666666666666657" height="20.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="4c7-3E-DqE">
+                                <rect key="frame" x="20.666666666666657" y="88" width="387" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDg-RV-ex6">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="Cls-yS-6Qb"/>
+                                            <constraint firstAttribute="width" secondItem="aDg-RV-ex6" secondAttribute="height" multiplier="21:32" id="G1Q-vN-Kg6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="Qri-iU-Wr7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Waa-Br-bFe">
+                                        <rect key="frame" x="101" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="JW0-8o-LrJ"/>
+                                            <constraint firstAttribute="width" secondItem="Waa-Br-bFe" secondAttribute="height" multiplier="21:32" id="wIr-4d-eoZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="o8J-h0-YZw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkm-gG-xyE">
+                                        <rect key="frame" x="202" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="5jj-97-cdp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="dmr-3M-BoA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0Y-ux-Mis">
+                                        <rect key="frame" x="303" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="TBv-b6-PHN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="fZq-Yo-GwB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qkm-gG-xyE" firstAttribute="width" secondItem="qkm-gG-xyE" secondAttribute="height" multiplier="21:32" id="Bgr-CS-IYw"/>
+                                    <constraint firstItem="L0Y-ux-Mis" firstAttribute="width" secondItem="L0Y-ux-Mis" secondAttribute="height" multiplier="21:32" id="Q0W-jI-RWB"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ww7-Ld-1gQ">
+                                <rect key="frame" x="20.666666666666657" y="224" width="387" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksq-ML-QD7">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ksq-ML-QD7" secondAttribute="height" multiplier="21:32" id="plN-oQ-gBY"/>
+                                            <constraint firstAttribute="height" constant="128" id="sLM-tT-PTF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="8iZ-X6-maj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mb8-9v-Vem">
+                                        <rect key="frame" x="101" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="7u0-O7-Enm"/>
+                                            <constraint firstAttribute="width" secondItem="Mb8-9v-Vem" secondAttribute="height" multiplier="21:32" id="GcR-AA-MrZ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="yHF-Zg-j2Q"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rNf-Dm-h5s">
+                                        <rect key="frame" x="202" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="evc-gX-tM1"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="KL2-ed-lv6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bw3-n0-teT">
+                                        <rect key="frame" x="303" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="zLz-zr-p7n"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="vBi-jk-yIB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Bw3-n0-teT" firstAttribute="width" secondItem="Bw3-n0-teT" secondAttribute="height" multiplier="21:32" id="6bj-wC-5Qt"/>
+                                    <constraint firstItem="rNf-Dm-h5s" firstAttribute="width" secondItem="rNf-Dm-h5s" secondAttribute="height" multiplier="21:32" id="yLi-qd-GVI"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="BCo-Uo-VZV">
+                                <rect key="frame" x="20.666666666666657" y="360" width="387" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykc-J4-QaO">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ykc-J4-QaO" secondAttribute="height" multiplier="21:32" id="Pzy-BN-6kq"/>
+                                            <constraint firstAttribute="height" constant="128" id="TRG-uR-hIh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="czh-l5-zTp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bl8-f1-hkw">
+                                        <rect key="frame" x="101" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Bl8-f1-hkw" secondAttribute="height" multiplier="21:32" id="40Y-jj-2b5"/>
+                                            <constraint firstAttribute="height" constant="128" id="j7C-3b-wc3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="XMy-RQ-vvi"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tIU-EA-wRX">
+                                        <rect key="frame" x="202" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="vvU-Um-Kr8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="lUx-n6-MLJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGN-t6-vDx">
+                                        <rect key="frame" x="303" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="3GV-M3-DxR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="jkQ-Bv-H1s"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xGN-t6-vDx" firstAttribute="width" secondItem="xGN-t6-vDx" secondAttribute="height" multiplier="21:32" id="KMU-IR-2DC"/>
+                                    <constraint firstItem="tIU-EA-wRX" firstAttribute="width" secondItem="tIU-EA-wRX" secondAttribute="height" multiplier="21:32" id="lej-fD-aUp"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ev0-G3-i6E">
+                                <rect key="frame" x="20.666666666666657" y="496" width="387" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQT-dn-MQd">
+                                        <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="iQT-dn-MQd" secondAttribute="height" multiplier="21:32" id="7mR-sZ-pkT"/>
+                                            <constraint firstAttribute="height" constant="128" id="Qi4-BF-wHj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="Egw-oZ-LCN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deS-BZ-42Y">
+                                        <rect key="frame" x="101" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="7jO-vF-4MN"/>
+                                            <constraint firstAttribute="width" secondItem="deS-BZ-42Y" secondAttribute="height" multiplier="21:32" id="LKs-aK-mCb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="uUR-Jj-fjR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thd-DT-ehG">
+                                        <rect key="frame" x="202" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="pUv-8b-JsY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="3QL-5o-fu7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-wH-PLA">
+                                        <rect key="frame" x="303" y="0.0" width="84" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="128" id="3By-Ex-eK3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" backgroundImage="cardback"/>
+                                        <connections>
+                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="cjI-9k-VCS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Thd-DT-ehG" firstAttribute="width" secondItem="Thd-DT-ehG" secondAttribute="height" multiplier="21:32" id="E0I-8M-Re2"/>
+                                    <constraint firstItem="e6J-wH-PLA" firstAttribute="width" secondItem="e6J-wH-PLA" secondAttribute="height" multiplier="21:32" id="rPV-ue-zeW"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efw-wH-f9G">
+                                <rect key="frame" x="343" y="793" width="65" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Reshuffle">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetGame:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="WLE-XJ-fE0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMz-YO-WdA">
+                                <rect key="frame" x="39" y="732" width="350" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="HSq-75-mDu"/>
+                                    <constraint firstAttribute="width" constant="350" id="h1g-Gh-bK8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6cn-FE-CE4"/>
+                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iMz-YO-WdA" secondAttribute="bottom" constant="174" id="0SV-7q-Dhl"/>
+                            <constraint firstItem="iMz-YO-WdA" firstAttribute="centerX" secondItem="T1C-sC-xFa" secondAttribute="centerX" id="0f2-My-J3A"/>
+                            <constraint firstItem="efw-wH-f9G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5D5-FI-QpR" secondAttribute="trailing" constant="20" id="Cmk-bj-biV"/>
+                            <constraint firstItem="Ww7-Ld-1gQ" firstAttribute="centerX" secondItem="T1C-sC-xFa" secondAttribute="centerX" id="H7N-Rk-ssU"/>
+                            <constraint firstItem="4c7-3E-DqE" firstAttribute="centerX" secondItem="T1C-sC-xFa" secondAttribute="centerX" id="QlW-ba-tsN"/>
+                            <constraint firstItem="6cn-FE-CE4" firstAttribute="trailing" secondItem="efw-wH-f9G" secondAttribute="trailing" constant="20" id="Tqi-D8-0cR"/>
+                            <constraint firstItem="ev0-G3-i6E" firstAttribute="centerX" secondItem="T1C-sC-xFa" secondAttribute="centerX" id="Wx1-bU-EB7"/>
+                            <constraint firstItem="4c7-3E-DqE" firstAttribute="top" secondItem="6cn-FE-CE4" secondAttribute="top" id="XlS-0A-ZGf"/>
+                            <constraint firstItem="6cn-FE-CE4" firstAttribute="bottom" secondItem="efw-wH-f9G" secondAttribute="bottom" constant="20" id="gUW-bd-kbh"/>
+                            <constraint firstItem="ev0-G3-i6E" firstAttribute="top" secondItem="BCo-Uo-VZV" secondAttribute="bottom" constant="8" symbolic="YES" id="iGo-Ns-R5J"/>
+                            <constraint firstItem="BCo-Uo-VZV" firstAttribute="centerX" secondItem="T1C-sC-xFa" secondAttribute="centerX" id="pAh-lb-uYK"/>
+                            <constraint firstItem="5D5-FI-QpR" firstAttribute="leading" secondItem="6cn-FE-CE4" secondAttribute="leading" constant="20" id="pE4-4o-VeA"/>
+                            <constraint firstItem="6cn-FE-CE4" firstAttribute="bottom" secondItem="5D5-FI-QpR" secondAttribute="bottom" constant="20" id="pPk-0s-cu5"/>
+                            <constraint firstItem="BCo-Uo-VZV" firstAttribute="top" secondItem="Ww7-Ld-1gQ" secondAttribute="bottom" constant="8" symbolic="YES" id="xP0-4C-DpS"/>
+                            <constraint firstItem="Ww7-Ld-1gQ" firstAttribute="top" secondItem="4c7-3E-DqE" secondAttribute="bottom" constant="8" symbolic="YES" id="yqX-Jt-jVg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2g6-ah-96H">
+                        <barButtonItem key="rightBarButtonItem" title="History" id="CGJ-AJ-uAs">
+                            <color key="tintColor" systemColor="systemCyanColor"/>
+                            <connections>
+                                <action selector="showHistory:" destination="lVW-6Y-xeG" id="Cww-zD-K2q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="moveDescribingText" destination="iMz-YO-WdA" id="3Mx-Tu-gfa"/>
+                        <outlet property="score" destination="5D5-FI-QpR" id="vvK-Ns-0YB"/>
+                        <outletCollection property="cards" destination="Waa-Br-bFe" id="ccc-7x-o3W"/>
+                        <outletCollection property="cards" destination="Bw3-n0-teT" id="fMe-lc-vUS"/>
+                        <outletCollection property="cards" destination="Bl8-f1-hkw" id="mth-V1-rIy"/>
+                        <outletCollection property="cards" destination="Thd-DT-ehG" id="T3H-Dp-dSZ"/>
+                        <outletCollection property="cards" destination="aDg-RV-ex6" id="lrD-st-rUb"/>
+                        <outletCollection property="cards" destination="qkm-gG-xyE" id="zxn-Ho-HwB"/>
+                        <outletCollection property="cards" destination="L0Y-ux-Mis" id="Gek-6S-vei"/>
+                        <outletCollection property="cards" destination="ksq-ML-QD7" id="B6p-gK-cmA"/>
+                        <outletCollection property="cards" destination="Mb8-9v-Vem" id="BPy-1f-7yo"/>
+                        <outletCollection property="cards" destination="rNf-Dm-h5s" id="FOX-fL-ndU"/>
+                        <outletCollection property="cards" destination="ykc-J4-QaO" id="fbm-JP-tKw"/>
+                        <outletCollection property="cards" destination="tIU-EA-wRX" id="Gj4-NP-I2h"/>
+                        <outletCollection property="cards" destination="xGN-t6-vDx" id="liP-E1-lme"/>
+                        <outletCollection property="cards" destination="iQT-dn-MQd" id="T0v-Xf-uad"/>
+                        <outletCollection property="cards" destination="Thd-DT-ehG" id="7Gh-KS-8Qc"/>
+                        <outletCollection property="cards" destination="e6J-wH-PLA" id="p8R-Op-yd8"/>
+                        <outletCollection property="cards" destination="deS-BZ-42Y" id="YJf-yi-6Pv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fnq-Dt-n8U" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-744" y="-624"/>
+        </scene>
     </scenes>
     <color key="tintColor" systemColor="systemCyanColor"/>
     <resources>
         <image name="cardback" width="42.666667938232422" height="64"/>
+        <image name="suit.club.fill" catalog="system" width="128" height="121"/>
+        <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
