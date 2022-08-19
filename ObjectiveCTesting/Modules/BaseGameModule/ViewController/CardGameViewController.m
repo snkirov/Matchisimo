@@ -43,7 +43,7 @@ static const int MATCH_COUNT = 2;
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   HistoryViewController *historyViewController =
       [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
-  historyViewController.history = _history;
+  [historyViewController setupWithHistory:_history];
   [self.navigationController pushViewController:historyViewController animated:true];
 }
 
