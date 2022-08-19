@@ -81,15 +81,19 @@ static const int MATCH_COUNT = 2;
   }
 }
 
-- (void)updateButton: (UIButton *)cardButton {
+- (void)updateButton:(UIButton *)cardButton {
   unsigned long cardButtonIndex = [self.cards indexOfObject:cardButton];
   Card *card = [self.game cardAtIndex:cardButtonIndex];
-  [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
+  [self updateTitleOfButton:cardButton forCard:card];
   [cardButton setBackgroundImage: [self backgroundImageForCard: card] forState:UIControlStateNormal];
   cardButton.enabled = !card.isMatched;
 }
 
-- (NSString *)titleForCard: (Card *)card {
+- (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card {
+  [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
+}
+
+- (NSString *)titleForCard:(Card *)card {
   return card.isChosen ? card.contents : @"";
 }
 

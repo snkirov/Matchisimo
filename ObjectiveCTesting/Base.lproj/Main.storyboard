@@ -3,7 +3,6 @@
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,14 +26,12 @@
             </objects>
             <point key="canvasLocation" x="-3423" y="-213"/>
         </scene>
-        <!--Set Three-->
+        <!--Match Two-->
         <scene sceneID="1ct-rz-MaF">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kku-dW-gMg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="DiE-SY-XtQ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Set Three" id="ogp-pC-a3x">
-                        <imageReference key="image" image="suit.club.fill" catalog="system" renderingMode="original"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Match Two" image="heart.fill" catalog="system" id="ogp-pC-a3x"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iw5-sU-el4">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -404,14 +401,12 @@
             </objects>
             <point key="canvasLocation" x="145.79439252336448" y="92.656587473002162"/>
         </scene>
-        <!--Match Two-->
+        <!--Set Three-->
         <scene sceneID="ZTS-FS-DIK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OIl-no-VOh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="6D7-KZ-GCn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Match Two" id="rae-o5-SNh">
-                        <imageReference key="image" image="suit.heart.fill" catalog="system" renderingMode="original"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Set Three" image="triangle.fill" catalog="system" id="rae-o5-SNh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f8c-fc-Pco">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -752,8 +747,8 @@
     <color key="tintColor" systemColor="systemCyanColor"/>
     <resources>
         <image name="cardback" width="42.666667938232422" height="64"/>
-        <image name="suit.club.fill" catalog="system" width="128" height="121"/>
-        <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <image name="triangle.fill" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

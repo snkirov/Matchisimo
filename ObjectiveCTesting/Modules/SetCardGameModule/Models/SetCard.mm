@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
     range.location = 0;
     [_attributedContents addAttributes:@{ NSForegroundColorAttributeName : _color,
                                           NSStrokeColorAttributeName : _stroke,
-                                          NSStrokeWidthAttributeName : @-5 } range: range];
+                                          NSStrokeWidthAttributeName : @-7 } range: range];
   }
   return self;
 }
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
   return @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor], [UIColor purpleColor]];
 }
 + (NSArray<UIColor *> *)validStrokes {
-  return @[[UIColor blackColor], [UIColor grayColor], [UIColor darkGrayColor]];
+  return @[[UIColor blackColor], [UIColor orangeColor], [UIColor clearColor]];
 }
 
 @end

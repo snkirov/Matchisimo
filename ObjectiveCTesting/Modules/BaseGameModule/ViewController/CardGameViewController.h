@@ -10,8 +10,11 @@
 
 @interface CardGameViewController : UIViewController
 
+
+
 // protected
 - (Deck *)createDeck; // abstract
+- (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card; // has Default Implementation
 
 @end
 
