@@ -1,17 +1,16 @@
 //
-//  CardViewController.m
+//  CardGameViewController.m
 //  ObjectiveCTesting
 //
 //  Created by Svilen Kirov on 16/08/2022.
 //
 
-#import "CardViewController.h"
-#import "PlayingCardDeck.h"
+#import "CardGameViewController.h"
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
-#import "History/HistoryViewController.h"
+#import "HistoryViewController.h"
 
-@interface CardViewController ()
+@interface CardGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
 @property (weak, nonatomic) IBOutlet UILabel *score;
 @property (weak, nonatomic) IBOutlet UILabel *moveDescribingText;
@@ -19,10 +18,9 @@
 @property (strong, nonatomic) NSString *history;
 @end
 
-@implementation CardViewController
+@implementation CardGameViewController
 
 static const int MATCH_COUNT = 2;
-
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -42,9 +40,6 @@ static const int MATCH_COUNT = 2;
   [self updateUI];
 }
 - (IBAction)showHistory:(id)sender {
-//  let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//  let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView") as! NextViewController
-//  self.present(nextViewController, animated:true, completion:nil)
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   HistoryViewController *historyViewController = [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
   historyViewController.history = _history;
@@ -52,10 +47,14 @@ static const int MATCH_COUNT = 2;
 }
 
 - (void)startGame {
-  Deck *playingDeck = [[PlayingCardDeck alloc] init];
+  Deck *playingDeck = [self createDeck];
   _history = @"";
   _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
                                             usingDeck:playingDeck withMatchCount: MATCH_COUNT];
+}
+
+- (Deck *)createDeck {
+  return nil;
 }
 
 - (void)updateUI {

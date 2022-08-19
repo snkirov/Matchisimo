@@ -13,13 +13,14 @@
 		4FBFED1828AD312300D22997 /* CardMatchingGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFED1628AD312300D22997 /* CardMatchingGame.mm */; };
 		4FDCAE7B28AB8F600041B31B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE7A28AB8F600041B31B /* AppDelegate.m */; };
 		4FDCAE7E28AB8F600041B31B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE7D28AB8F600041B31B /* SceneDelegate.m */; };
-		4FDCAE8128AB8F600041B31B /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8028AB8F600041B31B /* CardViewController.m */; };
+		4FDCAE8128AB8F600041B31B /* CardGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8028AB8F600041B31B /* CardGameViewController.m */; };
 		4FDCAE8428AB8F600041B31B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8228AB8F600041B31B /* Main.storyboard */; };
 		4FDCAE8628AB8F610041B31B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8528AB8F610041B31B /* Assets.xcassets */; };
 		4FDCAE8928AB8F610041B31B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8728AB8F610041B31B /* LaunchScreen.storyboard */; };
 		4FDCAE8C28AB8F610041B31B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8B28AB8F610041B31B /* main.m */; };
 		4FDCAE9728AB8FD90041B31B /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE9628AB8FD90041B31B /* Card.m */; };
 		4FE762E628AE9DC8009A9789 /* HistoryViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FE762E428AE9DC8009A9789 /* HistoryViewController.mm */; };
+		4FE762EE28AFC429009A9789 /* PlayingCardGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FE762EC28AFC429009A9789 /* PlayingCardGameViewController.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,8 +37,8 @@
 		4FDCAE7A28AB8F600041B31B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4FDCAE7C28AB8F600041B31B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		4FDCAE7D28AB8F600041B31B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		4FDCAE7F28AB8F600041B31B /* CardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
-		4FDCAE8028AB8F600041B31B /* CardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		4FDCAE7F28AB8F600041B31B /* CardGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardGameViewController.h; sourceTree = "<group>"; };
+		4FDCAE8028AB8F600041B31B /* CardGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardGameViewController.m; sourceTree = "<group>"; };
 		4FDCAE8328AB8F600041B31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FDCAE8528AB8F610041B31B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FDCAE8828AB8F610041B31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +48,8 @@
 		4FDCAE9628AB8FD90041B31B /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		4FE762E428AE9DC8009A9789 /* HistoryViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HistoryViewController.mm; sourceTree = "<group>"; };
 		4FE762E528AE9DC8009A9789 /* HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		4FE762EC28AFC429009A9789 /* PlayingCardGameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardGameViewController.mm; sourceTree = "<group>"; };
+		4FE762ED28AFC429009A9789 /* PlayingCardGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardGameViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +111,10 @@
 		4FDCAE7828AB8F600041B31B /* ObjectiveCTesting */ = {
 			isa = PBXGroup;
 			children = (
+				4FE762EA28AFC3E6009A9789 /* CardGame */,
 				4FE762E328AE9DA5009A9789 /* History */,
 				4FB79B6028ABD0ED00BB1766 /* Model */,
 				4FB79B5F28ABB75300BB1766 /* Supporting Files */,
-				4FDCAE7F28AB8F600041B31B /* CardViewController.h */,
-				4FDCAE8028AB8F600041B31B /* CardViewController.m */,
 				4FDCAE8228AB8F600041B31B /* Main.storyboard */,
 				4FDCAE8B28AB8F610041B31B /* main.m */,
 				4FDCAE8528AB8F610041B31B /* Assets.xcassets */,
@@ -128,6 +130,25 @@
 				4FE762E428AE9DC8009A9789 /* HistoryViewController.mm */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		4FE762EA28AFC3E6009A9789 /* CardGame */ = {
+			isa = PBXGroup;
+			children = (
+				4FE762EB28AFC408009A9789 /* PlayingCardGame */,
+				4FDCAE7F28AB8F600041B31B /* CardGameViewController.h */,
+				4FDCAE8028AB8F600041B31B /* CardGameViewController.m */,
+			);
+			path = CardGame;
+			sourceTree = "<group>";
+		};
+		4FE762EB28AFC408009A9789 /* PlayingCardGame */ = {
+			isa = PBXGroup;
+			children = (
+				4FE762ED28AFC429009A9789 /* PlayingCardGameViewController.h */,
+				4FE762EC28AFC429009A9789 /* PlayingCardGameViewController.mm */,
+			);
+			path = PlayingCardGame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,12 +221,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FDCAE8128AB8F600041B31B /* CardViewController.m in Sources */,
+				4FDCAE8128AB8F600041B31B /* CardGameViewController.m in Sources */,
 				4FE762E628AE9DC8009A9789 /* HistoryViewController.mm in Sources */,
 				4FBFED1528ABFAB100D22997 /* PlayingCardDeck.mm in Sources */,
 				4FBFED1228ABF2F500D22997 /* PlayingCard.mm in Sources */,
 				4FDCAE9728AB8FD90041B31B /* Card.m in Sources */,
 				4FDCAE7B28AB8F600041B31B /* AppDelegate.m in Sources */,
+				4FE762EE28AFC429009A9789 /* PlayingCardGameViewController.mm in Sources */,
 				4FDCAE8C28AB8F610041B31B /* main.m in Sources */,
 				4FB79B5D28AB9E0400BB1766 /* Deck.m in Sources */,
 				4FDCAE7E28AB8F600041B31B /* SceneDelegate.m in Sources */,
