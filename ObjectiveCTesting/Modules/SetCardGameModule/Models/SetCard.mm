@@ -42,6 +42,16 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
+//- (int)match:(NSArray *)otherCards {
+//  int score = 0;
+//
+//  for (SetCard *card in otherCards) {
+//    ;
+//  }
+//
+//  return score;
+//}
+
 - (NSString *)contents {
   return _shape;
 }

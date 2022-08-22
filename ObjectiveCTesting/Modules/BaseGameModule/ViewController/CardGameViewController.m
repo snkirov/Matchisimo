@@ -20,11 +20,10 @@
 
 @implementation CardGameViewController
 
-static const int MATCH_COUNT = 2;
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self startGame];
+  [self updateUI];
   self.navigationItem.title = @"Match Two";
 }
 
@@ -51,11 +50,15 @@ static const int MATCH_COUNT = 2;
   Deck *playingDeck = [self createDeck];
   _history = @"";
   _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
-                                            usingDeck:playingDeck withMatchCount: MATCH_COUNT];
+                                            usingDeck:playingDeck withMatchCount: [self cardsRequiredForMatch]];
 }
 
 - (Deck *)createDeck {
   return nil;
+}
+
+- (NSUInteger)cardsRequiredForMatch {
+  return 2;
 }
 
 - (void)updateUI {

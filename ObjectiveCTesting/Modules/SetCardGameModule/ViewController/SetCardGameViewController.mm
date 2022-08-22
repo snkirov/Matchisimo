@@ -9,17 +9,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardGameViewController
 
+- (NSUInteger)cardsRequiredForMatch {
+  return 3;
+}
+
 - (Deck *)createDeck {
   return [[SetCardDeck alloc] init];
 }
 
 - (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card {
-  if (card.isChosen) {
     [cardButton setAttributedTitle:((SetCard *)card).attributedContents forState:UIControlStateNormal];
-  } else {
-    NSAttributedString *emptyAttributedString = [[NSAttributedString alloc] initWithString:@""];
-    [cardButton setAttributedTitle: emptyAttributedString forState: UIControlStateNormal];
-  }
+}
+
+- (UIImage *)backgroundImageForCard: (Card *)card {
+  NSString * cardName = card.isChosen ? @"cardselected" : @"cardfront";
+  return [UIImage imageNamed: cardName];
 }
 
 @end
