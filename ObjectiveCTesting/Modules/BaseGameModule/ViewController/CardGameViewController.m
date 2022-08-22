@@ -34,14 +34,14 @@
 }
 
 - (IBAction)resetGame:(id)sender {
-//  NSLog(@"History: %@", _history);
+  //  NSLog(@"History: %@", _history);
   [self startGame];
   [self updateUI];
 }
 - (IBAction)showHistory:(id)sender {
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   HistoryViewController *historyViewController =
-      [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
+  [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
   [historyViewController setupWithAttributedHistory:_history];
   [self.navigationController pushViewController:historyViewController animated:true];
 }
@@ -73,19 +73,19 @@
   _score.text = [NSString stringWithFormat:@"Score: %ld", (long)_game.score];
 
   if (hasWon) {
-  _moveDescribingText.text = @"Congrats, you won! 🎉";
+    _moveDescribingText.text = @"Congrats, you won! 🎉";
   } else {
-      _moveDescribingText.attributedText = _game.lastMoveDescription;
+    _moveDescribingText.attributedText = _game.lastMoveDescription;
   }
   // Check that the last move report is non null and not an empty string
   NSMutableAttributedString *emptyAttributedString =
-      [[NSMutableAttributedString alloc] initWithString:@""];
+  [[NSMutableAttributedString alloc] initWithString:@""];
 
   if (_game.lastMoveDescription &&
       ![_game.lastMoveDescription isEqualToAttributedString:emptyAttributedString]) {
     // We do it this way to append the old history to the back
     NSMutableAttributedString *newLineAttributedString =
-        [[NSMutableAttributedString alloc] initWithString:@"\n"];
+    [[NSMutableAttributedString alloc] initWithString:@"\n"];
     [newLineAttributedString appendAttributedString:_game.lastMoveDescription];
     [newLineAttributedString appendAttributedString:_history];
     _history = newLineAttributedString;

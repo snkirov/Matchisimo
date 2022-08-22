@@ -610,7 +610,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="ev0-G3-i6E">
-                                <rect key="frame" x="20.666666666666657" y="496" width="387" height="128"/>
+                                <rect key="frame" x="71" y="496" width="286" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQT-dn-MQd">
                                         <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
@@ -650,22 +650,9 @@
                                             <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="3QL-5o-fu7"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6J-wH-PLA">
-                                        <rect key="frame" x="303" y="0.0" width="84" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="3By-Ex-eK3"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="" backgroundImage="cardback"/>
-                                        <connections>
-                                            <action selector="flipCard:" destination="lVW-6Y-xeG" eventType="touchUpInside" id="cjI-9k-VCS"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Thd-DT-ehG" firstAttribute="width" secondItem="Thd-DT-ehG" secondAttribute="height" multiplier="21:32" id="E0I-8M-Re2"/>
-                                    <constraint firstItem="e6J-wH-PLA" firstAttribute="width" secondItem="e6J-wH-PLA" secondAttribute="height" multiplier="21:32" id="rPV-ue-zeW"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efw-wH-f9G">
@@ -735,7 +722,6 @@
                         <outletCollection property="cards" destination="xGN-t6-vDx" id="liP-E1-lme"/>
                         <outletCollection property="cards" destination="iQT-dn-MQd" id="T0v-Xf-uad"/>
                         <outletCollection property="cards" destination="Thd-DT-ehG" id="7Gh-KS-8Qc"/>
-                        <outletCollection property="cards" destination="e6J-wH-PLA" id="p8R-Op-yd8"/>
                         <outletCollection property="cards" destination="deS-BZ-42Y" id="YJf-yi-6Pv"/>
                     </connections>
                 </viewController>
