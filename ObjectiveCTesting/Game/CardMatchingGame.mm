@@ -60,7 +60,8 @@ static const int GUESS_PENALTY = 1;
     return;
   }
 
-  _lastMoveDescription = [[NSMutableAttributedString alloc] initWithAttributedString:[card.attributedContents copy]];
+  _lastMoveDescription = [[NSMutableAttributedString alloc]
+                          initWithAttributedString:[card.attributedContents copy]];
   NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
   long extraCardsRequiredForMatch = _matchCount - 1;
 
@@ -68,8 +69,7 @@ static const int GUESS_PENALTY = 1;
     if (otherCard.isChosen && !otherCard.isMatched) {
 
       [chosenCards addObject:otherCard];
-      auto attributedString = (NSAttributedString *)otherCard.attributedContents;
-      [_lastMoveDescription appendAttributedString: attributedString];
+      [_lastMoveDescription appendAttributedString: otherCard.attributedContents];
       extraCardsRequiredForMatch--;
 
       if (extraCardsRequiredForMatch == 0) {

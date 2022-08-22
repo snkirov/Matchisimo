@@ -34,7 +34,7 @@
 }
 
 - (IBAction)resetGame:(id)sender {
-  NSLog(@"History: %@", _history);
+//  NSLog(@"History: %@", _history);
   [self startGame];
   [self updateUI];
 }
@@ -47,10 +47,10 @@
 }
 
 - (void)startGame {
-  Deck *playingDeck = [self createDeck];
   _history = [[NSMutableAttributedString alloc] initWithString:@""];
   _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
-                                            usingDeck:playingDeck withMatchCount: [self cardsRequiredForMatch]];
+                                            usingDeck:[self createDeck]
+                                       withMatchCount: [self cardsRequiredForMatch]];
 }
 
 - (Deck *)createDeck {
@@ -78,13 +78,17 @@
       _moveDescribingText.attributedText = _game.lastMoveDescription;
   }
   // Check that the last move report is non null and not an empty string
-  if (_game.lastMoveDescription && ![_game.lastMoveDescription isEqualToAttributedString: [[NSMutableAttributedString alloc] initWithString:@""]]) {
+  NSMutableAttributedString *emptyAttributedString =
+      [[NSMutableAttributedString alloc] initWithString:@""];
+
+  if (_game.lastMoveDescription &&
+      ![_game.lastMoveDescription isEqualToAttributedString:emptyAttributedString]) {
     // We do it this way to append the old history to the back
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"\n"];
-    [string appendAttributedString:_game.lastMoveDescription];
-    [string appendAttributedString:_history];
-    _history = string;
-    //[_moveDescribingText.text stringByAppendingString:[NSString stringWithFormat:@"\n%@", _history]];
+    NSMutableAttributedString *newLineAttributedString =
+        [[NSMutableAttributedString alloc] initWithString:@"\n"];
+    [newLineAttributedString appendAttributedString:_game.lastMoveDescription];
+    [newLineAttributedString appendAttributedString:_history];
+    _history = newLineAttributedString;
   }
 }
 

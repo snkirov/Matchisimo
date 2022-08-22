@@ -10,14 +10,10 @@
 
 @interface CardGameViewController : UIViewController
 
-
-
-// protected
-- (NSUInteger)cardsRequiredForMatch; // 2 by default
-
-
 - (Deck *)createDeck; // abstract
-- (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card; // has Default Implementation
+
+// Has Default Implementation
+- (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card;
 
 @end
 
