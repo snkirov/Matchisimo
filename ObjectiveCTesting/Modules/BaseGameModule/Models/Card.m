@@ -13,6 +13,10 @@
 
 @implementation Card
 
+- (NSMutableAttributedString *)attributedContents {
+  return [[NSMutableAttributedString alloc] initWithString: [self contents]];
+}
+
 - (int)match:(NSArray *)otherCards {
 	int score = 0;
   for (Card *card in otherCards) {

@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (Card *)cardAtIndex: (NSUInteger)index;
 
 @property (readonly, nonatomic) NSInteger score;
-@property (readonly, nonatomic) NSMutableString * lastMoveDescription;
+@property (readonly, nonatomic) NSMutableAttributedString * lastMoveDescription;
 
 @end
 

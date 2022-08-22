@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *score;
 @property (weak, nonatomic) IBOutlet UILabel *moveDescribingText;
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (strong, nonatomic) NSString *history;
+@property (strong, nonatomic) NSMutableAttributedString *history;
 @end
 
 @implementation CardGameViewController
@@ -42,13 +42,13 @@
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   HistoryViewController *historyViewController =
       [storyboard instantiateViewControllerWithIdentifier:@"HistoryViewController"];
-  [historyViewController setupWithHistory:_history];
+  [historyViewController setupWithAttributedHistory:_history];
   [self.navigationController pushViewController:historyViewController animated:true];
 }
 
 - (void)startGame {
   Deck *playingDeck = [self createDeck];
-  _history = @"";
+  _history = [[NSMutableAttributedString alloc] initWithString:@""];
   _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
                                             usingDeck:playingDeck withMatchCount: [self cardsRequiredForMatch]];
 }
@@ -75,12 +75,16 @@
   if (hasWon) {
   _moveDescribingText.text = @"Congrats, you won! 🎉";
   } else {
-      _moveDescribingText.text = _game.lastMoveDescription;
+      _moveDescribingText.attributedText = _game.lastMoveDescription;
   }
   // Check that the last move report is non null and not an empty string
-  if (_game.lastMoveDescription && ![_game.lastMoveDescription isEqualToString:@""]) {
+  if (_game.lastMoveDescription && ![_game.lastMoveDescription isEqualToAttributedString: [[NSMutableAttributedString alloc] initWithString:@""]]) {
     // We do it this way to append the old history to the back
-    _history = [_moveDescribingText.text stringByAppendingString:[NSString stringWithFormat:@"\n%@", _history]];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"\n"];
+    [string appendAttributedString:_game.lastMoveDescription];
+    [string appendAttributedString:_history];
+    _history = string;
+    //[_moveDescribingText.text stringByAppendingString:[NSString stringWithFormat:@"\n%@", _history]];
   }
 }
 

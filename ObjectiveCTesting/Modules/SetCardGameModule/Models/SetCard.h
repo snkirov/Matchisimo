@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype) initWithShape:(NSString *)shape withColor:(UIColor *)color
                     withStroke:(UIColor *)shading;
 
-@property (readonly, nonatomic) NSMutableAttributedString *attributedContents;
-
 + (NSArray<NSString *> *)validShapes;
 + (NSArray<UIColor *> *)validColors;
 + (NSArray<UIColor *> *)validStrokes;

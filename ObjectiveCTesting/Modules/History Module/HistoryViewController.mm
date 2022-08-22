@@ -2,6 +2,7 @@
 // Created by Svilen Kirov.
 
 #import "HistoryViewController.h"
+#import <UIKit/NSAttributedString.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -9,14 +10,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextView *historyTextView;
 @property (nonatomic) BOOL shouldShowAttributed;
 @property (nonatomic, strong) NSString *history;
-@property (nonatomic, strong) NSAttributedString *attributedHistory;
+@property (nonatomic, strong) NSMutableAttributedString *attributedHistory;
 @end
 
 @implementation HistoryViewController
 
-- (void)setupWithAttributedHistory:(NSAttributedString *)attributedHistory {
+- (void)setupWithAttributedHistory:(NSMutableAttributedString *)attributedHistory {
   _shouldShowAttributed = true;
   _attributedHistory = attributedHistory;
+  NSRange range;
+  range.length = _attributedHistory.length;
+  range.location = 0;
+  auto paragraph = [[NSMutableParagraphStyle alloc] init];
+  [paragraph setAlignment:NSTextAlignmentCenter];
+  auto attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18],
+                      NSParagraphStyleAttributeName: paragraph};
+  [_attributedHistory addAttributes:attributes range:range];
 }
 
 - (void)setupWithHistory:(NSString *)history {
