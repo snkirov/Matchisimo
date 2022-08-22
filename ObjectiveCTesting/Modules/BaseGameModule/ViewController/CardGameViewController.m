@@ -24,7 +24,11 @@
   [super viewDidLoad];
   [self startGame];
   [self updateUI];
-  self.navigationItem.title = @"Match Two";
+  self.navigationItem.title = [self navigationTitle];
+}
+
+- (NSString *)navigationTitle {
+  return @"Let's Play";
 }
 
 - (IBAction)flipCard:(UIButton *)sender {

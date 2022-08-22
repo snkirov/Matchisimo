@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 // Overwrites
 
+- (NSString *)navigationTitle {
+  return @"Set Three";
+}
+
 - (NSUInteger)cardsRequiredForMatch {
   return 3;
 }
