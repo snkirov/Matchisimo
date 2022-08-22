@@ -42,15 +42,34 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-//- (int)match:(NSArray *)otherCards {
-//  int score = 0;
-//
-//  for (SetCard *card in otherCards) {
-//    ;
-//  }
-//
-//  return score;
-//}
+- (int)match:(NSArray *)otherCards {
+  int score = 0;
+  NSMutableArray<NSString *> *shapes = [[SetCard validShapes] mutableCopy];
+  NSMutableArray<UIColor *>  *colors = [[SetCard validColors] mutableCopy];
+  NSMutableArray<UIColor *>  *strokes = [[SetCard validStrokes] mutableCopy];
+  NSMutableArray<SetCard *> *cards = [otherCards mutableCopy];
+  [cards addObject:self];
+
+  for (SetCard *card in cards) {
+    if ([shapes containsObject:card.shape]) {
+      [shapes removeObject:card.shape];
+    }
+    if ([colors containsObject:card.color]) {
+      [colors removeObject:card.color];
+    }
+    if ([strokes containsObject:card.stroke]) {
+      [strokes removeObject:card.stroke];
+    }
+  }
+
+  if ((shapes.count == 2 || shapes.count == 0) &&
+      (colors.count == 2 || colors.count == 0) &&
+      (strokes.count == 2 || strokes.count == 0)) {
+    score = 4;
+  }
+
+  return score;
+}
 
 - (NSString *)contents {
   return _shape;
@@ -61,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 + (NSArray<UIColor *>  *)validColors {
-  return @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor], [UIColor purpleColor]];
+  return @[[UIColor redColor], [UIColor blueColor], [UIColor greenColor]];
 }
 + (NSArray<UIColor *> *)validStrokes {
   return @[[UIColor blackColor], [UIColor orangeColor], [UIColor clearColor]];
