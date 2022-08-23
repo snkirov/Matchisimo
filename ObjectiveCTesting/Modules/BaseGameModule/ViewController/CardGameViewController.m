@@ -105,11 +105,7 @@
 }
 
 - (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card {
-  [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
-}
-
-- (NSString *)titleForCard:(Card *)card {
-  return card.isChosen ? card.contents : @"";
+  NSLog(@"The updateTitleOfButton method of the CardGameViewController should be implemented in each subclass.");
 }
 
 - (UIImage *)backgroundImageForCard: (Card *)card {

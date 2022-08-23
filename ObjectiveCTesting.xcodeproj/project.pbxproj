@@ -144,8 +144,8 @@
 		4FE762FF28AFE01E009A9789 /* SetCardGameModule */ = {
 			isa = PBXGroup;
 			children = (
-				4FE7630128AFE035009A9789 /* Models */,
 				4FE7630028AFE02E009A9789 /* ViewController */,
+				4FE7630128AFE035009A9789 /* Models */,
 			);
 			path = SetCardGameModule;
 			sourceTree = "<group>";
@@ -153,8 +153,8 @@
 		4FE7630028AFE02E009A9789 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4FE762FB28AFDF28009A9789 /* SetCardGameViewController.mm */,
 				4FE762FC28AFDF28009A9789 /* SetCardGameViewController.h */,
+				4FE762FB28AFDF28009A9789 /* SetCardGameViewController.mm */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -173,8 +173,8 @@
 		4FE7630228AFE059009A9789 /* PlayingCardGameModule */ = {
 			isa = PBXGroup;
 			children = (
-				4FE7630328AFE065009A9789 /* Models */,
 				4FE7630428AFE069009A9789 /* ViewController */,
+				4FE7630328AFE065009A9789 /* Models */,
 			);
 			path = PlayingCardGameModule;
 			sourceTree = "<group>";

@@ -16,6 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
   return @"Match Two";
 }
 
+- (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card {
+  [cardButton setTitle: [self titleForCard: card] forState: UIControlStateNormal];
+}
+
+- (NSString *)titleForCard:(Card *)card {
+  return card.isChosen ? card.contents : @"";
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
