@@ -69,21 +69,102 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4FB79B6028ABD0ED00BB1766 /* Model */ = {
+		4FB79B6028ABD0ED00BB1766 /* Game Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				4FBFED1728AD312300D22997 /* CardMatchingGame.h */,
+				4FBFED1628AD312300D22997 /* CardMatchingGame.mm */,
+			);
+			path = "Game Implementation";
+			sourceTree = "<group>";
+		};
+		4FCA80C128B8D87300D962C6 /* PlayingCardGame */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80C328B8D89200D962C6 /* ViewControllers */,
+				4FCA80C228B8D88D00D962C6 /* Models */,
+			);
+			path = PlayingCardGame;
+			sourceTree = "<group>";
+		};
+		4FCA80C228B8D88D00D962C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4FBFED1128ABF2F500D22997 /* PlayingCard.h */,
+				4FBFED1028ABF2F500D22997 /* PlayingCard.mm */,
+				4FBFED1428ABFAB100D22997 /* PlayingCardDeck.h */,
+				4FBFED1328ABFAB100D22997 /* PlayingCardDeck.mm */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA80C328B8D89200D962C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FCA80C428B8D8A300D962C6 /* SetGame */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80C528B8D8B100D962C6 /* ViewControllers */,
+				4FCA80C628B8D8BA00D962C6 /* Models */,
+			);
+			path = SetGame;
+			sourceTree = "<group>";
+		};
+		4FCA80C528B8D8B100D962C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FCA80C628B8D8BA00D962C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA80C728B8D8D600D962C6 /* BaseGame */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80C828B8D90300D962C6 /* ViewControllers */,
+				4FCA80C928B8D90C00D962C6 /* Models */,
+			);
+			path = BaseGame;
+			sourceTree = "<group>";
+		};
+		4FCA80C828B8D90300D962C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4FDCAE7F28AB8F600041B31B /* CardViewController.h */,
+				4FDCAE8028AB8F600041B31B /* CardViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FCA80C928B8D90C00D962C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				4FDCAE9228AB8FA50041B31B /* Card.h */,
 				4FDCAE9628AB8FD90041B31B /* Card.m */,
 				4FB79B5E28AB9E0D00BB1766 /* Deck.h */,
 				4FB79B5C28AB9E0400BB1766 /* Deck.m */,
-				4FBFED1128ABF2F500D22997 /* PlayingCard.h */,
-				4FBFED1028ABF2F500D22997 /* PlayingCard.mm */,
-				4FBFED1428ABFAB100D22997 /* PlayingCardDeck.h */,
-				4FBFED1328ABFAB100D22997 /* PlayingCardDeck.mm */,
-				4FBFED1728AD312300D22997 /* CardMatchingGame.h */,
-				4FBFED1628AD312300D22997 /* CardMatchingGame.mm */,
 			);
-			path = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA80CA28B8D97F00D962C6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80C728B8D8D600D962C6 /* BaseGame */,
+				4FCA80C428B8D8A300D962C6 /* SetGame */,
+				4FCA80C128B8D87300D962C6 /* PlayingCardGame */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		4FDCAE6D28AB8F600041B31B = {
@@ -105,10 +186,9 @@
 		4FDCAE7828AB8F600041B31B /* ObjectiveCTesting */ = {
 			isa = PBXGroup;
 			children = (
-				4FB79B6028ABD0ED00BB1766 /* Model */,
+				4FCA80CA28B8D97F00D962C6 /* Modules */,
+				4FB79B6028ABD0ED00BB1766 /* Game Implementation */,
 				4FB79B5F28ABB75300BB1766 /* Supporting Files */,
-				4FDCAE7F28AB8F600041B31B /* CardViewController.h */,
-				4FDCAE8028AB8F600041B31B /* CardViewController.m */,
 				4FDCAE8228AB8F600041B31B /* Main.storyboard */,
 				4FDCAE8B28AB8F610041B31B /* main.m */,
 				4FDCAE8528AB8F610041B31B /* Assets.xcassets */,
