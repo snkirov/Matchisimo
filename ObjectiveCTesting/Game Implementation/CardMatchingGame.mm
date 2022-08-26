@@ -5,15 +5,18 @@
 #import "CardMatchingGame.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
+#import "PlayingCardMatchingService.h"
+#import "DeckUtil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CardMatchingGame()
 
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, readwrite) NSMutableString * lastMoveDescription;
+@property (nonatomic, readwrite) NSMutableString *lastMoveDescription;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
 @property (nonatomic) NSInteger matchCount;
+@property (nonatomic, strong) PlayingCardMatchingService *matchingService;
 @end
 
 @implementation CardMatchingGame
@@ -28,11 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super init]) {
     Deck *deck = [[PlayingCardDeck alloc] init];
+    self.matchingService = [[PlayingCardMatchingService alloc] init];
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
     for(int i = 0; i < count; i ++) {
-      Card* card = [deck drawRandomCard];
-
+      Card* card = [DeckUtil drawRandomCardFromDeck:deck];
       if (card) {
         [_cards addObject:card];
       } else {
@@ -85,7 +88,7 @@ static const int GUESS_PENALTY = 1;
 }
 
 - (void) evaluateMatch: (Card *)card withCards: (NSArray<Card *> *)chosenCards {
-  int matchScore = [card match:chosenCards];
+  int matchScore = [_matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
     int pointsForThisRound = matchScore * 4;
     [_lastMoveDescription appendString: [NSString stringWithFormat:@" matched for %d points.", pointsForThisRound]];

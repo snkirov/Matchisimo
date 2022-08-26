@@ -7,21 +7,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCard
 
-- (int)match:(NSArray *)otherCards {
-  int score = 0;
-
-  for (PlayingCard *card in otherCards) {
-    if(self.rank == card.rank) {
-      score += 4;
-    }
-    if (self.suit == card.suit) {
-      score += 1;
-    }
-  }
-
-  return score;
-}
-
 @synthesize suit = _suit;
 
 - (NSString *)suit {

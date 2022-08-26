@@ -15,7 +15,5 @@
 @property (nonatomic) BOOL isChosen;
 @property (nonatomic) BOOL isMatched;
 
-- (int)match:(NSArray *)otherCards;
-
 @end
 #endif /* Card_h */

@@ -13,10 +13,7 @@
 
 @interface Deck : NSObject
 
-- (void)addCard: (Card *)card atTheTop: (BOOL)atTop;
-- (void)addCard: (Card *)card;
-
-- (Card *)drawRandomCard;
+@property (strong, nonatomic) NSMutableArray<Card *> *cards;
 
 @end
 
