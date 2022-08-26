@@ -1,23 +1,22 @@
 //
-//  CardViewController.m
+//  BaseGameViewController.m
 //  ObjectiveCTesting
 //
 //  Created by Svilen Kirov on 16/08/2022.
 //
 
-#import "CardViewController.h"
+#import "BaseGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
 
-@interface CardViewController ()
+@interface BaseGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
 @property (weak, nonatomic) IBOutlet UILabel *score;
-@property (weak, nonatomic) IBOutlet UILabel *moveDescribingText;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
 
-@implementation CardViewController
+@implementation BaseGameViewController
 - (void)viewDidLoad {
 	[super viewDidLoad];
   [self startGame];
@@ -57,12 +56,6 @@ static const int MATCH_COUNT = 2;
   }
 
   _score.text = [NSString stringWithFormat:@"Score: %ld", (long)_game.score];
-
-  if (hasWon) {
-  _moveDescribingText.text = @"Congrats, you won! 🎉";
-  } else {
-  _moveDescribingText.text = _game.lastMoveDescription;
-  }
 }
 
 - (NSString *)titleForCard: (Card *)card {

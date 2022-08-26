@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Card View Controller-->
+        <!--Base Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CardViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="BaseGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -268,16 +268,6 @@
                                     <action selector="resetGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RHb-Tm-I71"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nF9-3Y-BL9">
-                                <rect key="frame" x="39" y="732" width="350" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="2oS-GA-pkE"/>
-                                    <constraint firstAttribute="width" constant="350" id="Ql7-cl-XfC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
@@ -285,13 +275,11 @@
                             <constraint firstItem="e59-bw-XhH" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2wE-Ao-1a7"/>
                             <constraint firstItem="u75-rg-fiZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FM9-3H-7uJ"/>
                             <constraint firstItem="O62-uX-sJU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="NiI-mj-49S"/>
-                            <constraint firstAttribute="bottom" secondItem="nF9-3Y-BL9" secondAttribute="bottom" constant="174" id="PF8-Xl-RYX"/>
                             <constraint firstItem="P35-yu-B50" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PYt-iw-KuH"/>
                             <constraint firstItem="3eW-LI-nao" firstAttribute="top" secondItem="O62-uX-sJU" secondAttribute="bottom" constant="8" symbolic="YES" id="V3Y-sA-myq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="P35-yu-B50" secondAttribute="trailing" constant="20" id="YL0-6C-Zyb"/>
                             <constraint firstItem="e59-bw-XhH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Zac-5j-75o"/>
                             <constraint firstItem="P35-yu-B50" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e59-bw-XhH" secondAttribute="trailing" constant="20" id="bVd-x3-xGW"/>
-                            <constraint firstItem="nF9-3Y-BL9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dXs-Gh-fGc"/>
                             <constraint firstItem="3eW-LI-nao" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jg9-1V-j6G"/>
                             <constraint firstItem="5LI-Jb-1gC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oFN-Vb-uaM"/>
                             <constraint firstItem="O62-uX-sJU" firstAttribute="top" secondItem="u75-rg-fiZ" secondAttribute="bottom" constant="8" symbolic="YES" id="tSc-Qk-s5w"/>
@@ -300,7 +288,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="moveDescribingText" destination="nF9-3Y-BL9" id="BGL-su-voL"/>
                         <outlet property="score" destination="e59-bw-XhH" id="bWU-8J-kUm"/>
                         <outletCollection property="cards" destination="Hyd-7I-E2R" id="gDi-59-qay"/>
                         <outletCollection property="cards" destination="qyw-4D-GB2" id="hK1-0x-taA"/>
