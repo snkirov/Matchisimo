@@ -4,6 +4,7 @@
 #import <Foundation/Foundation.h>
 #import "Card.h"
 #import "Deck.h"
+#import "CardMatchingServiceProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSInteger score;
 @property (nonatomic, readonly) NSMutableString * lastMoveDescription;
+@property (nonatomic, readonly) id <CardMatchingServiceProtocol> matchingService;
 
 @end
 

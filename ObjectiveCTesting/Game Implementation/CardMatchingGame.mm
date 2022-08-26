@@ -5,22 +5,17 @@
 #import "CardMatchingGame.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
-#import "PlayingCardMatchingService.h"
 #import "DeckUtil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CardMatchingGame()
-
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
 @property (nonatomic) NSInteger matchCount;
-@property (nonatomic, strong) PlayingCardMatchingService *matchingService;
 @end
 
 @implementation CardMatchingGame
-
-
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck {
   return [self initWithCardCount:count usingDeck:deck withMatchCount:2];
@@ -30,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super init]) {
     Deck *deck = [[PlayingCardDeck alloc] init];
-    self.matchingService = [[PlayingCardMatchingService alloc] init];
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
     for(int i = 0; i < count; i ++) {

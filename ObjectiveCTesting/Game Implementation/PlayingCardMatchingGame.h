@@ -2,11 +2,11 @@
 // Created by Svilen Kirov.
 
 #import <Foundation/Foundation.h>
-#import "CardMatchingProtocol.h"
+#import "CardMatchingGame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SetCardMatching : NSObject <CardMatchingProtocol>
+@interface PlayingCardMatchingGame : CardMatchingGame
 
 @end
 

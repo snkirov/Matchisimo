@@ -6,7 +6,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PlayingCardMatchingService : NSObject <CardMatchingServiceProtocol>
+@interface SetCardMatchingService : NSObject <CardMatchingServiceProtocol>
 
 @end
 
