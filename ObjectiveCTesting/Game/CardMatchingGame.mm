@@ -29,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
     _matchCount = matchCount;
     for(int i = 0; i < count; i ++) {
       Card* card = [deck drawRandomCard];
-      
       if (card) {
         [_cards addObject:card];
       } else {

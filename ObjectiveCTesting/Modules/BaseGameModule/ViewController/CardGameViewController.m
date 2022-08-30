@@ -32,9 +32,13 @@
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
-  unsigned long chosenButtonIndex = [self.cards indexOfObject: sender];
-  [self.game chooseCardAtIndex: chosenButtonIndex];
+  [self chooseCardForButton:sender];
   [self updateUI];
+}
+
+- (void)chooseCardForButton:(UIButton *)button {
+  unsigned long chosenButtonIndex = [self.cards indexOfObject: button];
+  [self.game chooseCardAtIndex: chosenButtonIndex];
 }
 
 - (IBAction)resetGame:(id)sender {
