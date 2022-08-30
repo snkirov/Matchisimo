@@ -100,8 +100,16 @@
 }
 
 - (void)updateButton:(UIButton *)cardButton {
+  Card *card = [self getCardForButton:cardButton];
+  [self updateButton:cardButton withCard:card];
+}
+
+- (Card *)getCardForButton:(UIButton *)cardButton {
   unsigned long cardButtonIndex = [self.cards indexOfObject:cardButton];
-  Card *card = [self.game cardAtIndex:cardButtonIndex];
+  return [self.game cardAtIndex:cardButtonIndex];
+}
+
+- (void)updateButton:(UIButton *)cardButton withCard:(Card *)card {
   [self updateTitleOfButton:cardButton forCard:card];
   [cardButton setBackgroundImage: [self backgroundImageForCard: card] forState:UIControlStateNormal];
   cardButton.enabled = !card.isMatched;
