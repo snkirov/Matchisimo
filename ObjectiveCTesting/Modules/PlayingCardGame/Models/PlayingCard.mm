@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
   }
 }
 
+// TODO: Move static methods to a Util Class
 + (NSArray *)validSuits {
   return @[@"♥️",@"♦️",@"♠️",@"♣️"];
 }

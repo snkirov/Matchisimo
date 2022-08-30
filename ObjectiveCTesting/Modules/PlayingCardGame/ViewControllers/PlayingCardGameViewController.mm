@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
   [super viewDidLoad];
   _cardView.suit = @"♥️";
   _cardView.rank = 12;
+  _cardView.faceUp = true;
 }
 
 @end
