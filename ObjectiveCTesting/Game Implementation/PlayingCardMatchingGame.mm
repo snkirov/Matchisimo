@@ -14,8 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @synthesize matchingService = _matchingService;
 
-- (instancetype) init {
-  if (self = [super init]) {
+- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+                   withMatchCount:(NSUInteger) matchCount {
+  if (self = [super initWithCardCount:count usingDeck:deck withMatchCount:matchCount]) {
     self.matchingService = [[PlayingCardMatchingService alloc] init];
   }
   return self;

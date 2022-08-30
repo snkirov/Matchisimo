@@ -4,7 +4,6 @@
 #import "CardMatchingGame.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
-#import "DeckUtil.h"
 #import "Card.h"
 #import "CardMatchingServiceProtocol.h"
 
@@ -79,7 +78,8 @@ static const int GUESS_PENALTY = 1;
 }
 
 - (void) evaluateMatch: (Card *)card withCards: (NSArray<Card *> *)chosenCards {
-  int matchScore = [_matchingService matchCard:card withOtherCards:chosenCards];
+  // TODO: Discuss with Cam
+  int matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
     int pointsForThisRound = matchScore * 4;
     _score += pointsForThisRound;

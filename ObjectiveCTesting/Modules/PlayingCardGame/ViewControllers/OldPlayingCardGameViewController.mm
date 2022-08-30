@@ -4,10 +4,18 @@
 #import "OldPlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "Card.h"
+#import "PlayingCardMatchingGame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation OldPlayingCardGameViewController
+
+static const int MATCH_COUNT = 2;
+
+- (CardMatchingGame *)startGame {
+  Deck *playingDeck = [[PlayingCardDeck alloc] init];
+  return [[PlayingCardMatchingGame alloc] initWithCardCount: 20 usingDeck: playingDeck withMatchCount: MATCH_COUNT];
+}
 
 - (Deck *)createDeck {
   return [[PlayingCardDeck alloc] init];

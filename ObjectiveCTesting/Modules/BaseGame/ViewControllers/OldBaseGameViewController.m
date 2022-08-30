@@ -17,17 +17,15 @@
 @end
 
 @implementation OldBaseGameViewController
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-  [self startGame];
+  _game = [self startGame];
 	// Do any additional setup after loading the view.
 }
 
-static const int MATCH_COUNT = 2;
-
-- (void)startGame {
-  Deck *playingDeck = [[PlayingCardDeck alloc] init];
-  _game = [[CardMatchingGame alloc] initWithCardCount: _cards.count usingDeck: playingDeck withMatchCount: MATCH_COUNT];
+- (CardMatchingGame *)startGame {
+  return nil;
 }
 
 - (IBAction)flipCard:(UIButton *)sender {
@@ -38,7 +36,7 @@ static const int MATCH_COUNT = 2;
 }
 
 - (IBAction)resetGame:(id)sender {
-  [self startGame];
+  _game = [self startGame];
   [self updateUI];
 }
 
