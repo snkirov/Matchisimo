@@ -61,8 +61,88 @@ NS_ASSUME_NONNULL_BEGIN
   }
 }
 
-- (void)drawPips {
+static double pipHorizontalOffsetPercentage = 0.165;
+static double pipVerticalOffsetPercentageSmall = 0.090;
+static double pipVerticalOffsetPercentageMedium = 0.175;
+static double pipVerticalOffsetPercentageLarge = 0.270;
 
+/// Method that draws the pips for a given card.
+/// Horrible if statements, I would never write it that way. However I am also not willing to rewrite it, so am leaving as it is. It works!
+- (void)drawPips {
+  if ((self.rank == 1) || (self.rank == 3) || (self.rank == 5) || (self.rank == 9)) {
+    [self drawPipsWithHorizontalOffset:0
+                        verticalOffset:0
+                    mirroredVertically:FALSE];
+  }
+  if ((self.rank == 6) || (self.rank == 7) || (self.rank == 8)) {
+    [self drawPipsWithHorizontalOffset:pipHorizontalOffsetPercentage
+                        verticalOffset:0
+                    mirroredVertically:FALSE];
+  }
+  if ((self.rank == 2) || (self.rank == 3) || (self.rank == 7)
+      || (self.rank == 8) || (self.rank == 10)) {
+    [self drawPipsWithHorizontalOffset:0
+                        verticalOffset:pipVerticalOffsetPercentageMedium
+                    mirroredVertically:(self.rank != 7)];
+  }
+  if ((self.rank == 4) || (self.rank == 5) || (self.rank == 6)
+      || (self.rank == 8) || (self.rank == 9) || (self.rank == 10)) {
+    [self drawPipsWithHorizontalOffset:pipHorizontalOffsetPercentage
+                        verticalOffset:pipVerticalOffsetPercentageLarge
+                    mirroredVertically:TRUE];
+  }
+  if ((self.rank == 9) || (self.rank == 10)) {
+    [self drawPipsWithHorizontalOffset:pipHorizontalOffsetPercentage
+                        verticalOffset:pipVerticalOffsetPercentageSmall
+                    mirroredVertically:TRUE];
+  }
+}
+
+static double pipFontScaleFactor = 0.012;
+static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea how the guys chose it.
+
+- (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
+                      verticalOffset:(CGFloat)verticalOffset
+                  upsideDown:(Boolean)upsideDown {
+  if (upsideDown) {
+    [self pushContextAndRotateUpsideDown];
+  }
+  CGPoint centre = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+  UIFont *pipFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+  pipFont = [pipFont fontWithSize:
+             [pipFont pointSize] * self.bounds.size.width * pipFontScaleFactor];
+  NSAttributedString *attributedSuit = [[NSAttributedString alloc]
+                                        initWithString:self.suit
+                                        attributes:@{ NSFontAttributeName : pipFont }];
+  CGSize pipSize = [attributedSuit size];
+  CGPoint pipOrigin = CGPointMake(centre.x - pipSize.width /
+                                  pipOriginConstant - horizontalOffset * self.bounds.size.width,
+                                  centre.y - pipSize.height /
+                                  pipOriginConstant - verticalOffset * self.bounds.size.height);
+  [attributedSuit drawAtPoint:pipOrigin];
+
+  if (horizontalOffset) {
+      pipOrigin.x += horizontalOffset * pipOriginConstant * self.bounds.size.width;
+      [attributedSuit drawAtPoint:pipOrigin];
+  }
+
+  if (upsideDown) {
+    [self popContext];
+  }
+}
+
+- (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
+                      verticalOffset:(CGFloat)verticalOffset
+                  mirroredVertically:(Boolean)mirroredVertically {
+
+  [self drawPipsWithHorizontalOffset:horizontalOffset
+                      verticalOffset:verticalOffset
+                          upsideDown:FALSE];
+  if (mirroredVertically) {
+    [self drawPipsWithHorizontalOffset:horizontalOffset
+                        verticalOffset:verticalOffset
+                            upsideDown:TRUE];
+  }
 }
 
 - (NSArray<NSString *> *)rankStrings {
