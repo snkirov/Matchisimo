@@ -1,11 +1,11 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#include <Foundation/Foundation.h>
 #include "Card.h"
-#include <UIKit/UIColor.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class UIColor;
 
 @interface SetCard : Card
 

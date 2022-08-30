@@ -1,12 +1,10 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import <Foundation/Foundation.h>
-#import "Card.h"
-#import "Deck.h"
-#import "CardMatchingServiceProtocol.h"
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class Card, Deck;
+@protocol CardMatchingServiceProtocol;
 
 @interface CardMatchingGame : NSObject
 

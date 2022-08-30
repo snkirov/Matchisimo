@@ -1,11 +1,9 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import "Deck.h"
-#import "Card.h"
-#import <Foundation/Foundation.h>
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class Card, Deck;
 
 @interface DeckUtil : NSObject
 + (Card *)drawRandomCardFromDeck:(Deck *)deck;

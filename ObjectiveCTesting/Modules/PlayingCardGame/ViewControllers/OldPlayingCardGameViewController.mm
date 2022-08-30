@@ -3,6 +3,7 @@
 
 #import "OldPlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "Card.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

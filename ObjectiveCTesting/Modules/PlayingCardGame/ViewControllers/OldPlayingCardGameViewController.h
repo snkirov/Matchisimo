@@ -1,7 +1,6 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import <Foundation/Foundation.h>
 #import "OldBaseGameViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN

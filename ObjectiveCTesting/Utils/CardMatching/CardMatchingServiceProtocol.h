@@ -1,9 +1,9 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import "Card.h"
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class Card;
 
 @protocol CardMatchingServiceProtocol <NSObject>
 

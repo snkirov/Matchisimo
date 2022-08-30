@@ -2,6 +2,7 @@
 // Created by Svilen Kirov.
 
 #import "DeckUtil.h"
+#import "Deck.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation DeckUtil

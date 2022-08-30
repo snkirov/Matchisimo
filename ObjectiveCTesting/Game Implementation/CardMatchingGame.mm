@@ -1,11 +1,12 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-
 #import "CardMatchingGame.h"
 #import "PlayingCardDeck.h"
 #import "Deck.h"
 #import "DeckUtil.h"
+#import "Card.h"
+#import "CardMatchingServiceProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

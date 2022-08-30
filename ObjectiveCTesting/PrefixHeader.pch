@@ -1,0 +1,13 @@
+//
+//  PrefixHeader.pch
+//  ObjectiveCTesting
+//
+//  Created by Svilen Kirov on 30/08/2022.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <Foundation/Foundation.h>
+
+#endif /* PrefixHeader_pch */

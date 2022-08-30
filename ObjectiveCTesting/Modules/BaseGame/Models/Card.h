@@ -4,10 +4,8 @@
 //
 //  Created by Svilen Kirov on 16/08/2022.
 //
-#import <Foundation/Foundation.h>
 
-#ifndef Card_h
-#define Card_h
+NS_ASSUME_NONNULL_BEGIN
 
 @interface Card : NSObject
 
@@ -16,4 +14,5 @@
 @property (nonatomic) BOOL isMatched;
 
 @end
-#endif /* Card_h */
+
+NS_ASSUME_NONNULL_END

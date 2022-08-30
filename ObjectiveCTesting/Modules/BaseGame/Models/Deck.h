@@ -5,11 +5,11 @@
 //  Created by Svilen Kirov on 16/08/2022.
 //
 
-#import <Foundation/Foundation.h>
-#import "Card.h"
 
 #ifndef Deck_h
 #define Deck_h
+
+@class Card;
 
 @interface Deck : NSObject
 
