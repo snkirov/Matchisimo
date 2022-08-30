@@ -5,18 +5,18 @@
 //  Created by Svilen Kirov on 16/08/2022.
 //
 
-#import "BaseGameViewController.h"
+#import "OldBaseGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "PlayingCard.h"
 #import "CardMatchingGame.h"
 
-@interface BaseGameViewController ()
+@interface OldBaseGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
 @property (weak, nonatomic) IBOutlet UILabel *score;
 @property (strong, nonatomic) CardMatchingGame *game;
 @end
 
-@implementation BaseGameViewController
+@implementation OldBaseGameViewController
 - (void)viewDidLoad {
 	[super viewDidLoad];
   [self startGame];

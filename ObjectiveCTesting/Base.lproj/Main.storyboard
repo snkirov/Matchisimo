@@ -11,7 +11,7 @@
         <!--Draw Me-->
         <scene sceneID="kIO-kQ-CCX">
             <objects>
-                <viewController id="JCa-Ow-T8p" sceneMemberID="viewController">
+                <viewController id="JCa-Ow-T8p" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="53x-G5-8Hc">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,6 +26,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Draw Me" image="paintbrush" catalog="system" id="Y5M-RL-UJV"/>
+                    <connections>
+                        <outlet property="cardView" destination="6HT-ei-MlO" id="t4A-ak-gFu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDM-Bx-eBc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -52,7 +55,7 @@
         <!--Match Two-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="OldPlayingCardGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

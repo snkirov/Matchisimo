@@ -1,14 +1,12 @@
-//
-//  CardViewController.h
-//  ObjectiveCTesting
-//
-//  Created by Svilen Kirov on 16/08/2022.
-//
+// Copyright (c) 2022 Lightricks. All rights reserved.
+// Created by Svilen Kirov.
 
 #import <UIKit/UIKit.h>
 
-@interface BaseGameViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface BaseGameViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
