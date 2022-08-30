@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CardMatchingGame()
 
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, readwrite) NSMutableAttributedString * lastMoveDescription;
+@property (nonatomic, readwrite) NSMutableAttributedString * lastMoveDescriptionMutable;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
 @property (nonatomic) NSInteger matchCount;
 @end
@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
     _matchCount = matchCount;
     for(int i = 0; i < count; i ++) {
       Card* card = [deck drawRandomCard];
-
+      
       if (card) {
         [_cards addObject:card];
       } else {
@@ -37,10 +37,14 @@ NS_ASSUME_NONNULL_BEGIN
         self = nil;
         return self;
       }
-
+      
     }
   }
   return self;
+}
+
+- (NSAttributedString *)lastMoveDescription {
+  return _lastMoveDescriptionMutable;
 }
 
 static const int MISMATCH_PENALTY = 2;
@@ -48,36 +52,33 @@ static const int GUESS_PENALTY = 1;
 
 - (void)chooseCardAtIndex:(NSUInteger)index {
   Card *card = [self cardAtIndex:index];
-//  NSLog(@"We chose card %@", card.contents);
-
+  
   if (card.isMatched) {
     return;
   }
-
+  
   if (card.isChosen) {
-    _lastMoveDescription = [[NSMutableAttributedString alloc] initWithString:@""];
+    _lastMoveDescriptionMutable = [[NSMutableAttributedString alloc] initWithString:@""];
     card.isChosen = NO;
     return;
   }
-
-  _lastMoveDescription = [[NSMutableAttributedString alloc]
+  
+  _lastMoveDescriptionMutable = [[NSMutableAttributedString alloc]
                           initWithAttributedString:[card.attributedContents copy]];
   NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
-  long extraCardsRequiredForMatch = _matchCount - 1;
-
+  
   for (Card *otherCard in self.cards) {
     if (otherCard.isChosen && !otherCard.isMatched) {
-
+      
       [chosenCards addObject:otherCard];
-      [_lastMoveDescription appendAttributedString: otherCard.attributedContents];
-      extraCardsRequiredForMatch--;
-
-      if (extraCardsRequiredForMatch == 0) {
+      [_lastMoveDescriptionMutable appendAttributedString: otherCard.attributedContents];
+      
+      if (chosenCards.count == _matchCount - 1) {
         [self evaluateMatch: card withCards: chosenCards];
       }
     }
   }
-
+  
   _score -= GUESS_PENALTY;
   card.isChosen = TRUE;
 }
@@ -86,14 +87,14 @@ static const int GUESS_PENALTY = 1;
   int matchScore = [card match:chosenCards];
   if (matchScore) {
     int pointsForThisRound = matchScore * 4;
-    [_lastMoveDescription appendAttributedString: [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" matched for %d points.", pointsForThisRound]]];
+    [_lastMoveDescriptionMutable appendAttributedString: [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" matched for %d points.", pointsForThisRound]]];
     _score += pointsForThisRound;
     card.isMatched = TRUE;
     for (Card * chosenCard in chosenCards) {
       chosenCard.isMatched = true;
     }
   } else {
-    [_lastMoveDescription appendAttributedString: [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" don't match! %d point penalty!", MISMATCH_PENALTY]]];
+    [_lastMoveDescriptionMutable appendAttributedString: [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" don't match! %d point penalty!", MISMATCH_PENALTY]]];
     _score -= MISMATCH_PENALTY;
     for (Card * chosenCard in chosenCards) {
       chosenCard.isChosen = false;

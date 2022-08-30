@@ -38,7 +38,6 @@
 }
 
 - (IBAction)resetGame:(id)sender {
-  //  NSLog(@"History: %@", _history);
   [self startGame];
   [self updateUI];
 }
@@ -73,9 +72,9 @@
       hasWon = false;
     }
   }
-
+  
   _score.text = [NSString stringWithFormat:@"Score: %ld", (long)_game.score];
-
+  
   if (hasWon) {
     _moveDescribingText.text = @"Congrats, you won! 🎉";
   } else {
@@ -84,7 +83,7 @@
   // Check that the last move report is non null and not an empty string
   NSMutableAttributedString *emptyAttributedString =
   [[NSMutableAttributedString alloc] initWithString:@""];
-
+  
   if (_game.lastMoveDescription &&
       ![_game.lastMoveDescription isEqualToAttributedString:emptyAttributedString]) {
     // We do it this way to append the old history to the back

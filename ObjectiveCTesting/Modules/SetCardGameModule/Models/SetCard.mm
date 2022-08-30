@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithShape:(NSString *)shape withColor:(UIColor *)color
                    withStroke:(UIColor *)stroke {
-
+  
   if (self = [super init]) {
-
+    
     // If any of the checks evaluates to false, we will enter the if statement and return nil
     if (![[SetCard validShapes] containsObject:shape] ||
         ![[SetCard validColors] containsObject:color] ||
@@ -32,14 +32,14 @@ NS_ASSUME_NONNULL_BEGIN
     _shape = shape;
     _color = color;
     _stroke = stroke;
-
+    
     NSRange range;
     range.length = _shape.length;
     range.location = 0;
     _attributedContents = [[NSMutableAttributedString alloc] initWithString:_shape];
     [_attributedContents addAttributes:@{NSForegroundColorAttributeName : _color,
-                            NSStrokeColorAttributeName : _stroke,
-                            NSStrokeWidthAttributeName : @-7 } range: range];
+                                         NSStrokeColorAttributeName : _stroke,
+                                         NSStrokeWidthAttributeName : @-7 } range: range];
   }
   return self;
 }
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
   NSMutableArray<UIColor *>  *strokes = [[SetCard validStrokes] mutableCopy];
   NSMutableArray<SetCard *> *cards = [otherCards mutableCopy];
   [cards addObject:self];
-
+  
   for (SetCard *card in cards) {
     if ([shapes containsObject:card.shape]) {
       [shapes removeObject:card.shape];
@@ -67,13 +67,13 @@ NS_ASSUME_NONNULL_BEGIN
       [strokes removeObject:card.stroke];
     }
   }
-
+  
   if ((shapes.count == 2 || shapes.count == 0) &&
       (colors.count == 2 || colors.count == 0) &&
       (strokes.count == 2 || strokes.count == 0)) {
     score = 4;
   }
-
+  
   return score;
 }
 

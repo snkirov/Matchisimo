@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card {
-    [cardButton setAttributedTitle:((SetCard *)card).attributedContents forState:UIControlStateNormal];
+  [cardButton setAttributedTitle:((SetCard *)card).attributedContents forState:UIControlStateNormal];
 }
 
 - (UIImage *)backgroundImageForCard: (Card *)card {
