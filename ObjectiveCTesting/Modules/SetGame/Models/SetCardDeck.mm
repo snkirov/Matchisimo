@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
       for (UIColor *color in [SetCard validColors]) {
         for (UIColor *stroke in [SetCard validStrokes]) {
           SetCard *card = [[SetCard alloc] initWithShape:shape withColor:color withStroke:stroke];
-          [self.cards addObject:card];
+          [self addCard:card];
         }
       }
     }

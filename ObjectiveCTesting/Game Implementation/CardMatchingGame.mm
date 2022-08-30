@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
     for(int i = 0; i < count; i ++) {
-      Card* card = [DeckUtil drawRandomCardFromDeck:deck];
+      Card* card = [deck drawRandomCard];
       if (card) {
         [_cards addObject:card];
       } else {

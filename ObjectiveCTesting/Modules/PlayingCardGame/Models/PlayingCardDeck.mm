@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
         PlayingCard *card = [[PlayingCard alloc] init];
         card.rank = rank;
         card.suit = suit;
-        [self.cards addObject:card];
+        [self addCard:card];
       }
     }
   }
