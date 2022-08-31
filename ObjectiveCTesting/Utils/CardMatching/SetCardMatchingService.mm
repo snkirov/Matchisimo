@@ -8,34 +8,44 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardMatchingService
 
-- (int)matchCard:(Card *)card withOtherCards:(NSMutableArray *)cards { 
+- (int)matchCard:(Card *)card withOtherCards:(NSArray *)cards {
   if (![card isKindOfClass:[SetCard class]]) {
     return 0;
   }
 
   int score = 0;
 
-  NSMutableArray<NSString *> *shapes = [[SetCard validShapes] mutableCopy];
-  NSMutableArray<UIColor *>  *colors = [[SetCard validColors] mutableCopy];
-  NSMutableArray<UIColor *>  *strokes = [[SetCard validStrokes] mutableCopy];
+  NSMutableArray *mutableCards = [cards mutableCopy];
+  NSMutableArray *shapes = [[SetCardUtil shapesArray] mutableCopy];
+  NSMutableArray *colors = [[SetCardUtil colorsArray] mutableCopy];
+  NSMutableArray *fills = [[SetCardUtil fillsArray] mutableCopy];
+  NSMutableArray *numberOfObjects = [[SetCardUtil numberOfObjectsArray] mutableCopy];
+  [mutableCards addObject:card];
 
-  [cards addObject:self];
+  auto shapesOriginalCount = shapes.count;
+  auto colorsOriginalCount = colors.count;
+  auto fillsOriginalCount = fills.count;
+  auto numberOfObjectsOriginalCount = numberOfObjects.count;
 
-  for (SetCard *card in cards) {
-    if ([shapes containsObject:card.shape]) {
-      [shapes removeObject:card.shape];
+  for (SetCard *card in mutableCards) {
+    if ([shapes containsObject:[NSNumber numberWithInteger:card.shape]]) {
+      [shapes removeObject:[NSNumber numberWithInteger:card.shape]];
     }
-    if ([colors containsObject:card.color]) {
-      [colors removeObject:card.color];
+    if ([colors containsObject:[NSNumber numberWithInteger:card.color]]) {
+      [colors removeObject:[NSNumber numberWithInteger:card.color]];
     }
-    if ([strokes containsObject:card.stroke]) {
-      [strokes removeObject:card.stroke];
+    if ([fills containsObject:[NSNumber numberWithInteger:card.fill]]) {
+      [fills removeObject:[NSNumber numberWithInteger:card.fill]];
+    }
+    if ([numberOfObjects containsObject:[NSNumber numberWithInteger:card.numberOfObjects]]) {
+      [numberOfObjects removeObject:[NSNumber numberWithInteger:card.numberOfObjects]];
     }
   }
-
-  if ((shapes.count == 2 || shapes.count == 0) &&
-      (colors.count == 2 || colors.count == 0) &&
-      (strokes.count == 2 || strokes.count == 0)) {
+  
+  if ((shapes.count == shapesOriginalCount - 1 || shapes.count == 0) &&
+      (colors.count == colorsOriginalCount - 1 || colors.count == 0) &&
+      (fills.count == fillsOriginalCount - 1 || fills.count == 0) &&
+      (numberOfObjects.count == numberOfObjectsOriginalCount - 1 || numberOfObjects.count == 0)){
     score = 4;
   }
 

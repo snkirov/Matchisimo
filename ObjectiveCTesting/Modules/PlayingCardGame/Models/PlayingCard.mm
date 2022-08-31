@@ -25,14 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
   }
 }
 
-// TODO: Move static methods to a Util Class
+// TODO: Move static methods to a Util Class, transform to enum
 + (NSArray *)validSuits {
   return @[@"♥️",@"♦️",@"♠️",@"♣️"];
 }
 
 + (NSArray *)rankStrings {
   return @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",
-              @"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
+           @"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
 }
 
 + (NSUInteger)maxRank {
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)contents {
   return [[PlayingCard rankStrings][self.rank]
-              stringByAppendingString: self.suit];
+          stringByAppendingString: self.suit];
 }
 
 @end

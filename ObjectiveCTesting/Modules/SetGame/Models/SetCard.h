@@ -2,6 +2,7 @@
 // Created by Svilen Kirov.
 
 #include "Card.h"
+#include "SetCardUtil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -9,16 +10,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SetCard : Card
 
-- (instancetype) initWithShape:(NSString *)shape withColor:(UIColor *)color
-                    withStroke:(UIColor *)shading;
-
-@property (strong, nonatomic)NSString *shape;
-@property (strong, nonatomic)UIColor *color;
-@property (strong, nonatomic)UIColor *stroke;
-
-+ (NSArray<NSString *> *)validShapes;
-+ (NSArray<UIColor *> *)validColors;
-+ (NSArray<UIColor *> *)validStrokes;
+@property (nonatomic)CARD_Shape shape;
+@property (nonatomic)CARD_Color color;
+@property (nonatomic)CARD_Fill fill;
+@property (nonatomic)CARD_NumberOfObjects numberOfObjects;
 
 @end
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2F1D7928BF8C9500C08DF4 /* SetCardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */; };
+		4F2F1D7E28BFA25F00C08DF4 /* SetCardUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F1D7D28BFA25F00C08DF4 /* SetCardUtil.mm */; };
 		4F48F9FA28BE048E00D322FE /* BaseGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F48F9F828BE048E00D322FE /* BaseGameViewController.mm */; };
 		4F48F9FD28BE04C600D322FE /* PlayingCardGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F48F9FB28BE04C600D322FE /* PlayingCardGameViewController.mm */; };
 		4FB79B5D28AB9E0400BB1766 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB79B5C28AB9E0400BB1766 /* Deck.m */; };
@@ -33,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardView.mm; sourceTree = "<group>"; };
+		4F2F1D7828BF8C9500C08DF4 /* SetCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCardView.h; sourceTree = "<group>"; };
+		4F2F1D7B28BF9C2400C08DF4 /* SetCardUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SetCardUtil.h; path = ObjectiveCTesting/Utils/SetCardUtil.h; sourceTree = SOURCE_ROOT; };
+		4F2F1D7D28BFA25F00C08DF4 /* SetCardUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardUtil.mm; sourceTree = "<group>"; };
 		4F48F9F828BE048E00D322FE /* BaseGameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseGameViewController.mm; sourceTree = "<group>"; };
 		4F48F9F928BE048E00D322FE /* BaseGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseGameViewController.h; sourceTree = "<group>"; };
 		4F48F9FB28BE04C600D322FE /* PlayingCardGameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardGameViewController.mm; sourceTree = "<group>"; };
@@ -92,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F2F1D7628BF8B7B00C08DF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F2F1D7828BF8C9500C08DF4 /* SetCardView.h */,
+				4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4FB79B5F28ABB75300BB1766 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +167,7 @@
 		4FCA80C428B8D8A300D962C6 /* SetGame */ = {
 			isa = PBXGroup;
 			children = (
+				4F2F1D7628BF8B7B00C08DF4 /* Views */,
 				4FCA80C528B8D8B100D962C6 /* ViewControllers */,
 				4FCA80C628B8D8BA00D962C6 /* Models */,
 			);
@@ -222,6 +238,8 @@
 		4FCA80CB28B8E4D700D962C6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4F2F1D7B28BF9C2400C08DF4 /* SetCardUtil.h */,
+				4F2F1D7D28BFA25F00C08DF4 /* SetCardUtil.mm */,
 				4FCA80D528B8FFF800D962C6 /* CardMatching */,
 			);
 			path = Utils;
@@ -358,6 +376,7 @@
 				4FDCAE9728AB8FD90041B31B /* Card.m in Sources */,
 				4FCA80E728B9096900D962C6 /* SetCardGameViewController.mm in Sources */,
 				4FDCAE7B28AB8F600041B31B /* AppDelegate.m in Sources */,
+				4F2F1D7928BF8C9500C08DF4 /* SetCardView.mm in Sources */,
 				4FCA80DB28B9017900D962C6 /* PlayingCardMatchingService.mm in Sources */,
 				4FDCAE8C28AB8F610041B31B /* main.m in Sources */,
 				4FB79B5D28AB9E0400BB1766 /* Deck.m in Sources */,
@@ -369,6 +388,7 @@
 				4FCA80E328B9095000D962C6 /* SetCardDeck.mm in Sources */,
 				4F48F9FD28BE04C600D322FE /* PlayingCardGameViewController.mm in Sources */,
 				4FCA80EA28B9098D00D962C6 /* OldPlayingCardGameViewController.mm in Sources */,
+				4F2F1D7E28BFA25F00C08DF4 /* SetCardUtil.mm in Sources */,
 				4FCA80DE28B9034D00D962C6 /* SetCardMatchingService.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
