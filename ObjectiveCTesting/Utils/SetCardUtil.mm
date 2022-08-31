@@ -31,12 +31,12 @@ NS_ASSUME_NONNULL_BEGIN
   return fills;
 }
 
-+ (NSArray *)numberOfObjectsArray {
-  auto numberOfObjects = [[NSMutableArray alloc] init];
-  for (int i = 1; i < numberOfObjectsCount; i++) {
-    [numberOfObjects addObject:[NSNumber numberWithInteger:i]];
++ (NSArray *)numberOfShapesArray {
+  auto numberOfShapes = [[NSMutableArray alloc] init];
+  for (int i = 1; i < numberOfShapesCount; i++) {
+    [numberOfShapes addObject:[NSNumber numberWithInteger:i]];
   }
-  return numberOfObjects;
+  return numberOfShapes;
 }
 
 @end

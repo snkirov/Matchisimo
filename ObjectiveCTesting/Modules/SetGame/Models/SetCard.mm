@@ -8,8 +8,8 @@ NS_ASSUME_NONNULL_BEGIN
 @implementation SetCard
 
 - (NSString *)contents {
-  return [[NSString alloc] initWithFormat:@"Shape: %d NumberOfObjects: %d Fill: %d Color: %d",
-          _shape, _numberOfObjects, _fill, _color];
+  return [[NSString alloc] initWithFormat:@"Shape: %d NumberOfShapes: %d Fill: %d Color: %d",
+          _shape, _numberOfShapes, _fill, _color];
 }
 
 @end

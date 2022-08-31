@@ -205,8 +205,6 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
   self.backgroundColor = nil;
   self.opaque = NO;
   self.contentMode = UIViewContentModeRedraw;
-  self.suit = [PlayingCard validSuits][0];
-  self.rank = [PlayingCard maxRank];
 }
 
 - (void)awakeFromNib {

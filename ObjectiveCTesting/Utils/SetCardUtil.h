@@ -28,15 +28,15 @@ typedef enum {
   One = 1,
   Two = 2,
   Three = 3,
-  numberOfObjectsCount, // helper value for iterating through the enum
-} CARD_NumberOfObjects;
+  numberOfShapesCount, // helper value for iterating through the enum
+} CARD_NumberOfShapes;
 
 @interface SetCardUtil : NSObject
 
 + (NSArray *)shapesArray;
 + (NSArray *)colorsArray;
 + (NSArray *)fillsArray;
-+ (NSArray *)numberOfObjectsArray;
++ (NSArray *)numberOfShapesArray;
 
 @end
 

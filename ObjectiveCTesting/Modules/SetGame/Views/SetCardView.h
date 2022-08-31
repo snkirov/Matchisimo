@@ -1,19 +1,19 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#include "Card.h"
-#include "SetCardUtil.h"
-
+#import <UIKit/UIKit.h>
+#import "SetCardUtil.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@class UIColor;
+@interface SetCardView : UIView
 
-@interface SetCard : Card
-
+// Is it better to expose all of the properties or just expose the underlying object?
 @property (nonatomic)CARD_Shape shape;
 @property (nonatomic)CARD_Color color;
 @property (nonatomic)CARD_Fill fill;
 @property (nonatomic)CARD_NumberOfShapes numberOfShapes;
+
+@property (nonatomic) BOOL faceUp;
 
 @end
 

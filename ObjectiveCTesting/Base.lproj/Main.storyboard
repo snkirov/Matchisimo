@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lt5-e6-f81">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,11 +13,16 @@
             <objects>
                 <viewController id="JCa-Ow-T8p" customClass="PlayingCardGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="53x-G5-8Hc">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNe-M9-gxH" customClass="SetCardView">
+                                <rect key="frame" x="118" y="422" width="155" height="274"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6HT-ei-MlO" customClass="PlayingCardView">
-                                <rect key="frame" x="94" y="271" width="240" height="384"/>
+                                <rect key="frame" x="118" y="106" width="155" height="274"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -28,6 +33,7 @@
                     <tabBarItem key="tabBarItem" title="Draw Me" image="paintbrush" catalog="system" id="Y5M-RL-UJV"/>
                     <connections>
                         <outlet property="cardView" destination="6HT-ei-MlO" id="t4A-ak-gFu"/>
+                        <outlet property="setCardView" destination="fNe-M9-gxH" id="5Ey-mN-NlV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDM-Bx-eBc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -57,17 +63,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="OldPlayingCardGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e59-bw-XhH">
-                                <rect key="frame" x="19.999999999999996" y="802.66666666666663" width="63.666666666666657" height="20.333333333333371"/>
+                                <rect key="frame" x="19.999999999999996" y="720.66666666666663" width="63.666666666666657" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="5LI-Jb-1gC">
-                                <rect key="frame" x="20.666666666666657" y="44" width="387" height="128"/>
+                                <rect key="frame" x="1.6666666666666572" y="44" width="387" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmt-pQ-hx6">
                                         <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
@@ -126,7 +132,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="u75-rg-fiZ">
-                                <rect key="frame" x="20.666666666666657" y="180" width="387" height="128"/>
+                                <rect key="frame" x="1.6666666666666572" y="180" width="387" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FUP-o5-ovY">
                                         <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
@@ -185,7 +191,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="O62-uX-sJU">
-                                <rect key="frame" x="20.666666666666657" y="316" width="387" height="128"/>
+                                <rect key="frame" x="1.6666666666666572" y="316" width="387" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SJw-ZZ-jfN">
                                         <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
@@ -244,7 +250,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eW-LI-nao">
-                                <rect key="frame" x="20.666666666666657" y="452" width="387" height="128"/>
+                                <rect key="frame" x="1.6666666666666572" y="452" width="387" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HrY-fA-6Q9">
                                         <rect key="frame" x="0.0" y="0.0" width="84" height="128"/>
@@ -303,7 +309,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P35-yu-B50">
-                                <rect key="frame" x="343" y="793" width="65" height="30"/>
+                                <rect key="frame" x="305" y="711" width="65" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Reshuffle">
                                     <color key="titleColor" systemColor="labelColor"/>

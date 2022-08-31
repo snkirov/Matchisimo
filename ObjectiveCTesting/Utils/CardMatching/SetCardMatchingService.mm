@@ -19,13 +19,13 @@ NS_ASSUME_NONNULL_BEGIN
   NSMutableArray *shapes = [[SetCardUtil shapesArray] mutableCopy];
   NSMutableArray *colors = [[SetCardUtil colorsArray] mutableCopy];
   NSMutableArray *fills = [[SetCardUtil fillsArray] mutableCopy];
-  NSMutableArray *numberOfObjects = [[SetCardUtil numberOfObjectsArray] mutableCopy];
+  NSMutableArray *numberOfShapes = [[SetCardUtil numberOfShapesArray] mutableCopy];
   [mutableCards addObject:card];
 
   auto shapesOriginalCount = shapes.count;
   auto colorsOriginalCount = colors.count;
   auto fillsOriginalCount = fills.count;
-  auto numberOfObjectsOriginalCount = numberOfObjects.count;
+  auto numberOfShapesOriginalCount = numberOfShapes.count;
 
   for (SetCard *card in mutableCards) {
     if ([shapes containsObject:[NSNumber numberWithInteger:card.shape]]) {
@@ -37,15 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
     if ([fills containsObject:[NSNumber numberWithInteger:card.fill]]) {
       [fills removeObject:[NSNumber numberWithInteger:card.fill]];
     }
-    if ([numberOfObjects containsObject:[NSNumber numberWithInteger:card.numberOfObjects]]) {
-      [numberOfObjects removeObject:[NSNumber numberWithInteger:card.numberOfObjects]];
+    if ([numberOfShapes containsObject:[NSNumber numberWithInteger:card.numberOfShapes]]) {
+      [numberOfShapes removeObject:[NSNumber numberWithInteger:card.numberOfShapes]];
     }
   }
   
   if ((shapes.count == shapesOriginalCount - 1 || shapes.count == 0) &&
       (colors.count == colorsOriginalCount - 1 || colors.count == 0) &&
       (fills.count == fillsOriginalCount - 1 || fills.count == 0) &&
-      (numberOfObjects.count == numberOfObjectsOriginalCount - 1 || numberOfObjects.count == 0)){
+      (numberOfShapes.count == numberOfShapesOriginalCount - 1 || numberOfShapes.count == 0)){
     score = 4;
   }
 
