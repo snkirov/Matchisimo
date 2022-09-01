@@ -2,14 +2,14 @@
 // Created by Svilen Kirov.
 
 #import "PlayingCardGameViewController.h"
-#import "PlayingCardDeck.h"
+#import "DeckFactory.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCardGameViewController
 
 - (Deck *)createDeck {
-  return [[PlayingCardDeck alloc] init];
+  return [DeckFactory generateDeckWithPlayingCards];
 }
 
 - (NSString *)navigationTitle {

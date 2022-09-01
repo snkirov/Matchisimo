@@ -2,8 +2,8 @@
 // Created by Svilen Kirov.
 
 #import "SetCardGameViewController.h"
-#import "SetCardDeck.h"
 #import "SetCard.h"
+#import "DeckFactory.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (Deck *)createDeck {
-  return [[SetCardDeck alloc] init];
+  return [DeckFactory generateDeckWithSetCards];
 }
 
 - (void)updateTitleOfButton:(UIButton *)cardButton forCard:(Card *)card {

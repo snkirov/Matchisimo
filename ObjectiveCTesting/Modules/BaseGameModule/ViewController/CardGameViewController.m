@@ -8,7 +8,6 @@
 #import "CardGameViewController.h"
 #import "CardMatchingGame.h"
 #import "HistoryViewController.h"
-#import "SetCardDeck.h"
 
 @interface CardGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cards;
@@ -72,7 +71,8 @@
   BOOL hasWon = true;
   for (UIButton *cardButton in self.cards) {
     [self updateButton:cardButton];
-    if (cardButton.enabled) {
+    Card *card = [self getCardForButton:cardButton];
+    if (!card.isMatched) {
       hasWon = false;
     }
   }

@@ -21,27 +21,23 @@
   return _cards;
 }
 
-- (void)addCard: (Card *)card atTheTop: (BOOL)atTop {
-  if (atTop) {
-    [self.cards addObject:card];
-  } else {
-    [self.cards insertObject:card atIndex:0];
-  }
+- (void)addCardAtTheTop: (Card *)card {
+  [self.cards addObject:card];
 }
 
-- (void)addCard: (Card *)card {
-  [self addCard: card atTheTop: FALSE];
+- (void)addCardAtTheBottom: (Card *)card {
+  [self.cards insertObject:card atIndex:0];
 }
 
 - (Card *)drawRandomCard {
-  
-  Card *randomCard = nil;
-  
-  if ([self.cards count]) {
-    unsigned index = arc4random() % [self.cards count];
-    randomCard = self.cards[index];
-    [self.cards removeObjectAtIndex: index];
+
+  if (![self.cards count]) {
+    return nil;
   }
+
+  unsigned index = arc4random() % [self.cards count];
+  Card *randomCard = self.cards[index];
+  [self.cards removeObjectAtIndex: index];
   
   return randomCard;
 }

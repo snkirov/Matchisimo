@@ -3,7 +3,6 @@
 
 
 #import "CardMatchingGame.h"
-#import "PlayingCardDeck.h"
 #import "Deck.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -46,8 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
   return _lastMoveDescriptionMutable;
 }
 
-static const int MISMATCH_PENALTY = 2;
-static const int GUESS_PENALTY = 1;
+static const int mismatchPenalty = 2;
+static const int guessPenalty = 1;
+static const int matchMultiplier = 4;
 
 - (void)chooseCardAtIndex:(NSUInteger)index {
   Card *card = [self cardAtIndex:index];
@@ -78,14 +78,14 @@ static const int GUESS_PENALTY = 1;
     }
   }
   
-  _score -= GUESS_PENALTY;
+  _score -= guessPenalty;
   card.isChosen = TRUE;
 }
 
 - (void) evaluateMatch: (Card *)card withCards: (NSArray<Card *> *)chosenCards {
   int matchScore = [card match:chosenCards];
   if (matchScore) {
-    int pointsForThisRound = matchScore * 4;
+    int pointsForThisRound = matchScore * matchMultiplier;
     [_lastMoveDescriptionMutable appendAttributedString: [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" matched for %d points.", pointsForThisRound]]];
     _score += pointsForThisRound;
     card.isMatched = TRUE;
@@ -93,8 +93,8 @@ static const int GUESS_PENALTY = 1;
       chosenCard.isMatched = true;
     }
   } else {
-    [_lastMoveDescriptionMutable appendAttributedString: [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" don't match! %d point penalty!", MISMATCH_PENALTY]]];
-    _score -= MISMATCH_PENALTY;
+    [_lastMoveDescriptionMutable appendAttributedString: [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" don't match! %d point penalty!", mismatchPenalty]]];
+    _score -= mismatchPenalty;
     for (Card * chosenCard in chosenCards) {
       chosenCard.isChosen = false;
     }
