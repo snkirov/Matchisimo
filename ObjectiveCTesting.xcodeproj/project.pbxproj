@@ -35,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F00E78928C9F9B2007A7829 /* MacrosHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacrosHeader.h; sourceTree = "<group>"; };
 		4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardView.mm; sourceTree = "<group>"; };
 		4F2F1D7828BF8C9500C08DF4 /* SetCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCardView.h; sourceTree = "<group>"; };
 		4F2F1D7B28BF9C2400C08DF4 /* SetCardUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SetCardUtil.h; path = ObjectiveCTesting/Utils/SetCardUtil.h; sourceTree = SOURCE_ROOT; };
@@ -110,6 +111,7 @@
 		4FB79B5F28ABB75300BB1766 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4F00E78928C9F9B2007A7829 /* MacrosHeader.h */,
 				4FDCAE7928AB8F600041B31B /* AppDelegate.h */,
 				4FDCAE7A28AB8F600041B31B /* AppDelegate.m */,
 				4FDCAE7C28AB8F600041B31B /* SceneDelegate.h */,

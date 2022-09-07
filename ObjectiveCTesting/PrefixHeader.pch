@@ -9,5 +9,6 @@
 #define PrefixHeader_pch
 
 #import <Foundation/Foundation.h>
+#import "MacrosHeader.h"
 
 #endif /* PrefixHeader_pch */
