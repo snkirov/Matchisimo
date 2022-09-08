@@ -2,7 +2,6 @@
 // Created by Svilen Kirov.
 
 #import "CardMatchingGame.h"
-#import "PlayingCardDeck.h"
 #import "Deck.h"
 #import "Card.h"
 #import "CardMatchingServiceProtocol.h"
@@ -24,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super init]) {
-    Deck *deck = [[PlayingCardDeck alloc] init];
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
     for(int i = 0; i < count; i ++) {

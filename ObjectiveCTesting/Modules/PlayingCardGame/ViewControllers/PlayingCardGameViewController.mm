@@ -7,7 +7,8 @@
 #import "SetCardUtil.h"
 
 // TODO: REMOVE
-#import "SetCardDeck.h"
+#import "DeckFactory.h"
+#import "Deck.h"
 #import "Card.h"
 #import "SetCardMatchingService.h"
 
@@ -30,8 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
   _setCardView.fill = (CARD_Fill)1;
   _setCardView.numberOfShapes = (CARD_NumberOfShapes)1;
 
-
-  auto deck = [[SetCardDeck alloc] init];
+  auto deck = [DeckFactory generateDeckWithSetCards];
   auto card1 = [deck drawRandomCard];
   auto card2 = [deck drawRandomCard];
   auto card3 = [deck drawRandomCard];

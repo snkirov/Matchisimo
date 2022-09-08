@@ -2,7 +2,7 @@
 // Created by Svilen Kirov.
 
 #import "SetCardGameViewController.h"
-#import "SetCardDeck.h"
+#import "DeckFactory.h"
 #import "SetCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (Deck *)createDeck {
-  return [[SetCardDeck alloc] init];
+  return [DeckFactory generateDeckWithSetCards];
 }
 
 - (UIImage *)backgroundImageForCard: (Card *)card {
