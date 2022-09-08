@@ -1,13 +1,13 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import <UIKit/UIKit.h>
 #import "SetCardUtil.h"
+#import "CardView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class SetCard;
 
-@interface SetCardView : UIView
+@interface SetCardView : CardView
 
 -(void)setupWithSetCard:(SetCard *)card;
 // Is it better to expose all of the properties or just expose the underlying object?

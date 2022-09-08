@@ -14,12 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCardView
 
-CGFloat defaultFaceCardScaleFactor = 0.90;
-CGFloat cornerFontStandardHeight = 180.0;
-CGFloat cornerRadiusNotScaled = 12;
-
-- (CGFloat)cornerScaleFactor { return self.bounds.size.height / cornerFontStandardHeight; }
-- (CGFloat)cornerRadius { return cornerRadiusNotScaled * [self cornerScaleFactor]; }
 - (CGFloat)cornerOffset { return [self cornerRadius] / 3.0; }
 
 - (void)setupWithPlayingCard:(PlayingCard *)card {
@@ -33,35 +27,78 @@ CGFloat cornerRadiusNotScaled = 12;
   [self setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect {
-  UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                         cornerRadius:self.cornerRadius];
-  [roundedRect addClip];
-
-  [[UIColor whiteColor] setFill];
-  UIRectFill(self.bounds);
-
-  [[UIColor blackColor] setStroke];
-  [roundedRect stroke];
-
+- (void)drawCardInterior {
   if (self.faceUp) {
-    UIImage *faceImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@",
-                                              [self rankAsString], self.suit]];
-    if (faceImage) {
-      CGRect imageRect = CGRectInset(self.bounds,
-                                     self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor),
-                                     self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor));
-      [faceImage drawInRect:imageRect];
-    } else {
-      [self drawPips];
-    }
-
-    [self drawCorners];
-  } else {
-    auto backImage = [UIImage imageNamed:@"cardback"];
-    [backImage drawInRect:self.bounds];
+    [self drawFaceUpCard];
+    return;
   }
+  [self drawFaceDownCard];
 }
+
+- (void)drawFaceUpCard {
+  [self drawCorners];
+
+  auto imageName = [NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit];
+  auto faceImage = [UIImage imageNamed:imageName];
+  if (faceImage) {
+    [self drawFaceUpCardWithImage:faceImage];
+    return;
+  }
+  [self drawPips];
+}
+
+- (void)drawFaceUpCardWithImage:(UIImage *)faceImage {
+  const CGFloat defaultFaceCardScaleFactor = 0.90;
+  CGRect imageRect = CGRectInset(self.bounds,
+                                 self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor),
+                                 self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor));
+  [faceImage drawInRect:imageRect];
+}
+
+- (void)drawFaceDownCard {
+  auto backImage = [UIImage imageNamed:@"cardback"];
+  [backImage drawInRect:self.bounds];
+}
+
+// MARK: - Draw Corners
+
+- (void)drawCorners {
+  auto cornerText = [self generateCornerText];
+  // Draw in top left corner
+  auto textBounds = [self createBoundsForAttributedString:cornerText];
+  [cornerText drawInRect:textBounds];
+
+  // Copy and translate to bottom right corner
+  [self drawBottomRightCornerWithText:cornerText forBounds:textBounds];
+}
+
+- (void)drawBottomRightCornerWithText:(NSAttributedString *)cornerText forBounds:(CGRect)textBounds {
+  [self pushContextAndRotateUpsideDown];
+  [cornerText drawInRect:textBounds];
+  [self popContext];
+}
+
+- (NSAttributedString *)generateCornerText {
+  auto paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+  paragraphStyle.alignment = NSTextAlignmentCenter;
+
+  auto cornerFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+  cornerFont = [cornerFont fontWithSize:cornerFont.pointSize * [self cornerScaleFactor]];
+
+  auto rankAsString = [self rankAsString];
+  auto cornerString = [[NSString alloc] initWithFormat:@"%@\n%@", rankAsString, self.suit];
+  return [[NSAttributedString alloc] initWithString: cornerString attributes:@{
+    NSFontAttributeName : cornerFont, NSParagraphStyleAttributeName : paragraphStyle }];
+}
+
+- (CGRect)createBoundsForAttributedString:(NSAttributedString *)attributedString {
+  CGRect textBounds;
+  textBounds.origin = CGPointMake([self cornerOffset], [self cornerOffset]);
+  textBounds.size = [attributedString size];
+  return textBounds;
+}
+
+// MARK: - Pips magic
 
 static double pipHorizontalOffsetPercentage = 0.165;
 static double pipVerticalOffsetPercentageSmall = 0.090;
@@ -69,7 +106,7 @@ static double pipVerticalOffsetPercentageMedium = 0.175;
 static double pipVerticalOffsetPercentageLarge = 0.270;
 
 /// Method that draws the pips for a given card.
-/// Horrible if statements, I would never write it that way. However I am also not willing to rewrite it, so am leaving as it is. It works!
+/// Difficult to understand, however I am not willing to rewrite it, so am leaving as it is. It works!
 - (void)drawPips {
   if ((self.rank == 1) || (self.rank == 3) || (self.rank == 5) || (self.rank == 9)) {
     [self drawPipsWithHorizontalOffset:0
@@ -105,10 +142,32 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 
 - (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
                       verticalOffset:(CGFloat)verticalOffset
+                  mirroredVertically:(Boolean)mirroredVertically {
+
+  [self drawPipsWithHorizontalOffset:horizontalOffset
+                      verticalOffset:verticalOffset
+                          upsideDown:FALSE];
+  if (mirroredVertically) {
+    [self drawPipsWithHorizontalOffset:horizontalOffset
+                        verticalOffset:verticalOffset
+                            upsideDown:TRUE];
+  }
+}
+
+- (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
+                      verticalOffset:(CGFloat)verticalOffset
                   upsideDown:(Boolean)upsideDown {
   if (upsideDown) {
     [self pushContextAndRotateUpsideDown];
   }
+  [self drawPipsWithHorizontalOffset:horizontalOffset verticalOffset:verticalOffset];
+  if (upsideDown) {
+    [self popContext];
+  }
+}
+
+- (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
+                      verticalOffset:(CGFloat)verticalOffset {
   CGPoint centre = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
   UIFont *pipFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
   pipFont = [pipFont fontWithSize:
@@ -127,56 +186,12 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
       pipOrigin.x += horizontalOffset * pipOriginConstant * self.bounds.size.width;
       [attributedSuit drawAtPoint:pipOrigin];
   }
-
-  if (upsideDown) {
-    [self popContext];
-  }
 }
 
-- (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
-                      verticalOffset:(CGFloat)verticalOffset
-                  mirroredVertically:(Boolean)mirroredVertically {
-
-  [self drawPipsWithHorizontalOffset:horizontalOffset
-                      verticalOffset:verticalOffset
-                          upsideDown:FALSE];
-  if (mirroredVertically) {
-    [self drawPipsWithHorizontalOffset:horizontalOffset
-                        verticalOffset:verticalOffset
-                            upsideDown:TRUE];
-  }
-}
-
-- (NSArray<NSString *> *)rankStrings {
-  return @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
-}
+// MARK: - Utility methods
 
 - (NSString *)rankAsString {
-
-  if (self.rank <= [PlayingCardUtil maxRank]) {
-    return [self rankStrings][self.rank];
-  }
-
-  return [self rankStrings][0];
-}
-
-- (void)drawCorners {
-  auto cornerText = [self generateCornerText];
-  // Draw in top left corner
-  auto textBounds = [self createBoundsForAttributedString:cornerText];
-  [cornerText drawInRect:textBounds];
-
-  // Copy and translate to bottom right corner
-  [self pushContextAndRotateUpsideDown];
-  [cornerText drawInRect:textBounds];
-  [self popContext];
-}
-
-- (CGRect)createBoundsForAttributedString:(NSAttributedString *)attributedString {
-  CGRect textBounds;
-  textBounds.origin = CGPointMake([self cornerOffset], [self cornerOffset]);
-  textBounds.size = [attributedString size];
-  return textBounds;
+  return [PlayingCardUtil rankStrings][self.rank];
 }
 
 - (void)pushContextAndRotateUpsideDown {
@@ -188,37 +203,6 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 
 - (void)popContext {
   CGContextRestoreGState(UIGraphicsGetCurrentContext());
-}
-
-- (NSAttributedString *)generateCornerText {
-  auto *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-  paragraphStyle.alignment = NSTextAlignmentCenter;
-
-  auto *cornerFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-  cornerFont = [cornerFont fontWithSize:cornerFont.pointSize * [self cornerScaleFactor]];
-
-  auto rankAsString = [self rankAsString];
-  auto cornerString = [[NSString alloc] initWithFormat:@"%@\n%@", rankAsString, self.suit];
-  return [[NSAttributedString alloc] initWithString: cornerString attributes:@{
-    NSFontAttributeName : cornerFont, NSParagraphStyleAttributeName : paragraphStyle }];
-}
-
-- (void)setup {
-  self.backgroundColor = nil;
-  self.opaque = NO;
-  self.contentMode = UIViewContentModeRedraw;
-}
-
-- (void)awakeFromNib {
-  [super awakeFromNib];
-  [self setup];
-}
-
-- (id)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-
-  }
-  return self;
 }
 
 @end

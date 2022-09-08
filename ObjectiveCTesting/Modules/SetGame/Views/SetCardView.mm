@@ -17,11 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
   [self setNeedsDisplay];
 }
 
-- (void)drawRect:(CGRect)rect {
-  [self drawCardOutline];
-  [self drawCardInterior];
-}
-
 - (void)drawCardInterior {
   auto offsetForThreeShapes = self.bounds.size.height / 4;
   auto offsetForTwoShapes = offsetForThreeShapes / 2;
@@ -60,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
   }
 }
 
+// MARK: - Shape Methods
+
 - (void)drawShapeAtOffset:(CGFloat)offset {
   auto rect = [self generateRectAtOffset:offset];
   const auto context = UIGraphicsGetCurrentContext();
@@ -91,6 +88,82 @@ NS_ASSUME_NONNULL_BEGIN
   auto rect = CGRectMake(rectX, rectY, widthAndHeight * 2, widthAndHeight);
   return rect;
 }
+
+// MARK: - Oval & Diamond
+
+- (void)drawOvalforRect:(CGRect)rect {
+  auto path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius: 30];
+  [self fillShapeForPath: path];
+}
+
+- (void)drawDiamondforRect:(CGRect)rect {
+  auto path = [self generateDiamondPathForRect:rect];
+  [self fillShapeForPath:path];
+}
+
+- (UIBezierPath *)generateDiamondPathForRect:(CGRect)rect {
+  auto originX = rect.origin.x;
+  auto originY = rect.origin.y;
+  auto width = rect.size.width;
+  auto height = rect.size.height;
+  auto path = [[UIBezierPath alloc] init];
+
+  [path moveToPoint:CGPointMake(originX, originY + height / 2)];
+  [path addLineToPoint:CGPointMake(originX + width / 2, originY)];
+  [path addLineToPoint:CGPointMake(originX + width, originY + height / 2)];
+  [path addLineToPoint:CGPointMake(originX + width / 2, originY + height)];
+  [path closePath];
+
+  return path;
+}
+
+// MARK: - Squiggle
+
+- (void)drawSquiggleforRect:(CGRect)rect {
+  auto path = [self generateSquigglePathForRect:rect];
+  [self fillShapeForPath: path];
+}
+
+- (UIBezierPath *)generateSquigglePathForRect:(CGRect)rect {
+  const auto originX = rect.origin.x;
+  const auto originY = rect.origin.y;
+  const auto width = rect.size.width;
+  const auto height = rect.size.height;
+  auto path = [[UIBezierPath alloc] init];
+
+  path.lineWidth = 2;
+
+  [path moveToPoint:CGPointMake(originX + rect.size.width*0.05, rect.origin.y + rect.size.height*0.40)];
+
+  [path addCurveToPoint:CGPointMake(originX + width*0.35, originY + height*0.25)
+          controlPoint1:CGPointMake(originX + width*0.09, originY + height*0.15)
+          controlPoint2:CGPointMake(originX + width*0.18, originY + height*0.10)];
+
+  [path addCurveToPoint:CGPointMake(originX + width*0.75, originY + height*0.30)
+          controlPoint1:CGPointMake(originX + width*0.40, originY + height*0.30)
+          controlPoint2:CGPointMake(originX + width*0.60, originY + height*0.45)];
+
+  [path addCurveToPoint:CGPointMake(originX + width*0.97, originY + height*0.35)
+          controlPoint1:CGPointMake(originX + width*0.87, originY + height*0.15)
+          controlPoint2:CGPointMake(originX + width*0.98, originY + height*0.00)];
+
+  [path addCurveToPoint:CGPointMake(originX + width*0.45, originY + height*0.85)
+          controlPoint1:CGPointMake(originX + width*0.95, originY + height*1.10)
+          controlPoint2:CGPointMake(originX + width*0.50, originY + height*0.95)];
+
+  [path addCurveToPoint:CGPointMake(originX + width*0.25, originY + height*0.85)
+          controlPoint1:CGPointMake(originX + width*0.40, originY + height*0.80)
+          controlPoint2:CGPointMake(originX + width*0.35, originY + height*0.75)];
+
+  [path addCurveToPoint:CGPointMake(originX + width*0.05, originY + height*0.40)
+          controlPoint1:CGPointMake(originX + width*0.00, originY + height*1.10)
+          controlPoint2:CGPointMake(originX + width*0.005, originY + height*0.60)];
+
+  [path closePath];
+  return path;
+}
+
+// MARK: - Fill
 
 - (void)fillShapeForPath:(UIBezierPath *) path {
 
@@ -143,106 +216,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)solidFillForPath:(UIBezierPath *)path {
   [[self getColor] setFill];
   [path fill];
-}
-
-- (void)drawOvalforRect:(CGRect)rect {
-  auto path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius: 30];
-  [self fillShapeForPath: path];
-}
-
-- (void)drawDiamondforRect:(CGRect)rect {
-  auto path = [self generateDiamondPathForRect:rect];
-  [self fillShapeForPath:path];
-}
-
-- (UIBezierPath *)generateDiamondPathForRect:(CGRect)rect {
-  auto originX = rect.origin.x;
-  auto originY = rect.origin.y;
-  auto width = rect.size.width;
-  auto height = rect.size.height;
-  auto path = [[UIBezierPath alloc] init];
-
-  [path moveToPoint:CGPointMake(originX, originY + height / 2)];
-  [path addLineToPoint:CGPointMake(originX + width / 2, originY)];
-  [path addLineToPoint:CGPointMake(originX + width, originY + height / 2)];
-  [path addLineToPoint:CGPointMake(originX + width / 2, originY + height)];
-  [path closePath];
-
-  return path;
-}
-
-- (void)drawSquiggleforRect:(CGRect)rect {
-  auto path = [self generateSquigglePathForRect:rect];
-  [self fillShapeForPath: path];
-}
-
-- (UIBezierPath *)generateSquigglePathForRect:(CGRect)rect {
-  const auto originX = rect.origin.x;
-  const auto originY = rect.origin.y;
-  const auto width = rect.size.width;
-  const auto height = rect.size.height;
-  auto path = [[UIBezierPath alloc] init];
-
-  path.lineWidth = 2;
-
-  [path moveToPoint:CGPointMake(originX + rect.size.width*0.05, rect.origin.y + rect.size.height*0.40)];
-
-  [path addCurveToPoint:CGPointMake(originX + width*0.35, originY + height*0.25)
-          controlPoint1:CGPointMake(originX + width*0.09, originY + height*0.15)
-          controlPoint2:CGPointMake(originX + width*0.18, originY + height*0.10)];
-
-  [path addCurveToPoint:CGPointMake(originX + width*0.75, originY + height*0.30)
-          controlPoint1:CGPointMake(originX + width*0.40, originY + height*0.30)
-          controlPoint2:CGPointMake(originX + width*0.60, originY + height*0.45)];
-
-  [path addCurveToPoint:CGPointMake(originX + width*0.97, originY + height*0.35)
-          controlPoint1:CGPointMake(originX + width*0.87, originY + height*0.15)
-          controlPoint2:CGPointMake(originX + width*0.98, originY + height*0.00)];
-
-  [path addCurveToPoint:CGPointMake(originX + width*0.45, originY + height*0.85)
-          controlPoint1:CGPointMake(originX + width*0.95, originY + height*1.10)
-          controlPoint2:CGPointMake(originX + width*0.50, originY + height*0.95)];
-
-  [path addCurveToPoint:CGPointMake(originX + width*0.25, originY + height*0.85)
-          controlPoint1:CGPointMake(originX + width*0.40, originY + height*0.80)
-          controlPoint2:CGPointMake(originX + width*0.35, originY + height*0.75)];
-
-  [path addCurveToPoint:CGPointMake(originX + width*0.05, originY + height*0.40)
-          controlPoint1:CGPointMake(originX + width*0.00, originY + height*1.10)
-          controlPoint2:CGPointMake(originX + width*0.005, originY + height*0.60)];
-
-  [path closePath];
-  return path;
-}
-
-// TODO: Svilen Candidates for abstraction
-static CGFloat cornerFontStandardHeight = 180.0;
-static CGFloat cornerRadius = 12.0;
-
-- (CGFloat)cornerScaleFactor { return self.bounds.size.height / cornerFontStandardHeight; }
-- (CGFloat)cornerRadius { return cornerRadius * [self cornerScaleFactor]; }
-
-- (void)setup {
-  self.backgroundColor = nil;
-  self.opaque = NO;
-  self.contentMode = UIViewContentModeRedraw;
-}
-
-- (void)awakeFromNib {
-  [super awakeFromNib];
-  [self setup];
-}
-
-- (void)drawCardOutline {
-  auto roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                         cornerRadius:self.cornerRadius];
-  [roundedRect addClip];
-
-  [[UIColor whiteColor] setFill];
-  UIRectFill(self.bounds);
-
-  [[UIColor blackColor] setStroke];
-  [roundedRect stroke];
 }
 
 @end

@@ -1,13 +1,13 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import <UIKit/UIKit.h>
+#import "CardView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class PlayingCard;
 
-@interface PlayingCardView : UIView
+@interface PlayingCardView : CardView
 
 - (void)setupWithPlayingCard:(PlayingCard *)card;
 
