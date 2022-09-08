@@ -47,7 +47,6 @@ static const int GUESS_PENALTY = 1;
 
 - (void)chooseCardAtIndex:(NSUInteger)index {
   Card *card = [self cardAtIndex:index];
-//  NSLog(@"We chose card %@", card.contents);
 
   if (card.isMatched) {
     return;

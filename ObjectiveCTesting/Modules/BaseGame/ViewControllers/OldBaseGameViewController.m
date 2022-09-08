@@ -30,7 +30,6 @@
 
 - (IBAction)flipCard:(UIButton *)sender {
   unsigned long chosenButtonIndex = [self.cards indexOfObject: sender];
-//  NSLog(@"Choose at index: %ld", chosenButtonIndex);
   [self.game chooseCardAtIndex: chosenButtonIndex];
   [self updateUI];
 }

@@ -35,10 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
   auto card1 = [deck drawRandomCard];
   auto card2 = [deck drawRandomCard];
   auto card3 = [deck drawRandomCard];
-  NSLog(@"%@\n%@\n%@\n", card1.contents, card2.contents, card3.contents);
+  LogDebug(@"%@\n%@\n%@\n", card1.contents, card2.contents, card3.contents);
   auto matchingService = [[SetCardMatchingService alloc] init];
   auto result = [matchingService matchCard:card1 withOtherCards:[NSArray arrayWithObjects: card1, card1, nil]];
-  NSLog(@"Matching score: %d", result);
+  LogDebug(@"Matching score: %d", result);
 }
 
 @end
