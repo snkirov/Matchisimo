@@ -76,9 +76,9 @@ static const int GUESS_PENALTY = 1;
 
 - (void) evaluateMatch: (Card *)card withCards: (NSArray<Card *> *)chosenCards {
   // TODO: Discuss with Cam
-  int matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
+  auto matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
-    int pointsForThisRound = matchScore * 4;
+    auto pointsForThisRound = matchScore * 4;
     _score += pointsForThisRound;
     card.isMatched = TRUE;
     for (Card * chosenCard in chosenCards) {

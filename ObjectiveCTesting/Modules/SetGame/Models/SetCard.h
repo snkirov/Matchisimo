@@ -10,10 +10,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SetCard : Card
 
-@property (nonatomic)CARD_Shape shape;
-@property (nonatomic)CARD_Color color;
-@property (nonatomic)CARD_Fill fill;
-@property (nonatomic)CARD_NumberOfShapes numberOfShapes;
+- (instancetype) initWithShape:(CARD_Shape)shape withColor:(CARD_Color)color
+                    withFill:(CARD_Fill)fill withNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes;
+
+@property (nonatomic, readonly)CARD_Shape shape;
+@property (nonatomic, readonly)CARD_Color color;
+@property (nonatomic, readonly)CARD_Fill fill;
+@property (nonatomic, readonly)CARD_NumberOfShapes numberOfShapes;
 
 @end
 

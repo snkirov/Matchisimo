@@ -5,10 +5,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PlayingCard;
+
 @interface PlayingCardView : UIView
 
-@property (nonatomic) NSUInteger rank;
-@property (nonatomic, strong) NSString *suit;
+- (void)setupWithPlayingCard:(PlayingCard *)card;
+
+@property (nonatomic, readonly) NSUInteger rank;
+@property (nonatomic, readonly) NSString *suit;
 @property (nonatomic) BOOL faceUp;
 
 @end

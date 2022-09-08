@@ -3,28 +3,17 @@
 
 #import "SetCardView.h"
 #import "SetCardUtil.h"
+#import "SetCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardView
 
-- (void)setShape:(CARD_Shape)shape {
-  _shape = shape;
-  [self setNeedsDisplay];
-}
-
-- (void)setColor:(CARD_Color)color {
-  _color = color;
-  [self setNeedsDisplay];
-}
-
-- (void)setFill:(CARD_Fill)fill {
-  _fill = fill;
-  [self setNeedsDisplay];
-}
-
-- (void)setNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {
-  _numberOfShapes = numberOfShapes;
+- (void)setupWithSetCard:(SetCard *)card {
+  _shape = card.shape;
+  _color = card.color;
+  _fill = card.fill;
+  _numberOfShapes = card.numberOfShapes;
   [self setNeedsDisplay];
 }
 
@@ -118,7 +107,6 @@ NS_ASSUME_NONNULL_BEGIN
     case Solid:
       [self solidFillForPath:path];
       return;
-
     case fillsCount:
       LogDebug(@"[Warning] Fill shouldn't be set to fillsCount in SetCardView.setFillMethod");
       return;

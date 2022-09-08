@@ -2,45 +2,33 @@
 // Created by Svilen Kirov.
 
 #import "PlayingCard.h"
+#import "PlayingCardUtil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface PlayingCard ()
+@property (nonatomic, readwrite) NSString *suit;
+@property (nonatomic, readwrite) NSUInteger rank;
+@end
+
 @implementation PlayingCard
 
-@synthesize suit = _suit;
-
-- (NSString *)suit {
-  return _suit ? _suit : @"?";
-}
-
-- (void)setSuit: (NSString *)suit {
-  if ([[PlayingCard validSuits] containsObject: suit]) {
+- (instancetype) initWithSuit:(NSString *)suit withRank:(NSUInteger)rank {
+  if (self = [super init]) {
+    auto isValidSuit = [[PlayingCardUtil validSuits] containsObject: suit];
+    auto isValidRank = rank <= [PlayingCardUtil maxRank];
+    if (!isValidSuit || !isValidRank) {
+      self = nil;
+      return nil;
+    }
     _suit = suit;
-  }
-}
-
-- (void)setRank: (NSUInteger)rank {
-  if (rank <= [PlayingCard maxRank]) {
     _rank = rank;
   }
-}
-
-// TODO: Move static methods to a Util Class, transform to enum
-+ (NSArray *)validSuits {
-  return @[@"♥️",@"♦️",@"♠️",@"♣️"];
-}
-
-+ (NSArray *)rankStrings {
-  return @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",
-           @"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
-}
-
-+ (NSUInteger)maxRank {
-  return [[self rankStrings] count] - 1;
+  return self;
 }
 
 - (NSString *)contents {
-  return [[PlayingCard rankStrings][self.rank]
+  return [[PlayingCardUtil rankStrings][self.rank]
           stringByAppendingString: self.suit];
 }
 

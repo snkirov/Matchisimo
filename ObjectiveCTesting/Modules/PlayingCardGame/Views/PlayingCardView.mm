@@ -3,26 +3,28 @@
 
 #import "PlayingCardView.h"
 #import "PlayingCard.h"
+#import "PlayingCardUtil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface PlayingCardView()
+@property (nonatomic, readwrite) NSUInteger rank;
+@property (nonatomic, readwrite) NSString *suit;
+@end
+
 @implementation PlayingCardView
 
-#define DEFAULT_FACE_CARD_SCALE_FACTOR 0.90
-#define CORNER_FONT_STANDARD_HEIGHT 180.0
-#define CORNER_RADIUS 12.0
+CGFloat defaultFaceCardScaleFactor = 0.90;
+CGFloat cornerFontStandardHeight = 180.0;
+CGFloat cornerRadiusNotScaled = 12;
 
-- (CGFloat)cornerScaleFactor { return self.bounds.size.height / CORNER_FONT_STANDARD_HEIGHT; }
-- (CGFloat)cornerRadius { return CORNER_RADIUS * [self cornerScaleFactor]; }
+- (CGFloat)cornerScaleFactor { return self.bounds.size.height / cornerFontStandardHeight; }
+- (CGFloat)cornerRadius { return cornerRadiusNotScaled * [self cornerScaleFactor]; }
 - (CGFloat)cornerOffset { return [self cornerRadius] / 3.0; }
 
-- (void)setSuit:(NSString *)suit {
-  _suit = suit;
-  [self setNeedsDisplay];
-}
-
-- (void)setRank:(NSUInteger)rank {
-  _rank = rank;
+- (void)setupWithPlayingCard:(PlayingCard *)card {
+  _suit = card.suit;
+  _rank = card.rank;
   [self setNeedsDisplay];
 }
 
@@ -47,8 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
                                               [self rankAsString], self.suit]];
     if (faceImage) {
       CGRect imageRect = CGRectInset(self.bounds,
-                                     self.bounds.size.width * (1.0 - DEFAULT_FACE_CARD_SCALE_FACTOR),
-                                     self.bounds.size.width * (1.0 - DEFAULT_FACE_CARD_SCALE_FACTOR));
+                                     self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor),
+                                     self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor));
       [faceImage drawInRect:imageRect];
     } else {
       [self drawPips];
@@ -151,7 +153,7 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 
 - (NSString *)rankAsString {
 
-  if (self.rank <= [PlayingCard maxRank]) {
+  if (self.rank <= [PlayingCardUtil maxRank]) {
     return [self rankStrings][self.rank];
   }
 

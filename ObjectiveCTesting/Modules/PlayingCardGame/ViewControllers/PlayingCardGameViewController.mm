@@ -11,6 +11,8 @@
 #import "Deck.h"
 #import "Card.h"
 #import "SetCardMatchingService.h"
+#import "SetCard.h"
+#import "PlayingCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,13 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void) viewDidLoad {
   [super viewDidLoad];
-  _cardView.suit = @"♥️";
-  _cardView.rank = 10;
+  [_cardView setupWithPlayingCard:[[PlayingCard alloc] initWithSuit:@"♥️" withRank:10]];
   _cardView.faceUp = true;
-  _setCardView.shape = (CARD_Shape)1;
-  _setCardView.color = (CARD_Color)1;
-  _setCardView.fill = (CARD_Fill)1;
-  _setCardView.numberOfShapes = (CARD_NumberOfShapes)1;
+  auto setCard = [[SetCard alloc] initWithShape:(CARD_Shape)1
+                                      withColor:(CARD_Color)1
+                                       withFill:(CARD_Fill)1
+                             withNumberOfShapes:(CARD_NumberOfShapes)1];
+  [_setCardView setupWithSetCard:setCard];
 
   auto deck = [DeckFactory generateDeckWithSetCards];
   auto card1 = [deck drawRandomCard];
