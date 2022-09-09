@@ -15,26 +15,10 @@
                     <view key="view" contentMode="scaleToFill" id="53x-G5-8Hc">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNe-M9-gxH" customClass="SetCardView">
-                                <rect key="frame" x="118" y="422" width="155" height="274"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6HT-ei-MlO" customClass="PlayingCardView">
-                                <rect key="frame" x="118" y="106" width="155" height="274"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2Xh-T0-kul"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Draw Me" image="paintbrush" catalog="system" id="Y5M-RL-UJV"/>
-                    <connections>
-                        <outlet property="cardView" destination="6HT-ei-MlO" id="t4A-ak-gFu"/>
-                        <outlet property="setCardView" destination="fNe-M9-gxH" id="5Ey-mN-NlV"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MDM-Bx-eBc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -366,7 +350,7 @@
     </scenes>
     <color key="tintColor" systemColor="systemGreenColor"/>
     <resources>
-        <image name="cardback" width="42.666667938232422" height="64"/>
+        <image name="cardback" width="128" height="192"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="paintbrush" catalog="system" width="122" height="128"/>
         <systemColor name="labelColor">
