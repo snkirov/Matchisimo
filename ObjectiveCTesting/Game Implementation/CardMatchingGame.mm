@@ -31,8 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
         [_cards addObject:card];
       } else {
         _cards = nil;
-        self = nil;
-        return self;
+        return nil;
       }
 
     }

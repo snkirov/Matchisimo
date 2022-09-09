@@ -19,7 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
         color > colorsCount || color < 1 ||
         fill > fillsCount || fill < 1 ||
         numberOfShapes > numberOfShapesCount || numberOfShapes < 1) {
-      self = nil;
       return nil;
     }
 

@@ -27,10 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
   [super viewDidLoad];
   [_cardView setupWithPlayingCard:[[PlayingCard alloc] initWithSuit:@"♥️" withRank:10]];
   _cardView.faceUp = true;
-  auto setCard = [[SetCard alloc] initWithShape:(CARD_Shape)1
-                                      withColor:(CARD_Color)1
-                                       withFill:(CARD_Fill)1
-                             withNumberOfShapes:(CARD_NumberOfShapes)1];
+  auto setCard = [[SetCard alloc] initWithShape:CARD_Shape::Oval
+                                      withColor:CARD_Color::Red
+                                       withFill:CARD_Fill::Striped
+                             withNumberOfShapes:CARD_NumberOfShapes::Three];
   [_setCardView setupWithSetCard:setCard];
 
   auto deck = [DeckFactory generateDeckWithSetCards];

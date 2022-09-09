@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
     auto isValidSuit = [[PlayingCardUtil validSuits] containsObject: suit];
     auto isValidRank = rank <= [PlayingCardUtil maxRank];
     if (!isValidSuit || !isValidRank) {
-      self = nil;
       return nil;
     }
     _suit = suit;

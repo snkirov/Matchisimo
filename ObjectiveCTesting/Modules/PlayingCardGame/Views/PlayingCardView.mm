@@ -157,35 +157,41 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 - (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
                       verticalOffset:(CGFloat)verticalOffset
                   upsideDown:(Boolean)upsideDown {
-  if (upsideDown) {
-    [self pushContextAndRotateUpsideDown];
+  if (!upsideDown) {
+    [self drawPipsWithHorizontalOffset:horizontalOffset verticalOffset:verticalOffset];
+    return;
   }
+
+  [self pushContextAndRotateUpsideDown];
   [self drawPipsWithHorizontalOffset:horizontalOffset verticalOffset:verticalOffset];
-  if (upsideDown) {
-    [self popContext];
-  }
+  [self popContext];
 }
 
 - (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
                       verticalOffset:(CGFloat)verticalOffset {
-  CGPoint centre = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
-  UIFont *pipFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-  pipFont = [pipFont fontWithSize:
-             [pipFont pointSize] * self.bounds.size.width * pipFontScaleFactor];
-  NSAttributedString *attributedSuit = [[NSAttributedString alloc]
-                                        initWithString:self.suit
-                                        attributes:@{ NSFontAttributeName : pipFont }];
+  auto centre = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+  NSAttributedString *attributedSuit = [self generateAttributedSuit];
   CGSize pipSize = [attributedSuit size];
-  CGPoint pipOrigin = CGPointMake(centre.x - pipSize.width /
-                                  pipOriginConstant - horizontalOffset * self.bounds.size.width,
-                                  centre.y - pipSize.height /
-                                  pipOriginConstant - verticalOffset * self.bounds.size.height);
+  auto pipOrigin = CGPointMake(centre.x - pipSize.width /
+                               pipOriginConstant - horizontalOffset * self.bounds.size.width,
+                               centre.y - pipSize.height /
+                               pipOriginConstant - verticalOffset * self.bounds.size.height);
   [attributedSuit drawAtPoint:pipOrigin];
 
   if (horizontalOffset) {
-      pipOrigin.x += horizontalOffset * pipOriginConstant * self.bounds.size.width;
-      [attributedSuit drawAtPoint:pipOrigin];
+    pipOrigin.x += horizontalOffset * pipOriginConstant * self.bounds.size.width;
+    [attributedSuit drawAtPoint:pipOrigin];
   }
+}
+
+- (NSAttributedString *)generateAttributedSuit {
+  auto pipFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+  pipFont = [pipFont fontWithSize:
+             [pipFont pointSize] * self.bounds.size.width * pipFontScaleFactor];
+  auto attributedSuit = [[NSAttributedString alloc]
+                         initWithString:self.suit
+                         attributes:@{ NSFontAttributeName : pipFont }];
+  return attributedSuit;
 }
 
 // MARK: - Utility methods
