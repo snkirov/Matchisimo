@@ -14,7 +14,7 @@ static const int MATCH_COUNT = 2;
 
 - (CardMatchingGame *)startGame {
   auto playingDeck = [self createDeck];
-  return [[PlayingCardMatchingGame alloc] initWithCardCount: 20 usingDeck: playingDeck withMatchCount: MATCH_COUNT];
+  return [[PlayingCardMatchingGame alloc] initUsingDeck: playingDeck withMatchCount: MATCH_COUNT];
 }
 
 - (Deck *)createDeck {

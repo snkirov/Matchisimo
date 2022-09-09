@@ -51,5 +51,6 @@
 
 - (CGPoint)centerOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
 - (CGRect)frameOfCellAtRow:(NSUInteger)row inColumn:(NSUInteger)column;
+- (NSUInteger)getIndexForRow:(NSUInteger)row andColumn:(NSUInteger)column;
 
 @end

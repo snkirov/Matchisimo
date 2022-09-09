@@ -210,4 +210,8 @@
     return description;
 }
 
+- (NSUInteger)getIndexForRow:(NSUInteger)row andColumn:(NSUInteger)column {
+  return row * _columnCount + column;
+}
+
 @end

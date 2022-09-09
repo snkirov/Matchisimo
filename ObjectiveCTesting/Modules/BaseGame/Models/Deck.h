@@ -16,6 +16,8 @@
 - (Card *)drawRandomCard;
 - (void)addCard:(Card *)card;
 
+- (NSUInteger)deckSize;
+
 @end
 
 

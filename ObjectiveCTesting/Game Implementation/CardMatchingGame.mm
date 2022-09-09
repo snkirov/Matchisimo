@@ -16,16 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation CardMatchingGame
 
-- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck {
-  return [self initWithCardCount:count usingDeck:deck withMatchCount:2];
+- (instancetype)initUsingDeck:(Deck *)deck {
+  return [self initUsingDeck:deck withMatchCount:2];
 }
 
-- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+- (instancetype)initUsingDeck:(Deck *)deck
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super init]) {
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
-    for(int i = 0; i < count; i ++) {
+    for(int i = 0; i < [deck deckSize]; i ++) {
       Card* card = [deck drawRandomCard];
       if (card) {
         [_cards addObject:card];
@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
         _cards = nil;
         return nil;
       }
-
     }
   }
   return self;

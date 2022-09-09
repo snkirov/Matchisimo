@@ -37,4 +37,8 @@
   [self.cards addObject:card];
 }
 
+- (NSUInteger)deckSize {
+  return _cards.count;
+}
+
 @end

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
                    withMatchCount:(NSUInteger) matchCount {
-  if (self = [super initWithCardCount:count usingDeck:deck withMatchCount:matchCount]) {
+  if (self = [super initUsingDeck:deck withMatchCount:matchCount]) {
     self.matchingService = [[PlayingCardMatchingService alloc] init];
   }
   return self;

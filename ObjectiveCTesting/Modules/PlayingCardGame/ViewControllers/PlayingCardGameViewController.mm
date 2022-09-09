@@ -7,6 +7,7 @@
 #import "Grid.h"
 #import "DeckFactory.h"
 #import "Deck.h"
+#import "SetCardMatchingGame.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)UIView *cardCanvas;
 @property (nonatomic, strong)Grid *cardGrid;
 @property (nonatomic)NSMutableArray<CardView *> *cards;
-@property (nonatomic, strong)Deck *cardDeck;
+@property (nonatomic, strong)SetCardMatchingGame *cardMatchingGame;
 @end
 
 @implementation PlayingCardGameViewController
@@ -25,6 +26,7 @@ static const CGFloat edgeOffset = 20;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  [self setupCardMatchingGame];
   [self initialGridSetup];
   [self setupPlayingSection];
   [self setupBottomBar];
@@ -32,6 +34,11 @@ static const CGFloat edgeOffset = 20;
 }
 
 // MARK: - Setup Methods
+
+- (void)setupCardMatchingGame {
+  auto setDeck = [DeckFactory generateDeckWithSetCards];
+  _cardMatchingGame = [[SetCardMatchingGame alloc] initUsingDeck:setDeck withMatchCount:3];
+}
 
 - (void)initialGridSetup {
   _cardGrid = [[Grid alloc] init];
@@ -63,14 +70,9 @@ static const CGFloat edgeOffset = 20;
 - (void)setupCards {
   _cards = [[NSMutableArray alloc] init];
   LogDebug(@"%@", _cardGrid);
-  _cardDeck = [DeckFactory generateDeckWithSetCards];
-  for (int j = 0; j < _cardGrid.rowCount; j++) {
-    for (int i = 0; i < _cardGrid.columnCount; i++) {
-      auto frame = [_cardGrid frameOfCellAtRow:j inColumn:i];
-      auto cardView = [[SetCardView alloc] initWithFrame:frame];
-      cardView.backgroundColor = UIColor.clearColor;
-      auto setCard = (SetCard *)[_cardDeck drawRandomCard];
-      [cardView setupWithSetCard:setCard];
+  for (int i = 0; i < _cardGrid.rowCount; i++) {
+    for (int j = 0; j < _cardGrid.columnCount; j++) {
+      CardView *cardView = [self setupCardViewAtRow:i atColumn:j];
       [_cards addObject:cardView];
       [_cardCanvas addSubview:cardView];
       if ([_cards count] == defaultCardCount) {
@@ -79,6 +81,23 @@ static const CGFloat edgeOffset = 20;
     }
   }
   [self.cardCanvas layoutIfNeeded];
+}
+
+- (CardView *)setupCardViewAtRow:(NSUInteger)row atColumn:(NSUInteger)column {
+  auto frame = [_cardGrid frameOfCellAtRow:row inColumn:column];
+
+  auto cardView = [[SetCardView alloc] initWithFrame:frame];
+  cardView.backgroundColor = UIColor.clearColor;
+
+  auto index = [_cardGrid getIndexForRow:row andColumn:column];
+  auto setCard = (SetCard *)[_cardMatchingGame cardAtIndex:index];
+
+  [cardView setupWithSetCard:setCard];
+  return cardView;
+}
+
+- (void)didTapCardAtIndex:index {
+
 }
 
 - (void)setupBottomBar {
@@ -121,7 +140,7 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)didTapRedeal {
-  [self resetScreen];
+  [self redealGame];
 }
 
 // MARK: - Reloading
@@ -130,7 +149,7 @@ static const CGFloat edgeOffset = 20;
   for (int i = 0; i < 3; i++) {
     auto cardView = [[SetCardView alloc] init];
     cardView.backgroundColor = UIColor.clearColor;
-    auto setCard = (SetCard *)[_cardDeck drawRandomCard];
+    auto setCard = (SetCard *)[_cardMatchingGame cardAtIndex:_cards.count + i];
     [cardView setupWithSetCard:setCard];
     [_cards addObject:cardView];
     [_cardCanvas addSubview:cardView];
@@ -159,8 +178,9 @@ static const CGFloat edgeOffset = 20;
   [_cardCanvas layoutSubviews];
 }
 
-- (void)resetScreen {
+- (void)redealGame {
   [self.cardCanvas removeFromSuperview];
+  [self setupCardMatchingGame];
   [self setupPlayingSection];
 }
 
