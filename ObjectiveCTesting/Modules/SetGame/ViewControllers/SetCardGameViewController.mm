@@ -2,31 +2,42 @@
 // Created by Svilen Kirov.
 
 #import "SetCardGameViewController.h"
+#import "Grid.h"
 #import "DeckFactory.h"
+#import "SetCardMatchingGame.h"
 #import "SetCard.h"
+#import "SetCardView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardGameViewController
 
-// Overwrites
-
-- (NSString *)navigationTitle {
-  return @"Set Three";
+- (void)setupCardMatchingGame {
+  auto setDeck = [DeckFactory generateDeckWithSetCards];
+  self.cardMatchingGame = [[SetCardMatchingGame alloc] initUsingDeck:setDeck withMatchCount:3];
 }
 
-- (NSUInteger)cardsRequiredForMatch {
-  return 3;
+- (CardView *)setupCardViewAtIndex:(NSUInteger)index {
+  auto cardView = [[SetCardView alloc] init];
+  cardView.backgroundColor = UIColor.clearColor;
+  auto setCard = (SetCard *)[self.cardMatchingGame cardAtIndex:index];
+  [cardView setupWithSetCard:setCard];
+  return cardView;
 }
 
-- (Deck *)createDeck {
-  return [DeckFactory generateDeckWithSetCards];
+- (CardView *)setupCardViewAtRow:(NSUInteger)row atColumn:(NSUInteger)column {
+  auto frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
+
+  auto cardView = [[SetCardView alloc] initWithFrame:frame];
+  cardView.backgroundColor = UIColor.clearColor;
+
+  auto index = [self.cardGrid getIndexForRow:row andColumn:column];
+  auto setCard = (SetCard *)[self.cardMatchingGame cardAtIndex:index];
+
+  [cardView setupWithSetCard:setCard];
+  return cardView;
 }
 
-- (UIImage *)backgroundImageForCard: (Card *)card {
-  NSString * cardName = card.isChosen ? @"cardselected" : @"cardfront";
-  return [UIImage imageNamed: cardName];
-}
 
 @end
 

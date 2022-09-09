@@ -131,8 +131,6 @@ NS_ASSUME_NONNULL_BEGIN
   const auto height = rect.size.height;
   auto path = [[UIBezierPath alloc] init];
 
-  path.lineWidth = 2;
-
   [path moveToPoint:CGPointMake(originX + rect.size.width*0.05, rect.origin.y + rect.size.height*0.40)];
 
   [path addCurveToPoint:CGPointMake(originX + width*0.35, originY + height*0.25)
@@ -167,7 +165,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)fillShapeForPath:(UIBezierPath *) path {
 
-  [path addClip];
   [self strokeShapeFromPath:path];
 
   switch (_fill) {
@@ -187,6 +184,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)strokeShapeFromPath:(UIBezierPath *)path {
+  path.lineWidth = 2;
+  [path addClip];
   [[self getColor] setStroke];
   [path stroke];
 }

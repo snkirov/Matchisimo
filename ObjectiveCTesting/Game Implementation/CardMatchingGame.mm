@@ -25,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
   if (self = [super init]) {
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
-    for(int i = 0; i < [deck deckSize]; i ++) {
+    auto deckSize = [deck deckSize];
+    for(int i = 0; i < deckSize; i ++) {
       Card* card = [deck drawRandomCard];
       if (card) {
         [_cards addObject:card];
