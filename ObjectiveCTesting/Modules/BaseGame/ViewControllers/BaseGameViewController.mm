@@ -61,6 +61,7 @@ static const CGFloat edgeOffset = 20;
   [self.view addSubview:_cardCanvas];
   _cardCanvas.backgroundColor = UIColor.systemGray6Color;
   [self setupCardCanvasConstraints];
+  [_cardCanvas layoutIfNeeded];
 }
 
 - (void)setupCards {
@@ -133,6 +134,7 @@ static const CGFloat edgeOffset = 20;
 - (void)drawThreeMoreCards {
   for (int i = 0; i < 3; i++) {
     auto cardView = [self setupCardViewAtIndex:_cards.count + i];
+    cardView.frame = CGRectMake(0, self.cardCanvas.frame.size.height, 0, 0);
     [_cards addObject:cardView];
     [_cardCanvas addSubview:cardView];
   }
@@ -161,7 +163,9 @@ static const CGFloat edgeOffset = 20;
   for (int i = 0; i < _cards.count; i++) {
     auto row = i / _cardGrid.columnCount;
     auto column = i % _cardGrid.columnCount;
-    _cards[i].frame = [_cardGrid frameOfCellAtRow:row inColumn:column];
+    [UIView animateWithDuration:1.0 animations:^{
+      self.cards[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
+    }];
   }
   [_cardCanvas layoutSubviews];
 }

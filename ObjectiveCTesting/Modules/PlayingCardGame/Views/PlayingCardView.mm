@@ -36,15 +36,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)drawFaceUpCard {
-  [self drawCorners];
 
   auto imageName = [NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit];
   auto faceImage = [UIImage imageNamed:imageName];
   if (faceImage) {
     [self drawFaceUpCardWithImage:faceImage];
+    [self drawCorners];
     return;
   }
   [self drawPips];
+  [self drawCorners];
 }
 
 - (void)drawFaceUpCardWithImage:(UIImage *)faceImage {
@@ -100,7 +101,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Pips magic
 
-static double pipHorizontalOffsetPercentage = 0.165;
+static double pipHorizontalOffsetPercentage = 0.145;
 static double pipVerticalOffsetPercentageSmall = 0.090;
 static double pipVerticalOffsetPercentageMedium = 0.175;
 static double pipVerticalOffsetPercentageLarge = 0.270;
@@ -124,7 +125,7 @@ static double pipVerticalOffsetPercentageLarge = 0.270;
                         verticalOffset:pipVerticalOffsetPercentageMedium
                     mirroredVertically:(self.rank != 7)];
   }
-  if ((self.rank == 4) || (self.rank == 5) || (self.rank == 6)
+  if ((self.rank == 4) || (self.rank == 5) || (self.rank == 6) || (self.rank == 7)
       || (self.rank == 8) || (self.rank == 9) || (self.rank == 10)) {
     [self drawPipsWithHorizontalOffset:pipHorizontalOffsetPercentage
                         verticalOffset:pipVerticalOffsetPercentageLarge
@@ -137,7 +138,7 @@ static double pipVerticalOffsetPercentageLarge = 0.270;
   }
 }
 
-static double pipFontScaleFactor = 0.012;
+static double pipFontScaleFactor = 0.009;
 static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea how the guys chose it.
 
 - (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset

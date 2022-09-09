@@ -29,7 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (CardView *)setupCardViewAtRow:(NSUInteger)row atColumn:(NSUInteger)column {
   auto frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
 
-  auto cardView = [[PlayingCardView alloc] initWithFrame:frame];
+  auto cardView = [[PlayingCardView alloc] init];
+  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
+
+  [UIView animateWithDuration:1.0 animations:^{
+    cardView.frame = frame;
+  }];
+
   cardView.backgroundColor = UIColor.clearColor;
 
   auto index = [self.cardGrid getIndexForRow:row andColumn:column];
