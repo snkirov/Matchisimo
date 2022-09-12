@@ -13,6 +13,16 @@ static const CGFloat cornerRadiusNotScaled = 12;
 - (CGFloat)cornerScaleFactor { return self.bounds.size.height / cornerFontStandardHeight; }
 - (CGFloat)cornerRadius { return cornerRadiusNotScaled * [self cornerScaleFactor]; }
 
+- (void)setSelected:(BOOL)selected {
+  _selected = selected;
+  [self setNeedsDisplay];
+}
+
+- (void)selectCard {
+  self.selected = !self.selected;
+  self.didTapView();
+}
+
 - (void)drawCardOutline {
   auto roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                          cornerRadius:self.cornerRadius];
@@ -35,15 +45,24 @@ static const CGFloat cornerRadiusNotScaled = 12;
               format:@"drawCardInterior is an abstract method, which should be overriden by all children."];
 }
 
-- (void)setup {
-  self.opaque = NO;
-  self.contentMode = UIViewContentModeRedraw;
+- (instancetype)init {
+  if (self = [super init]) {
+    self.opaque = NO;
+    self.contentMode = UIViewContentModeRedraw;
+    self.selected = false;
+  }
+  return self;
 }
 
-- (void)awakeFromNib {
-  [super awakeFromNib];
-  [self setup];
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    self.opaque = NO;
+    self.contentMode = UIViewContentModeRedraw;
+    self.selected = false;
+  }
+  return self;
 }
+
 
 @end
 

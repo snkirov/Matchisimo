@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly)CARD_Fill fill;
 @property (nonatomic, readonly)CARD_NumberOfShapes numberOfShapes;
 
-@property (nonatomic) BOOL faceUp;
-
 @end
 
 NS_ASSUME_NONNULL_END

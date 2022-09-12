@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)drawCardInterior {
+  self.alpha = self.selected ? 0.5 : 1.0;
   auto offsetForThreeShapes = self.bounds.size.height / 4;
   auto offsetForTwoShapes = offsetForThreeShapes / 2;
   auto offsetForOneShape = 0;

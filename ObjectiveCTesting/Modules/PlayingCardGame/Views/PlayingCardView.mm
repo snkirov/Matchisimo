@@ -22,13 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
   [self setNeedsDisplay];
 }
 
-- (void)setFaceUp:(BOOL)faceUp {
-  _faceUp = faceUp;
-  [self setNeedsDisplay];
-}
-
 - (void)drawCardInterior {
-  if (self.faceUp) {
+  if (self.selected) {
     [self drawFaceUpCard];
     return;
   }

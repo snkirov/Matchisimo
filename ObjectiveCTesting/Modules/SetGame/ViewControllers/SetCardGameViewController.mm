@@ -17,6 +17,18 @@ NS_ASSUME_NONNULL_BEGIN
   self.cardMatchingGame = [[SetCardMatchingGame alloc] initUsingDeck:setDeck withMatchCount:3];
 }
 
+- (Card *)getCardForView:(CardView *)cardView {
+  if (![cardView isKindOfClass:[SetCardView class]]) {
+    return nil;
+  }
+  auto setCardView = (SetCardView *)cardView;
+  auto card = [[SetCard alloc] initWithShape:setCardView.shape
+                                   withColor:setCardView.color
+                                    withFill:setCardView.fill
+                          withNumberOfShapes:setCardView.numberOfShapes];
+  return card;
+}
+
 - (CardView *)setupCardViewAtIndex:(NSUInteger)index {
   auto cardView = [[SetCardView alloc] init];
   cardView.backgroundColor = UIColor.clearColor;

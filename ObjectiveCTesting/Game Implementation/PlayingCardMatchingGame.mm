@@ -3,6 +3,8 @@
 
 #import "PlayingCardMatchingGame.h"
 #import "PlayingCardMatchingService.h"
+#import "PlayingCardView.h"
+#import "PlayingCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,12 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @synthesize matchingService = _matchingService;
 
-- (instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck *)deck
+- (instancetype)initUsingDeck:(Deck *)deck
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super initUsingDeck:deck withMatchCount:matchCount]) {
     self.matchingService = [[PlayingCardMatchingService alloc] init];
   }
   return self;
+}
+
+- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
+  if (![card isKindOfClass:[PlayingCard class]] && ![otherCard isKindOfClass:[PlayingCard class]]) {
+    return false;
+  }
+  auto playingCard = (PlayingCard *)card;
+  auto otherPlayingCard = (PlayingCard *)otherCard;
+  return playingCard.rank == otherPlayingCard.rank && playingCard.suit == otherPlayingCard.suit;
 }
 
 @end

@@ -14,7 +14,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setupCardMatchingGame {
   auto playingDeck = [DeckFactory generateDeckWithPlayingCards];
-  self.cardMatchingGame = [[PlayingCardMatchingGame alloc] initUsingDeck:playingDeck withMatchCount:3];
+  self.cardMatchingGame = [[PlayingCardMatchingGame alloc] initUsingDeck:playingDeck withMatchCount:2];
+}
+
+- (Card *)getCardForView:(CardView *)cardView {
+  if (![cardView isKindOfClass:[PlayingCardView class]]) {
+    return nil;
+  }
+  auto playingCardView = (PlayingCardView *)cardView;
+  auto card = [[PlayingCard alloc] initWithSuit:playingCardView.suit
+                                       withRank:playingCardView.rank];
+  return card;
 }
 
 - (CardView *)setupCardViewAtIndex:(NSUInteger)index {
@@ -22,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
   cardView.backgroundColor = UIColor.clearColor;
   auto playingCard = (PlayingCard *)[self.cardMatchingGame cardAtIndex:index];
   [cardView setupWithPlayingCard:playingCard];
-  cardView.faceUp = true;
+  cardView.selected = false;
   return cardView;
 }
 
@@ -40,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 
   auto index = [self.cardGrid getIndexForRow:row andColumn:column];
   auto playingCard = (PlayingCard *)[self.cardMatchingGame cardAtIndex:index];
-  cardView.faceUp = true;
+  cardView.selected = false;
 
   [cardView setupWithPlayingCard:playingCard];
   return cardView;

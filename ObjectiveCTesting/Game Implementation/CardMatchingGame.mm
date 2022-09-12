@@ -8,6 +8,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class CardView;
+
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
 @property (nonatomic, strong) NSMutableArray<Card *> *cards;
@@ -41,6 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 static const int MISMATCH_PENALTY = 2;
 static const int GUESS_PENALTY = 1;
+
+- (void)removeCard:(Card *)card {
+  [_cards removeObject:card];
+}
 
 - (void)chooseCardAtIndex:(NSUInteger)index {
   Card *card = [self cardAtIndex:index];
@@ -96,6 +102,21 @@ static const int GUESS_PENALTY = 1;
     card = _cards[index];
   }
   return card;
+}
+
+- (Card *)getCardPointerForCard:(Card *)card {
+  for (Card *otherCard in _cards) {
+    if ([self compareCard:card withCard:otherCard]) {
+      return otherCard;
+    }
+  }
+  return nil;
+}
+
+- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
+  [NSException raise:@"CompareCard should be overwritten."
+              format:@"CompareCard is an abstract method, which should be overriden by all children."];
+  return false;
 }
 
 @end
