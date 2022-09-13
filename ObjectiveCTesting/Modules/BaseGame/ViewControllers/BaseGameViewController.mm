@@ -150,10 +150,6 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)didTapDraw:(UIButton *)button {
-  if (![_cardMatchingGame canDrawMore]) {
-    [self disableDrawButtonIfNeeded];
-    return;
-  }
   [self drawMoreCards];
 }
 
@@ -237,6 +233,10 @@ static const CGFloat edgeOffset = 20;
     [self addDidTapActionToCardView:cardView];
     [_cardViews addObject:cardView];
     [_cardCanvas addSubview:cardView];
+    if (![_cardMatchingGame canDrawMore]) {
+      [self disableDrawButtonIfNeeded];
+      break;
+    }
   }
   [self reloadScreenAnimated:TRUE];
 }
