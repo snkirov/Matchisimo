@@ -107,12 +107,6 @@ static const int GUESS_PENALTY = 1;
   return nil;
 }
 
-- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
-  [NSException raise:@"CompareCard should be overwritten."
-              format:@"CompareCard is an abstract method, which should be overriden by all children."];
-  return FALSE;
-}
-
 - (Card *)drawNextCard {
   if (!self.canDrawMore) {
     LogDebug(@"Can't draw next card.");
@@ -125,6 +119,14 @@ static const int GUESS_PENALTY = 1;
 
 - (BOOL)canDrawMore {
   return _indexOfNextCardToBeDrawn < _cards.count;
+}
+
+// MARK: - Abstract
+
+- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
+  [NSException raise:@"CompareCard should be overwritten."
+              format:@"CompareCard is an abstract method, which should be overriden by all children."];
+  return FALSE;
 }
 
 @end

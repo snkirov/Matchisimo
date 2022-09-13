@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (int)matchCard:(Card *)card withOtherCards:(NSArray *)otherCards {
   if (![card isKindOfClass:[PlayingCard class]]) {
+    LogDebug(@"Wrong type of card passed into PlayingCardMatchingService matchCard().");
     return 0;
   }
   auto playingCard = (PlayingCard *)card;

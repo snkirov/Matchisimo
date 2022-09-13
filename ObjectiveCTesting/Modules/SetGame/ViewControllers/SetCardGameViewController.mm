@@ -29,21 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
   return card;
 }
 
-- (CardView *)addCardView {
+- (CardView *)generateCardView {
   auto cardView = [[SetCardView alloc] init];
-  auto setCard = (SetCard *)[self.cardMatchingGame drawNextCard];
-  [cardView setupWithSetCard:setCard];
-  return cardView;
-}
-
-- (CardView *)addCardViewWithFrame:(CGRect)frame {
-  auto cardView = [[SetCardView alloc] init];
-
-  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
-  [UIView animateWithDuration:1.0 animations:^{
-    cardView.frame = frame;
-  }];
-
   auto setCard = (SetCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithSetCard:setCard];
   return cardView;

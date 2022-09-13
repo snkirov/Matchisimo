@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (int)matchCard:(Card *)card withOtherCards:(NSArray *)cards {
   if (![card isKindOfClass:[SetCard class]]) {
+    LogDebug(@"Wrong type of card passed into SetCardMatchingService matchCard().");
     return 0;
   }
 

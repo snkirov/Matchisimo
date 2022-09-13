@@ -73,8 +73,9 @@ static const CGFloat edgeOffset = 20;
   _cardViews = [[NSMutableArray alloc] init];
   for (int i = 0; i < _cardGrid.rowCount; i++) {
     for (int j = 0; j < _cardGrid.columnCount; j++) {
+      CardView *cardView = [self generateCardView];
       auto frame = [_cardGrid frameOfCellAtRow:i inColumn:j];
-      CardView *cardView = [self addCardViewWithFrame:frame];
+      [self drawCardViewWithRedrawAnimation:cardView withFrame:frame];
       [self addDidTapActionToCardView:cardView];
       [_cardViews addObject:cardView];
       [_cardCanvas addSubview:cardView];
@@ -84,6 +85,13 @@ static const CGFloat edgeOffset = 20;
     }
   }
   [self.cardCanvas layoutIfNeeded];
+}
+
+- (void)drawCardViewWithRedrawAnimation:(CardView *)cardView withFrame:(CGRect)frame {
+  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
+  [UIView animateWithDuration:1.0 animations:^{
+    cardView.frame = frame;
+  }];
 }
 
 - (void)addDidTapActionToCardView:(CardView *)cardView {
@@ -201,12 +209,6 @@ static const CGFloat edgeOffset = 20;
   _scoreLabel.text = [self getCurrentScoreString];
 }
 
-- (Card *)getCardForView:(CardView *)cardView {
-  [NSException raise:@"GetCardForView should be overwritten."
-              format:@"GetCardForView is an abstract method, which should be overriden by all children."];
-  return nil;
-}
-
 - (void)updateCardView:(CardView *)cardView {
   auto dummyCard = [self getCardForView:cardView];
   // TODO: Do the same thing, but in the child VC, don't pass a card as a parameter, rather the different properties as standalone parameters
@@ -229,7 +231,8 @@ static const CGFloat edgeOffset = 20;
 - (void)drawMoreCards {
   auto cardsPerDraw = 3;
   for (int i = 0; i < cardsPerDraw; i++) {
-    auto cardView = [self addCardView];
+    auto cardView = [self generateCardView];
+    // Make the card appear from the bottom left corner
     cardView.frame = CGRectMake(0, self.cardCanvas.frame.size.height, 0, 0);
     [self addDidTapActionToCardView:cardView];
     [_cardViews addObject:cardView];
@@ -250,16 +253,29 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)reloadCardsAnimated:(Boolean)isAnimated {
+  if (isAnimated) {
+    [self reloadCardsAnimated];
+  } else {
+    [self reloadCardsNotAnimated];
+  }
+}
+
+- (void)reloadCardsAnimated {
   for (int i = 0; i < _cardViews.count; i++) {
     auto row = i / _cardGrid.columnCount;
     auto column = i % _cardGrid.columnCount;
-    if (isAnimated) {
     [UIView animateWithDuration:1.0 animations:^{
       self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
     }];
-    } else {
-      self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
-    }
+  }
+  [_cardCanvas layoutSubviews];
+}
+
+- (void)reloadCardsNotAnimated {
+  for (int i = 0; i < _cardViews.count; i++) {
+    auto row = i / _cardGrid.columnCount;
+    auto column = i % _cardGrid.columnCount;
+    self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
   }
   [_cardCanvas layoutSubviews];
 }
@@ -347,15 +363,15 @@ static const CGFloat edgeOffset = 20;
               format:@"SetupCardMatchingGame is an abstract method, which should be overriden by all children."];
 }
 
-- (CardView *)addCardViewWithFrame:(CGRect)frame {
-  [NSException raise:@"addCardViewWithFrame should be overwritten."
-              format:@"addCardViewWithFrame is an abstract method, which should be overriden by all children."];
+- (CardView *)generateCardView {
+  [NSException raise:@"addCardViewAtIndex should be overwritten."
+              format:@"addCardViewAtIndex is an abstract method, which should be overriden by all children."];
   return nil;
 }
 
-- (CardView *)addCardView {
-  [NSException raise:@"addCardViewAtIndex should be overwritten."
-              format:@"addCardViewAtIndex is an abstract method, which should be overriden by all children."];
+- (Card *)getCardForView:(CardView *)cardView {
+  [NSException raise:@"GetCardForView should be overwritten."
+              format:@"GetCardForView is an abstract method, which should be overriden by all children."];
   return nil;
 }
 

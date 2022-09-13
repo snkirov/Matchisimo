@@ -27,23 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
   return card;
 }
 
-// TODO: Consider how to combine them.
-- (CardView *)addCardView {
+- (CardView *)generateCardView {
   auto cardView = [[PlayingCardView alloc] init];
-  auto playingCard = (PlayingCard *)[self.cardMatchingGame drawNextCard];
-  [cardView setupWithPlayingCard:playingCard];
-  return cardView;
-}
-
-- (CardView *)addCardViewWithFrame:(CGRect)frame {
-
-  auto cardView = [[PlayingCardView alloc] init];
-
-  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
-  [UIView animateWithDuration:1.0 animations:^{
-    cardView.frame = frame;
-  }];
-
   auto playingCard = (PlayingCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithPlayingCard:playingCard];
   return cardView;
