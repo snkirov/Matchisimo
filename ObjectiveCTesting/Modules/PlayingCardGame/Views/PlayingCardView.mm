@@ -47,13 +47,17 @@ NS_ASSUME_NONNULL_BEGIN
   const CGFloat defaultFaceCardScaleFactor = 0.90;
   CGRect imageRect = CGRectInset(self.bounds,
                                  self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor),
-                                 self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor));
+                                 self.bounds.size.height * (1.0 - defaultFaceCardScaleFactor));
   [faceImage drawInRect:imageRect];
 }
 
 - (void)drawFaceDownCard {
+  const CGFloat defaultFaceDownCardScaleFactor = 0.95;
   auto backImage = [UIImage imageNamed:@"cardback"];
-  [backImage drawInRect:self.bounds];
+  CGRect imageRect = CGRectInset(self.bounds,
+                                 self.bounds.size.width * (1.0 - defaultFaceDownCardScaleFactor),
+                                 self.bounds.size.height * (1.0 - defaultFaceDownCardScaleFactor));
+  [backImage drawInRect:imageRect];
 }
 
 // MARK: - Draw Corners
