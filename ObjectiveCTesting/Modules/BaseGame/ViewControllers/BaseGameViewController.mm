@@ -218,7 +218,13 @@ static const CGFloat edgeOffset = 20;
   if (card.isChosen) {
     [cardView setSelected:TRUE];
   } else {
-    [cardView setSelected:FALSE];
+    if (cardView.selected)
+    [UIView transitionWithView:cardView
+                              duration:0.3
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:^{
+      [cardView setSelected:FALSE];
+    } completion:nil];
   }
 }
 
@@ -360,18 +366,18 @@ static const CGFloat edgeOffset = 20;
 
 - (void)setupCardMatchingGame {
   [NSException raise:@"SetupCardMatchingGame should be overwritten."
-              format:@"SetupCardMatchingGame is an abstract method, which should be overriden by all children."];
+              format:@"SetupCardMatchingGame is an abstract method, which should be overwritten by all children."];
 }
 
 - (CardView *)generateCardView {
   [NSException raise:@"addCardViewAtIndex should be overwritten."
-              format:@"addCardViewAtIndex is an abstract method, which should be overriden by all children."];
+              format:@"addCardViewAtIndex is an abstract method, which should be overwritten by all children."];
   return nil;
 }
 
 - (Card *)getCardForView:(CardView *)cardView {
   [NSException raise:@"GetCardForView should be overwritten."
-              format:@"GetCardForView is an abstract method, which should be overriden by all children."];
+              format:@"GetCardForView is an abstract method, which should be overwritten by all children."];
   return nil;
 }
 

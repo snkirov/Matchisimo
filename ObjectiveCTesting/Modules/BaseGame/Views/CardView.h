@@ -7,7 +7,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CardView : UIView
 @property (nonatomic)BOOL selected;
-@property (nonatomic, copy) void (^didTapView)(void);
+@property (nonatomic)void (^didTapView)(void);
+@property (nonatomic, readonly)UIViewAnimationOptions animationOptionForTap;
 
 - (CGFloat)cornerScaleFactor;
 - (CGFloat)cornerRadius;

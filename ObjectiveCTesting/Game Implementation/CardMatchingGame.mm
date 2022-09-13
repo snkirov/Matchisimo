@@ -125,7 +125,7 @@ static const int GUESS_PENALTY = 1;
 
 - (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
   [NSException raise:@"CompareCard should be overwritten."
-              format:@"CompareCard is an abstract method, which should be overriden by all children."];
+              format:@"CompareCard is an abstract method, which should be overwritten by all children."];
   return FALSE;
 }
 

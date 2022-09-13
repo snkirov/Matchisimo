@@ -9,6 +9,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardView
 
+- (UIViewAnimationOptions)animationOptionForTap {
+  return UIViewAnimationOptionTransitionCrossDissolve;
+}
+
 - (void)setupWithSetCard:(SetCard *)card {
   _shape = card.shape;
   _color = card.color;

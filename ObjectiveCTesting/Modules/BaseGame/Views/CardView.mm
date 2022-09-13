@@ -19,8 +19,14 @@ static const CGFloat cornerRadiusNotScaled = 12;
 }
 
 - (void)selectCard {
-  self.selected = !self.selected;
-  self.didTapView();
+  [UIView transitionWithView:self
+                            duration:0.5
+                             options:self.animationOptionForTap
+                          animations:^{
+    self.selected = !self.selected;
+  } completion:^(BOOL completed){
+    self.didTapView();
+  }];
 }
 
 - (void)drawCardOutline {
@@ -42,7 +48,7 @@ static const CGFloat cornerRadiusNotScaled = 12;
 
 - (void)drawCardInterior {
   [NSException raise:@"Draw Card Interior should be overwritten."
-              format:@"drawCardInterior is an abstract method, which should be overriden by all children."];
+              format:@"drawCardInterior is an abstract method, which should be overwritten by all children."];
 }
 
 - (instancetype)init {
@@ -63,6 +69,13 @@ static const CGFloat cornerRadiusNotScaled = 12;
   return self;
 }
 
+// MARK: - Abstract
+
+- (UIViewAnimationOptions)animationOptionForTap {
+  [NSException raise:@"Draw Card Interior should be overwritten."
+              format:@"DrawCardInterior is an abstract method, which should be overwritten by all children."];
+  return 0;
+}
 
 @end
 

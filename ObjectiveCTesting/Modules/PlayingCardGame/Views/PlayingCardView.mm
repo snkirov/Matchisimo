@@ -16,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGFloat)cornerOffset { return [self cornerRadius] / 3.0; }
 
+- (UIViewAnimationOptions)animationOptionForTap {
+  return UIViewAnimationOptionTransitionFlipFromRight;
+}
+
 - (void)setupWithPlayingCard:(PlayingCard *)card {
   _suit = card.suit;
   _rank = card.rank;
