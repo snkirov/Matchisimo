@@ -214,4 +214,12 @@
   return row * _columnCount + column;
 }
 
+- (NSUInteger)getRowForIndex:(NSUInteger)index {
+  return index / _columnCount;
+}
+
+- (NSUInteger)getColumnForIndex:(NSUInteger)index {
+  return index % _columnCount;
+}
+
 @end

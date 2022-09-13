@@ -262,8 +262,8 @@ static const CGFloat edgeOffset = 20;
 
 - (void)reloadCardsAnimated {
   for (int i = 0; i < _cardViews.count; i++) {
-    auto row = i / _cardGrid.columnCount;
-    auto column = i % _cardGrid.columnCount;
+    auto row = [_cardGrid getRowForIndex:i];
+    auto column = [_cardGrid getColumnForIndex:i];
     [UIView animateWithDuration:1.0 animations:^{
       self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
     }];
@@ -273,8 +273,8 @@ static const CGFloat edgeOffset = 20;
 
 - (void)reloadCardsNotAnimated {
   for (int i = 0; i < _cardViews.count; i++) {
-    auto row = i / _cardGrid.columnCount;
-    auto column = i % _cardGrid.columnCount;
+    auto row = [_cardGrid getRowForIndex:i];
+    auto column = [_cardGrid getColumnForIndex:i];
     self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
   }
   [_cardCanvas layoutSubviews];
