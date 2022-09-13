@@ -27,31 +27,24 @@ NS_ASSUME_NONNULL_BEGIN
   return card;
 }
 
-- (CardView *)setupCardViewAtIndex:(NSUInteger)index {
+// TODO: Consider how to combine them.
+- (CardView *)addCardView {
   auto cardView = [[PlayingCardView alloc] init];
-  cardView.backgroundColor = UIColor.clearColor;
-  auto playingCard = (PlayingCard *)[self.cardMatchingGame cardAtIndex:index];
+  auto playingCard = (PlayingCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithPlayingCard:playingCard];
-  cardView.selected = false;
   return cardView;
 }
 
-- (CardView *)setupCardViewAtRow:(NSUInteger)row atColumn:(NSUInteger)column {
-  auto frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
+- (CardView *)addCardViewWithFrame:(CGRect)frame {
 
   auto cardView = [[PlayingCardView alloc] init];
-  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
 
+  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
   [UIView animateWithDuration:1.0 animations:^{
     cardView.frame = frame;
   }];
 
-  cardView.backgroundColor = UIColor.clearColor;
-
-  auto index = [self.cardGrid getIndexForRow:row andColumn:column];
-  auto playingCard = (PlayingCard *)[self.cardMatchingGame cardAtIndex:index];
-  cardView.selected = false;
-
+  auto playingCard = (PlayingCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithPlayingCard:playingCard];
   return cardView;
 }

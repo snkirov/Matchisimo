@@ -29,32 +29,25 @@ NS_ASSUME_NONNULL_BEGIN
   return card;
 }
 
-- (CardView *)setupCardViewAtIndex:(NSUInteger)index {
+- (CardView *)addCardView {
   auto cardView = [[SetCardView alloc] init];
-  cardView.backgroundColor = UIColor.clearColor;
-  auto setCard = (SetCard *)[self.cardMatchingGame cardAtIndex:index];
+  auto setCard = (SetCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithSetCard:setCard];
   return cardView;
 }
 
-- (CardView *)setupCardViewAtRow:(NSUInteger)row atColumn:(NSUInteger)column {
-  auto frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
-
+- (CardView *)addCardViewWithFrame:(CGRect)frame {
   auto cardView = [[SetCardView alloc] init];
-  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
 
+  cardView.frame = CGRectMake(self.view.center.x, self.view.center.y / 2, 0, 0);
   [UIView animateWithDuration:1.0 animations:^{
     cardView.frame = frame;
   }];
-  cardView.backgroundColor = UIColor.clearColor;
 
-  auto index = [self.cardGrid getIndexForRow:row andColumn:column];
-  auto setCard = (SetCard *)[self.cardMatchingGame cardAtIndex:index];
-
+  auto setCard = (SetCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithSetCard:setCard];
   return cardView;
 }
-
 
 @end
 

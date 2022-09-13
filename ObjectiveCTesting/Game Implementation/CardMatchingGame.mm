@@ -11,9 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 @class CardView;
 
 @interface CardMatchingGame()
-@property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, strong) NSMutableArray<Card *> *cards;
-@property (nonatomic) NSInteger matchCount;
+@property (nonatomic, readwrite)NSInteger score;
+@property (nonatomic, strong)NSMutableArray<Card *> *cards;
+@property (nonatomic)NSInteger matchCount;
+@property (nonatomic)NSInteger indexOfNextCardToBeDrawn;
 @end
 
 @implementation CardMatchingGame
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
   if (self = [super init]) {
     _cards = [[NSMutableArray<Card *> alloc] init];
     _matchCount = matchCount;
+    _indexOfNextCardToBeDrawn = 0;
     auto deckSize = [deck deckSize];
     for(int i = 0; i < deckSize; i ++) {
       Card* card = [deck drawRandomCard];
@@ -46,10 +48,10 @@ static const int GUESS_PENALTY = 1;
 
 - (void)removeCard:(Card *)card {
   [_cards removeObject:card];
+  _indexOfNextCardToBeDrawn--;
 }
 
-- (void)chooseCardAtIndex:(NSUInteger)index {
-  Card *card = [self cardAtIndex:index];
+- (void)chooseCard:(Card *)card {
 
   if (card.isMatched) {
     return;
@@ -79,29 +81,21 @@ static const int GUESS_PENALTY = 1;
   card.isChosen = TRUE;
 }
 
-- (void) evaluateMatch: (Card *)card withCards: (NSArray<Card *> *)chosenCards {
+- (void) evaluateMatch:(Card *)card withCards:(NSArray<Card *> *)chosenCards {
   auto matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
     auto pointsForThisRound = matchScore * 4;
     _score += pointsForThisRound;
     card.isMatched = TRUE;
     for (Card * chosenCard in chosenCards) {
-      chosenCard.isMatched = true;
+      chosenCard.isMatched = TRUE;
     }
   } else {
     _score -= MISMATCH_PENALTY;
     for (Card * chosenCard in chosenCards) {
-      chosenCard.isChosen = false;
+      chosenCard.isChosen = FALSE;
     }
   }
-}
-
-- (Card *)cardAtIndex:(NSUInteger)index {
-  Card * card = nil;
-  if (index >= 0 && index < _cards.count) {
-    card = _cards[index];
-  }
-  return card;
 }
 
 - (Card *)getCardPointerForCard:(Card *)card {
@@ -116,7 +110,21 @@ static const int GUESS_PENALTY = 1;
 - (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
   [NSException raise:@"CompareCard should be overwritten."
               format:@"CompareCard is an abstract method, which should be overriden by all children."];
-  return false;
+  return FALSE;
+}
+
+- (Card *)drawNextCard {
+  if (!self.canDrawMore) {
+    LogDebug(@"Can't draw next card.");
+    return nil;
+  }
+  auto nextCard = _cards[_indexOfNextCardToBeDrawn];
+  _indexOfNextCardToBeDrawn++;
+  return nextCard;
+}
+
+- (BOOL)canDrawMore {
+  return _indexOfNextCardToBeDrawn < _cards.count;
 }
 
 @end

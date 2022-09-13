@@ -9,7 +9,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray *)rankStrings;
 + (NSUInteger)maxRank;
 
-
 @end
 
 NS_ASSUME_NONNULL_END

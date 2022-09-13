@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
   if (![card isKindOfClass:[SetCard class]] && ![otherCard isKindOfClass:[SetCard class]]) {
-    return false;
+    return FALSE;
   }
   auto setCard = (SetCard *)card;
   auto otherSetCard = (SetCard *)otherCard;

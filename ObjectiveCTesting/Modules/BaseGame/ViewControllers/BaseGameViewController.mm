@@ -12,14 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseGameViewController()
 @property (nonatomic, strong)UIView *cardCanvas;
+@property (nonatomic, strong)UIButton *drawButton;
 @property (nonatomic, strong)UILabel *scoreLabel;
-@property (nonatomic)NSMutableArray<CardView *> *cards;
+@property (nonatomic)NSMutableArray<CardView *> *cardViews;
 @end
 
 @implementation BaseGameViewController
 
 static const CGFloat cellAspectRatio = 0.5625;
-static const NSUInteger defaultCardCount = 30;
+static const NSUInteger defaultCardCount = 12;
 static const CGFloat edgeOffset = 20;
 
 - (void)viewDidLoad {
@@ -35,15 +36,10 @@ static const CGFloat edgeOffset = 20;
   [super viewDidLayoutSubviews];
   /// Responsible for reloading the screen on screen rotation.
   /// Also fixes a bug with the grid not using the updated frame of the card canvas, once the tabbar gets added.
-  [self reloadScreenAnimated:true];
+  [self reloadScreenAnimated:FALSE];
 }
 
 // MARK: - Setup Methods
-
-- (void)setupCardMatchingGame {
-  [NSException raise:@"SetupCardMatchingGame should be overwritten."
-              format:@"SetupCardMatchingGame is an abstract method, which should be overriden by all children."];
-}
 
 - (void)initialGridSetup {
   _cardGrid = [[Grid alloc] init];
@@ -74,19 +70,15 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)setupCards {
-  _cards = [[NSMutableArray alloc] init];
-  LogDebug(@"%@", _cardGrid);
+  _cardViews = [[NSMutableArray alloc] init];
   for (int i = 0; i < _cardGrid.rowCount; i++) {
     for (int j = 0; j < _cardGrid.columnCount; j++) {
-      CardView *cardView = [self setupCardViewAtRow:i atColumn:j];
-      [self addTapGestureRecognizerToCardView:cardView];
-      [cardView setDidTapView:^{
-        auto index = [_cardGrid getIndexForRow:i andColumn:j];
-        [self didTapCardAtIndex: index];
-      }];
-      [_cards addObject:cardView];
+      auto frame = [_cardGrid frameOfCellAtRow:i inColumn:j];
+      CardView *cardView = [self addCardViewWithFrame:frame];
+      [self addDidTapActionToCardView:cardView];
+      [_cardViews addObject:cardView];
       [_cardCanvas addSubview:cardView];
-      if ([_cards count] == defaultCardCount) {
+      if ([_cardViews count] == defaultCardCount) {
         return;
       }
     }
@@ -94,15 +86,23 @@ static const CGFloat edgeOffset = 20;
   [self.cardCanvas layoutIfNeeded];
 }
 
-- (void)addTapGestureRecognizerToCardView:(CardView *)cardView {
-  auto tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:cardView action:@selector(selectCard)];
-  [cardView addGestureRecognizer:tapGestureRecognizer];
+- (void)addDidTapActionToCardView:(CardView *)cardView {
+  [self addTapGestureRecognizerToCardView:cardView];
+  
+  __weak BaseGameViewController *weakSelf = self;
+  __weak CardView *weakCardView = cardView;
+  [cardView setDidTapView:^{
+    auto strongSelf = weakSelf;
+    auto strongCardView = weakCardView;
+    [strongSelf didTapCardView: strongCardView];
+  }];
 }
 
-- (CardView *)setupCardViewAtRow:(NSUInteger)row atColumn:(NSUInteger)column {
-  [NSException raise:@"SetupCardMatchingGame should be overwritten."
-              format:@"SetupCardMatchingGame is an abstract method, which should be overriden by all children."];
-  return nil;
+- (void)addTapGestureRecognizerToCardView:(CardView *)cardView {
+  auto tapGestureRecognizer = [[UITapGestureRecognizer alloc]
+                               initWithTarget:cardView
+                               action:@selector(selectCard)];
+  [cardView addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)setupBottomBar {
@@ -131,17 +131,38 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)setupDrawButton {
-  auto drawButton = [[UIButton alloc] init];
-  [drawButton setTitle:@"Draw" forState:UIControlStateNormal];
-  [drawButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-  [drawButton addTarget:self action:@selector(didTapDraw) forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:drawButton];
-  [self setupDrawButtonConstraints:drawButton];
-  [drawButton layoutIfNeeded];
+  _drawButton = [[UIButton alloc] init];
+  [_drawButton setTitle:@"Draw" forState:UIControlStateNormal];
+  [_drawButton setTitle:@"Deck Empty" forState:UIControlStateDisabled];
+  [_drawButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+  [_drawButton addTarget:self action:@selector(didTapDraw:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:_drawButton];
+  [self setupDrawButtonConstraints:_drawButton];
+  [_drawButton layoutIfNeeded];
 }
 
-- (void)didTapDraw {
-  [self drawThreeMoreCards];
+- (void)didTapDraw:(UIButton *)button {
+  if (![_cardMatchingGame canDrawMore]) {
+    [self disableDrawButtonIfNeeded];
+    return;
+  }
+  [self drawMoreCards];
+}
+
+- (void)disableDrawButtonIfNeeded {
+  if (!_drawButton.isEnabled) {
+    return;
+  }
+  [_drawButton setEnabled:FALSE];
+  [_drawButton layoutIfNeeded];
+}
+
+- (void)resetDrawButtonIfNeeded {
+  if (_drawButton.isEnabled) {
+    return;
+  }
+  [_drawButton setEnabled:TRUE];
+  [_drawButton layoutIfNeeded];
 }
 
 - (void)setupRedealButton {
@@ -158,17 +179,21 @@ static const CGFloat edgeOffset = 20;
   [self redealGame];
 }
 
-- (void)didTapCardAtIndex:(NSUInteger)index {
-  [self.cardMatchingGame chooseCardAtIndex:index];
+- (void)didTapCardView:(CardView *)cardView {
+  auto card = [self getCardForView:cardView];
+  card = [_cardMatchingGame getCardPointerForCard:card];
+  [_cardMatchingGame chooseCard:card];
   [self updateUI];
   [self.view layoutIfNeeded];
 }
 
 - (void)updateUI {
-  NSArray *newCards = [_cards copy];
+  // This is needed, since we can't modify an array which is being iterated over.
+  NSArray *newCards = [_cardViews copy];
   for (CardView *cardView in newCards) {
     [self updateCardView:cardView];
   }
+  [self reloadScreenAnimated:TRUE];
   [self updateScore];
 }
 
@@ -177,42 +202,40 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (Card *)getCardForView:(CardView *)cardView {
+  [NSException raise:@"GetCardForView should be overwritten."
+              format:@"GetCardForView is an abstract method, which should be overriden by all children."];
   return nil;
 }
 
 - (void)updateCardView:(CardView *)cardView {
   auto dummyCard = [self getCardForView:cardView];
+  // TODO: Do the same thing, but in the child VC, don't pass a card as a parameter, rather the different properties as standalone parameters
   auto card = [_cardMatchingGame getCardPointerForCard:dummyCard];
   if (card.isMatched) {
     [cardView removeFromSuperview];
-    [_cards removeObject:cardView];
+    [_cardViews removeObject:cardView];
     [_cardMatchingGame removeCard:card];
     return;
   }
   if (card.isChosen) {
-    [cardView setSelected:true];
+    [cardView setSelected:TRUE];
   } else {
-    [cardView setSelected:false];
+    [cardView setSelected:FALSE];
   }
 }
 
 // MARK: - Reloading
 
-- (void)drawThreeMoreCards {
-  for (int i = 0; i < 3; i++) {
-    auto cardView = [self setupCardViewAtIndex:_cards.count]; // cards count increases with each iteration
+- (void)drawMoreCards {
+  auto cardsPerDraw = 3;
+  for (int i = 0; i < cardsPerDraw; i++) {
+    auto cardView = [self addCardView];
     cardView.frame = CGRectMake(0, self.cardCanvas.frame.size.height, 0, 0);
-    [self addTapGestureRecognizerToCardView:cardView];
-    [_cards addObject:cardView];
+    [self addDidTapActionToCardView:cardView];
+    [_cardViews addObject:cardView];
     [_cardCanvas addSubview:cardView];
   }
   [self reloadScreenAnimated:TRUE];
-}
-
-- (CardView *)setupCardViewAtIndex:(NSUInteger)index {
-  [NSException raise:@"SetupCardViewAtIndex should be overwritten."
-              format:@"SetupCardViewAtIndex is an abstract method, which should be overriden by all children."];
-  return nil;
 }
 
 - (void)reloadScreenAnimated:(Boolean)isAnimated {
@@ -223,24 +246,19 @@ static const CGFloat edgeOffset = 20;
 - (void)reevaluateGrid {
   // TODO: When adding three new cards this line is called even though it is not needed.
   _cardGrid.size = _cardCanvas.frame.size;
-  _cardGrid.minimumNumberOfCells = _cards.count;
-  LogDebug(@"%@", _cardGrid);
+  _cardGrid.minimumNumberOfCells = _cardViews.count;
 }
 
 - (void)reloadCardsAnimated:(Boolean)isAnimated {
-  for (int i = 0; i < _cards.count; i++) {
+  for (int i = 0; i < _cardViews.count; i++) {
     auto row = i / _cardGrid.columnCount;
     auto column = i % _cardGrid.columnCount;
-    [self.cards[i] setDidTapView:^{
-      auto index = [_cardGrid getIndexForRow:row andColumn:column];
-      [self didTapCardAtIndex: index];
-    }];
     if (isAnimated) {
     [UIView animateWithDuration:1.0 animations:^{
-      self.cards[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
+      self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
     }];
     } else {
-      self.cards[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
+      self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
     }
   }
   [_cardCanvas layoutSubviews];
@@ -251,6 +269,7 @@ static const CGFloat edgeOffset = 20;
   [self setupCardMatchingGame];
   [self updateScore];
   [self setupPlayingSection];
+  [self resetDrawButtonIfNeeded];
 }
 
 // MARK: - Constraint methods
@@ -272,10 +291,10 @@ static const CGFloat edgeOffset = 20;
                            constraintEqualToAnchor:guide.bottomAnchor
                            constant: -bottomOffset];
 
-  leadingConstraint.active = true;
-  trailingConstraint.active = true;
-  topConstraint.active = true;
-  bottomConstraint.active = true;
+  leadingConstraint.active = TRUE;
+  trailingConstraint.active = TRUE;
+  topConstraint.active = TRUE;
+  bottomConstraint.active = TRUE;
 }
 
 - (void)setupRedealButtonConstraints:(UIButton *)redealButton {
@@ -289,8 +308,8 @@ static const CGFloat edgeOffset = 20;
                              constraintEqualToAnchor:guide.trailingAnchor
                              constant: -edgeOffset];
 
-  bottomConstraint.active = true;
-  trailingConstraint.active = true;
+  bottomConstraint.active = TRUE;
+  trailingConstraint.active = TRUE;
 }
 
 - (void)setupDrawButtonConstraints:(UIButton *)drawButton {
@@ -304,8 +323,8 @@ static const CGFloat edgeOffset = 20;
                              constraintEqualToAnchor:guide.leadingAnchor
                              constant: edgeOffset];
 
-  bottomConstraint.active = true;
-  trailingConstraint.active = true;
+  bottomConstraint.active = TRUE;
+  trailingConstraint.active = TRUE;
 }
 
 - (void)setupScoreTextConstraints:(UILabel *)textView {
@@ -317,8 +336,27 @@ static const CGFloat edgeOffset = 20;
                            constant:-edgeOffset];
   auto centerConstraint = [textView.centerXAnchor constraintEqualToAnchor:guide.centerXAnchor];
 
-  bottomConstraint.active = true;
-  centerConstraint.active = true;
+  bottomConstraint.active = TRUE;
+  centerConstraint.active = TRUE;
+}
+
+// MARK: - Abstract
+
+- (void)setupCardMatchingGame {
+  [NSException raise:@"SetupCardMatchingGame should be overwritten."
+              format:@"SetupCardMatchingGame is an abstract method, which should be overriden by all children."];
+}
+
+- (CardView *)addCardViewWithFrame:(CGRect)frame {
+  [NSException raise:@"addCardViewWithFrame should be overwritten."
+              format:@"addCardViewWithFrame is an abstract method, which should be overriden by all children."];
+  return nil;
+}
+
+- (CardView *)addCardView {
+  [NSException raise:@"addCardViewAtIndex should be overwritten."
+              format:@"addCardViewAtIndex is an abstract method, which should be overriden by all children."];
+  return nil;
 }
 
 @end

@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
   if (![card isKindOfClass:[PlayingCard class]] && ![otherCard isKindOfClass:[PlayingCard class]]) {
-    return false;
+    return FALSE;
   }
   auto playingCard = (PlayingCard *)card;
   auto otherPlayingCard = (PlayingCard *)otherCard;

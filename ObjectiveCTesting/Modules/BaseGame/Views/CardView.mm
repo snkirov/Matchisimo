@@ -49,7 +49,7 @@ static const CGFloat cornerRadiusNotScaled = 12;
   if (self = [super init]) {
     self.opaque = NO;
     self.contentMode = UIViewContentModeRedraw;
-    self.selected = false;
+    self.selected = FALSE;
   }
   return self;
 }
@@ -58,7 +58,7 @@ static const CGFloat cornerRadiusNotScaled = 12;
   if (self = [super initWithFrame:frame]) {
     self.opaque = NO;
     self.contentMode = UIViewContentModeRedraw;
-    self.selected = false;
+    self.selected = FALSE;
   }
   return self;
 }

@@ -12,16 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
                    withMatchCount:(NSUInteger)matchCount;
 - (instancetype)initUsingDeck:(Deck *)deck;
 
-- (void)chooseCardAtIndex:(NSUInteger)index;
-
+- (void)chooseCard:(Card *)card;
+- (Card *)drawNextCard;
 - (Card *)getCardPointerForCard:(Card *)card;
 - (void)removeCard:(Card *)card;
 
-- (Card *)cardAtIndex: (NSUInteger)index;
-
-@property (nonatomic, readonly) NSInteger score;
-@property (nonatomic, readonly) NSMutableString * lastMoveDescription;
-@property (nonatomic, readonly) id <CardMatchingServiceProtocol> matchingService;
+@property (nonatomic, readonly)BOOL canDrawMore;
+@property (nonatomic, readonly)NSInteger score;
+@property (nonatomic, readonly)NSMutableString * lastMoveDescription;
+@property (nonatomic, readonly)id <CardMatchingServiceProtocol> matchingService;
 
 @end
 
