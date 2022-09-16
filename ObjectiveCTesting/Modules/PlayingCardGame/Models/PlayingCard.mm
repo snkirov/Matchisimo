@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
     auto isValidSuit = [[PlayingCardUtil validSuits] containsObject:suit];
     auto isValidRank = rank <= [PlayingCardUtil maxRank];
     if (!isValidSuit || !isValidRank) {
-      LogDebug(@"Couldn't initialise PlayingCard, rank: %ld or suit: %@ is invalid, returning nil.", rank, suit);
+      LogDebug(@"Couldn't initialise PlayingCard, rank: %ld or suit: %@ is invalid.", rank, suit);
       return nil;
     }
     _suit = suit;

@@ -20,11 +20,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (Card *)getCardForView:(CardView *)cardView {
   if (![cardView isKindOfClass:[PlayingCardView class]]) {
+    LogDebug(@"CardView in getCardForView is not of kind PlayingCardView.");
     return nil;
   }
+  if (![self.cardMatchingGame isKindOfClass:[PlayingCardMatchingGame class]]) {
+    LogDebug(@"CardMatchingGame in getCardForView is not of kind PlayingCardMatchingGame.");
+    return nil;
+  }
+
   auto playingCardView = (PlayingCardView *)cardView;
-  auto card = [[PlayingCard alloc] initWithSuit:playingCardView.suit
-                                       withRank:playingCardView.rank];
+  auto playingCardMatchingGame = (PlayingCardMatchingGame *)self.cardMatchingGame;
+  auto card = [playingCardMatchingGame getCardForSuit:playingCardView.suit
+                                              andRank:playingCardView.rank];
   return card;
 }
 

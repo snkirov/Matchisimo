@@ -20,10 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeCard:(Card *)card;
 
 - (Card *)drawNextCard;
-- (Card *)getCardPointerForCard:(Card *)card;
-
-// Protected
-- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard;
 
 @end
 

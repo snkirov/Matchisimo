@@ -23,6 +23,7 @@
 - (Card *)drawRandomCard {
 
   if (![self.cards count]) {
+    LogDebug(@"Deck is empty, cannot drawRandomCard.");
     return nil;
   }
 

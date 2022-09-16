@@ -1,10 +1,10 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
+#import "CardMatchingGame+Protected.h"
+#import "PlayingCard.h"
 #import "PlayingCardMatchingGame.h"
 #import "PlayingCardMatchingService.h"
-#import "PlayingCardView.h"
-#import "PlayingCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,13 +24,19 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
-  if (![card isKindOfClass:[PlayingCard class]] && ![otherCard isKindOfClass:[PlayingCard class]]) {
-    return FALSE;
+- (PlayingCard *)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank {
+  for (Card *card in self.cards) {
+    if (![card isKindOfClass:[PlayingCard class]]) {
+      LogDebug(@"Card in getCardForSuit is not of kind PlayingCard.");
+      return nil;
+    }
+    auto playingCard = (PlayingCard *)card;
+    if (playingCard.suit == suit && playingCard.rank == rank) {
+      return playingCard;
+    }
   }
-  auto playingCard = (PlayingCard *)card;
-  auto otherPlayingCard = (PlayingCard *)otherCard;
-  return playingCard.rank == otherPlayingCard.rank && playingCard.suit == otherPlayingCard.suit;
+  LogDebug(@"No PlayingCard with provided suit and rank present in cards array.");
+  return nil;
 }
 
 @end

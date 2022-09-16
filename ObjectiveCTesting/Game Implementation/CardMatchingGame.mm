@@ -1,10 +1,11 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import "CardMatchingGame.h"
-#import "Deck.h"
 #import "Card.h"
+#import "CardMatchingGame.h"
+#import "CardMatchingGame+Protected.h"
 #import "CardMatchingServiceProtocol.h"
+#import "Deck.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -12,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite)NSInteger score;
-@property (nonatomic, strong)NSMutableArray<Card *> *cards;
 @property (nonatomic)NSInteger matchCount;
 @property (nonatomic)NSInteger indexOfNextCardToBeDrawn;
 @end
@@ -99,15 +99,6 @@ static const int GUESS_PENALTY = 1;
   }
 }
 
-- (Card *)getCardPointerForCard:(Card *)card {
-  for (Card *otherCard in _cards) {
-    if ([self compareCard:card withCard:otherCard]) {
-      return otherCard;
-    }
-  }
-  return nil;
-}
-
 - (Card *)drawNextCard {
   if (!self.canDrawMore) {
     LogDebug(@"Can't draw next card.");
@@ -120,14 +111,6 @@ static const int GUESS_PENALTY = 1;
 
 - (BOOL)canDrawMore {
   return _indexOfNextCardToBeDrawn < _cards.count;
-}
-
-// MARK: - Abstract
-
-- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
-  [NSException raise:@"CompareCard should be overwritten."
-              format:@"CompareCard is an abstract method, which should be overwritten by all children."];
-  return FALSE;
 }
 
 @end

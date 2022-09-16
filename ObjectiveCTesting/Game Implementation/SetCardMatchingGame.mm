@@ -1,9 +1,10 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
+#import "CardMatchingGame+Protected.h"
+#import "SetCard.h"
 #import "SetCardMatchingGame.h"
 #import "SetCardMatchingService.h"
-#import "SetCard.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,14 +28,25 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (BOOL)compareCard:(Card *)card withCard:(Card *)otherCard {
-  if (![card isKindOfClass:[SetCard class]] && ![otherCard isKindOfClass:[SetCard class]]) {
-    return FALSE;
+- (SetCard *)getCardForShape:(CARD_Shape)shape
+                    andColor:(CARD_Color)color
+                     andFill:(CARD_Fill)fill
+           andNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {
+  for (Card *card in self.cards) {
+    if (![card isKindOfClass:[SetCard class]]) {
+      LogDebug(@"Card in getCardForShape is not of kind SetCard.");
+      return nil;
+    }
+    auto setCard = (SetCard *)card;
+    if (setCard.shape == shape
+        && setCard.color == color
+        && setCard.fill == fill
+        && setCard.numberOfShapes == numberOfShapes) {
+      return setCard;
+    }
   }
-  auto setCard = (SetCard *)card;
-  auto otherSetCard = (SetCard *)otherCard;
-  return setCard.color == otherSetCard.color && setCard.fill == otherSetCard.fill
-    && setCard.shape == otherSetCard.shape && setCard.numberOfShapes == otherSetCard.numberOfShapes;
+  LogDebug(@"No SetCard with provided  shape: %u, color: %u, fill: %u and numberOfShapes: %u present in cards array.", shape, color, fill, numberOfShapes);
+  return nil;
 }
 
 @end

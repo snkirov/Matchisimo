@@ -187,7 +187,6 @@ static const CGFloat edgeOffset = 20;
 
 - (void)didTapCardView:(CardView *)cardView {
   auto card = [self getCardForView:cardView];
-  card = [_cardMatchingGame getCardPointerForCard:card];
   [_cardMatchingGame chooseCard:card];
   [self updateUI];
   [self.view layoutIfNeeded];
@@ -208,9 +207,7 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)updateCardView:(CardView *)cardView {
-  auto dummyCard = [self getCardForView:cardView];
-  // TODO: Do the same thing, but in the child VC, don't pass a card as a parameter, rather the different properties as standalone parameters
-  auto card = [_cardMatchingGame getCardPointerForCard:dummyCard];
+  auto card = [self getCardForView:cardView];
   if (card.isMatched) {
     [cardView removeFromSuperview];
     [_cardViews removeObject:cardView];

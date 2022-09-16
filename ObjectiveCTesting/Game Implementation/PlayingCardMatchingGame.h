@@ -5,7 +5,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class PlayingCard;
+
 @interface PlayingCardMatchingGame : CardMatchingGame
+
+- (PlayingCard *)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank;
 
 @end
 
