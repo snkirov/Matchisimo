@@ -15,9 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype) initWithSuit:(NSString *)suit withRank:(NSUInteger)rank {
   if (self = [super init]) {
-    auto isValidSuit = [[PlayingCardUtil validSuits] containsObject: suit];
+    auto isValidSuit = [[PlayingCardUtil validSuits] containsObject:suit];
     auto isValidRank = rank <= [PlayingCardUtil maxRank];
     if (!isValidSuit || !isValidRank) {
+      LogDebug(@"Couldn't initialise PlayingCard, rank: %ld or suit: %@ is invalid, returning nil.", rank, suit);
       return nil;
     }
     _suit = suit;
@@ -26,9 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (NSString *)contents {
+- (NSString *)debugDescription {
   return [[PlayingCardUtil rankStrings][self.rank]
-          stringByAppendingString: self.suit];
+          stringByAppendingString:self.suit];
 }
 
 @end

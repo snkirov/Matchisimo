@@ -28,7 +28,7 @@
 
   unsigned index = arc4random() % [self.cards count];
   Card *randomCard = self.cards[index];
-  [self.cards removeObjectAtIndex: index];
+  [self.cards removeObjectAtIndex:index];
 
   return randomCard;
 }

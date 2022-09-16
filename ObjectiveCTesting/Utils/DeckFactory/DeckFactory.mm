@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
   for (NSString *suit in [PlayingCardUtil validSuits]) {
     for (NSUInteger rank = 1; rank <= [PlayingCardUtil maxRank]; rank++) {
       PlayingCard *card = [[PlayingCard alloc] initWithSuit:suit withRank:rank];
-      [playingCardDeck addCard: card];
+      [playingCardDeck addCard:card];
     }
   }
   return playingCardDeck;

@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
       [self drawShapeAtOffset:-offsetForThreeShapes];
       return;
     case numberOfShapesCount:
-      LogDebug(@"[Warning] numberOfShapes shouldn't be set to numberOfShapesCount in SetCardView.getColor");
+      LogDebug(@"NumberOfShapes shouldn't be set to numberOfShapesCount in SetCardView.getColor");
       return;
   }
 }
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
     case Purple:
       return UIColor.purpleColor;
     case colorsCount:
-      LogDebug(@"[Warning] color shouldn't be set to colorsCount in SetCardView.getColor");
+      LogDebug(@"Color shouldn't be set to colorsCount in SetCardView.getColor");
       return UIColor.clearColor;
   }
 }
@@ -77,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
       [self drawSquiggleforRect:rect];
       break;
     case shapesCount:
-      LogDebug(@"[Warning] Shape shouldn't be set to shapesCount in SetCardView.drawShape");
+      LogDebug(@"Shape shouldn't be set to shapesCount in SetCardView.drawShape");
       break;
   }
   CGContextRestoreGState(UIGraphicsGetCurrentContext());
@@ -97,8 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
 // MARK: - Oval & Diamond
 
 - (void)drawOvalforRect:(CGRect)rect {
-  auto path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius: 30];
-  [self fillShapeForPath: path];
+  auto path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:30];
+  [self fillShapeForPath:path];
 }
 
 - (void)drawDiamondforRect:(CGRect)rect {
@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)drawSquiggleforRect:(CGRect)rect {
   auto path = [self generateSquigglePathForRect:rect];
-  [self fillShapeForPath: path];
+  [self fillShapeForPath:path];
 }
 
 - (UIBezierPath *)generateSquigglePathForRect:(CGRect)rect {
@@ -183,7 +183,7 @@ NS_ASSUME_NONNULL_BEGIN
       [self solidFillForPath:path];
       return;
     case fillsCount:
-      LogDebug(@"[Warning] Fill shouldn't be set to fillsCount in SetCardView.setFillMethod");
+      LogDebug(@"Fill shouldn't be set to fillsCount in SetCardView.setFillMethod");
       return;
   }
 }

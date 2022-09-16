@@ -10,12 +10,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)CardMatchingGame *cardMatchingGame;
 @property (nonatomic, strong)Grid *cardGrid;
 
-// Protected
-
-- (void)setupCardMatchingGame;
-- (CardView *)generateCardView;
-- (Card *)getCardForView:(CardView *)cardView;
-
 @end
 
 NS_ASSUME_NONNULL_END

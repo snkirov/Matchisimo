@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
         color > colorsCount || color < 1 ||
         fill > fillsCount || fill < 1 ||
         numberOfShapes > numberOfShapesCount || numberOfShapes < 1) {
+      LogDebug(@"Couldn't initialise SetCard, shape: %u, color: %u, fill: %u or numberOfShapes: %u is invalid, returning nil.", shape, color, fill, numberOfShapes);
       return nil;
     }
 
@@ -30,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (NSString *)contents {
+- (NSString *)debugDescription {
   return [[NSString alloc] initWithFormat:@"Shape: %d NumberOfShapes: %d Fill: %d Color: %d",
           _shape, _numberOfShapes, _fill, _color];
 }

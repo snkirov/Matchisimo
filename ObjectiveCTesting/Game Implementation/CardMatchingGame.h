@@ -10,7 +10,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly)BOOL canDrawMore;
 @property (nonatomic, readonly)NSInteger score;
-@property (nonatomic, readonly)NSMutableString * lastMoveDescription;
 @property (nonatomic, readonly)id <CardMatchingServiceProtocol> matchingService;
 
 - (instancetype)initUsingDeck:(Deck *)deck
@@ -18,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initUsingDeck:(Deck *)deck;
 
 - (void)chooseCard:(Card *)card;
-- (Card *)drawNextCard;
 - (void)removeCard:(Card *)card;
 
+- (Card *)drawNextCard;
 - (Card *)getCardPointerForCard:(Card *)card;
 
 // Protected

@@ -9,7 +9,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Card : NSObject
 
-@property (strong, nonatomic) NSString *contents;
 @property (nonatomic) BOOL isChosen;
 @property (nonatomic) BOOL isMatched;
 

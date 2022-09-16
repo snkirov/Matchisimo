@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
 
   auto rankAsString = [self rankAsString];
   auto cornerString = [[NSString alloc] initWithFormat:@"%@\n%@", rankAsString, self.suit];
-  return [[NSAttributedString alloc] initWithString: cornerString attributes:@{
+  return [[NSAttributedString alloc] initWithString:cornerString attributes:@{
     NSFontAttributeName : cornerFont, NSParagraphStyleAttributeName : paragraphStyle }];
 }
 

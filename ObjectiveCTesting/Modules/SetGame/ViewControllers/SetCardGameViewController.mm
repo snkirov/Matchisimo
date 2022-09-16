@@ -1,11 +1,13 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import "SetCardGameViewController.h"
+
 #import "Grid.h"
 #import "DeckFactory.h"
-#import "SetCardMatchingGame.h"
+#import "BaseGameViewController+Protected.h"
 #import "SetCard.h"
+#import "SetCardGameViewController.h"
+#import "SetCardMatchingGame.h"
 #import "SetCardView.h"
 
 NS_ASSUME_NONNULL_BEGIN

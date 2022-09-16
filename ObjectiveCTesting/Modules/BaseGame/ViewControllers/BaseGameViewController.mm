@@ -2,11 +2,13 @@
 // Created by Svilen Kirov.
 
 #import "BaseGameViewController.h"
-#import "Grid.h"
-#import "DeckFactory.h"
+#import "BaseGameViewController+Protected.h"
+#import "Card.h"
 #import "CardMatchingGame.h"
 #import "CardView.h"
-#import "Card.h"
+#import "DeckFactory.h"
+#import "Grid.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -64,7 +66,7 @@ static const CGFloat edgeOffset = 20;
 - (void)setupCardCanvas {
   _cardCanvas = [[UIView alloc] init];
   [self.view addSubview:_cardCanvas];
-  _cardCanvas.backgroundColor = UIColor.systemGray6Color;
+  _cardCanvas.backgroundColor = UIColor.clearColor;
   [self setupCardCanvasConstraints];
   [_cardCanvas layoutIfNeeded];
 }
@@ -102,7 +104,7 @@ static const CGFloat edgeOffset = 20;
   [cardView setDidTapView:^{
     auto strongSelf = weakSelf;
     auto strongCardView = weakCardView;
-    [strongSelf didTapCardView: strongCardView];
+    [strongSelf didTapCardView:strongCardView];
   }];
 }
 
@@ -253,7 +255,7 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)reevaluateGrid {
-  // TODO: When adding three new cards this line is called even though it is not needed.
+  /// When drawing new cards the first line is called even though it is not needed. No bad side effect.
   _cardGrid.size = _cardCanvas.frame.size;
   _cardGrid.minimumNumberOfCells = _cardViews.count;
 }
@@ -302,16 +304,16 @@ static const CGFloat edgeOffset = 20;
   auto bottomOffset = self.view.frame.size.height / 8;
   auto leadingConstraint = [_cardCanvas.leadingAnchor
                             constraintEqualToAnchor:guide.leadingAnchor
-                            constant: edgeOffset];
+                            constant:edgeOffset];
   auto trailingConstraint = [_cardCanvas.trailingAnchor
                              constraintEqualToAnchor:guide.trailingAnchor
-                             constant: -edgeOffset];
+                             constant:-edgeOffset];
   auto topConstraint = [_cardCanvas.topAnchor
                         constraintEqualToAnchor:guide.topAnchor
-                        constant: edgeOffset];
+                        constant:edgeOffset];
   auto bottomConstraint = [_cardCanvas.bottomAnchor
                            constraintEqualToAnchor:guide.bottomAnchor
-                           constant: -bottomOffset];
+                           constant:-bottomOffset];
 
   leadingConstraint.active = TRUE;
   trailingConstraint.active = TRUE;
@@ -325,10 +327,10 @@ static const CGFloat edgeOffset = 20;
   UILayoutGuide *guide = self.view.safeAreaLayoutGuide;
   auto bottomConstraint = [redealButton.bottomAnchor
                            constraintEqualToAnchor:guide.bottomAnchor
-                           constant: -edgeOffset];
+                           constant:-edgeOffset];
   auto trailingConstraint = [redealButton.trailingAnchor
                              constraintEqualToAnchor:guide.trailingAnchor
-                             constant: -edgeOffset];
+                             constant:-edgeOffset];
 
   bottomConstraint.active = TRUE;
   trailingConstraint.active = TRUE;
@@ -340,10 +342,10 @@ static const CGFloat edgeOffset = 20;
   UILayoutGuide *guide = self.view.safeAreaLayoutGuide;
   auto bottomConstraint = [drawButton.bottomAnchor
                            constraintEqualToAnchor:guide.bottomAnchor
-                           constant: -edgeOffset];
+                           constant:-edgeOffset];
   auto trailingConstraint = [drawButton.leadingAnchor
                              constraintEqualToAnchor:guide.leadingAnchor
-                             constant: edgeOffset];
+                             constant:edgeOffset];
 
   bottomConstraint.active = TRUE;
   trailingConstraint.active = TRUE;

@@ -32,12 +32,13 @@ NS_ASSUME_NONNULL_BEGIN
     auto deckSize = [deck deckSize];
     for(int i = 0; i < deckSize; i ++) {
       Card* card = [deck drawRandomCard];
-      if (card) {
-        [_cards addObject:card];
-      } else {
+      if (!card) {
+        LogDebug(@"Can't initialise CardMatchingGame with a nil card. Deck drawRandomCard returned nil for i: %u.", i);
+        // Not sure if this is necessary. Just return nil could work fine as well.
         _cards = nil;
         return nil;
       }
+      [_cards addObject:card];
     }
   }
   return self;
@@ -63,16 +64,16 @@ static const int GUESS_PENALTY = 1;
   }
 
   NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
-  long extraCardsRequiredForMatch = _matchCount - 1;
+  auto extraCardsRequiredForMatch = _matchCount - 1;
 
   for (Card *otherCard in self.cards) {
     if (otherCard.isChosen && !otherCard.isMatched) {
 
       [chosenCards addObject:otherCard];
-      extraCardsRequiredForMatch--;
 
-      if (extraCardsRequiredForMatch == 0) {
-        [self evaluateMatch: card withCards: chosenCards];
+      if (chosenCards.count == extraCardsRequiredForMatch) {
+        NSArray *immutableChosenCards = [chosenCards copy];
+        [self evaluateMatch:card withCards:immutableChosenCards];
       }
     }
   }
