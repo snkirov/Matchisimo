@@ -13,8 +13,8 @@
 
 @implementation Card
 
-- (NSMutableAttributedString *)attributedContents {
-  return [[NSMutableAttributedString alloc] initWithString: [self contents]];
+- (NSAttributedString *)attributedContents {
+  return [[NSAttributedString alloc] initWithString: [self contents]];
 }
 
 - (int)match:(NSArray *)otherCards {

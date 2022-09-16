@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSAttributedString *)lastMoveDescription {
-  return _lastMoveDescriptionMutable;
+  return [self.lastMoveDescriptionMutable copy];
 }
 
 static const int mismatchPenalty = 2;
@@ -62,18 +62,17 @@ static const int matchMultiplier = 4;
     return;
   }
   
-  _lastMoveDescriptionMutable = [[NSMutableAttributedString alloc]
-                          initWithAttributedString:[card.attributedContents copy]];
+  _lastMoveDescriptionMutable = [card.attributedContents mutableCopy];
   NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
   
   for (Card *otherCard in self.cards) {
     if (otherCard.isChosen && !otherCard.isMatched) {
       
       [chosenCards addObject:otherCard];
-      [_lastMoveDescriptionMutable appendAttributedString: otherCard.attributedContents];
+      [_lastMoveDescriptionMutable appendAttributedString:otherCard.attributedContents];
       
       if (chosenCards.count == _matchCount - 1) {
-        [self evaluateMatch: card withCards: chosenCards];
+        [self evaluateMatch:card withCards:chosenCards];
       }
     }
   }
@@ -86,7 +85,7 @@ static const int matchMultiplier = 4;
   int matchScore = [card match:chosenCards];
   if (matchScore) {
     int pointsForThisRound = matchScore * matchMultiplier;
-    [_lastMoveDescriptionMutable appendAttributedString: [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" matched for %d points.", pointsForThisRound]]];
+    [_lastMoveDescriptionMutable appendAttributedString: [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" matched for %d points.", pointsForThisRound]]];
     _score += pointsForThisRound;
     card.isMatched = TRUE;
     for (Card * chosenCard in chosenCards) {

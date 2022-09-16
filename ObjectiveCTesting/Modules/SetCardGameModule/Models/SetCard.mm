@@ -10,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic)NSString *shape;
 @property (strong, nonatomic)UIColor *color;
 @property (strong, nonatomic)UIColor *stroke;
-@property (readwrite, nonatomic)NSMutableAttributedString *attributedContents;
+@property (readwrite, nonatomic)NSAttributedString *attributedContents;
 @end
 
 @implementation SetCard
@@ -32,19 +32,21 @@ NS_ASSUME_NONNULL_BEGIN
     _shape = shape;
     _color = color;
     _stroke = stroke;
-    
-    NSRange range;
-    range.length = _shape.length;
-    range.location = 0;
-    _attributedContents = [[NSMutableAttributedString alloc] initWithString:_shape];
-    [_attributedContents addAttributes:@{NSForegroundColorAttributeName : _color,
-                                         NSStrokeColorAttributeName : _stroke,
-                                         NSStrokeWidthAttributeName : @-7 } range: range];
   }
   return self;
 }
 
 - (NSAttributedString *)attributedContents {
+  if (_attributedContents == nil) {
+    NSRange range;
+    range.length = _shape.length;
+    range.location = 0;
+    auto mutableAttributedContents = [[NSMutableAttributedString alloc] initWithString:_shape];
+    [mutableAttributedContents addAttributes:@{NSForegroundColorAttributeName : _color,
+                                         NSStrokeColorAttributeName : _stroke,
+                                         NSStrokeWidthAttributeName : @-7 } range: range];
+    _attributedContents = [mutableAttributedContents copy];
+  }
   return _attributedContents;
 }
 

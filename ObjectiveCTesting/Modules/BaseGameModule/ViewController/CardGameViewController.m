@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *score;
 @property (weak, nonatomic) IBOutlet UILabel *moveDescribingText;
 @property (strong, nonatomic) CardMatchingGame *game;
-@property (strong, nonatomic) NSMutableAttributedString *history;
+@property (strong, nonatomic) NSAttributedString *history;
 @end
 
 @implementation CardGameViewController
@@ -53,7 +53,7 @@
 }
 
 - (void)startGame {
-  _history = [[NSMutableAttributedString alloc] initWithString:@""];
+  _history = [[NSAttributedString alloc] initWithString:@""];
   _game = [[CardMatchingGame alloc] initWithCardCount:_cards.count
                                             usingDeck:[self createDeck]
                                        withMatchCount: [self cardsRequiredForMatch]];

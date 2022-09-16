@@ -13,8 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation HistoryViewController
 
-- (void)setupWithAttributedHistory:(NSMutableAttributedString *)attributedHistory {
-  _attributedHistory = attributedHistory;
+- (void)setupWithAttributedHistory:(NSAttributedString *)attributedHistory {
+  _attributedHistory = [attributedHistory mutableCopy];
+  [self addFontAttributes];
+}
+
+- (void)addFontAttributes {
   NSRange range;
   range.length = _attributedHistory.length;
   range.location = 0;
@@ -31,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (void)loadAttributedHistory {
-  if ([_attributedHistory.string isEqualToString:@""]) {
+  if ([_attributedHistory.string isEqualToString:@""] || _attributedHistory == nil) {
     _historyTextView.text = @"No history to show.";
   } else {
     [_historyTextView setAttributedText:_attributedHistory];

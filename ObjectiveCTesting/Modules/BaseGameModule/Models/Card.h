@@ -12,7 +12,7 @@
 @interface Card : NSObject
 
 @property (strong, nonatomic) NSString *contents;
-@property (readonly, nonatomic) NSMutableAttributedString *attributedContents;
+@property (readonly, nonatomic) NSAttributedString *attributedContents;
 @property (nonatomic) BOOL isChosen;
 @property (nonatomic) BOOL isMatched;
 
