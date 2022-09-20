@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
                     andColor:(CARD_Color)color
                      andFill:(CARD_Fill)fill
            andNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {
-  for (Card *card in self.cards) {
+  for (Card *card in self.cardsInPlay) {
     if (![card isKindOfClass:[SetCard class]]) {
       LogDebug(@"Card in getCardForShape is not of kind SetCard.");
       return nil;

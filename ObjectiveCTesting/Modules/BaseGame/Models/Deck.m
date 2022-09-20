@@ -15,7 +15,7 @@
 
 - (instancetype) init {
   if (self = [super init]) {
-    _cards = [NSMutableArray<Card *> array];
+    self.cards = [NSMutableArray<Card *> array];
   }
   return self;
 }
@@ -38,8 +38,8 @@
   [self.cards addObject:card];
 }
 
-- (NSUInteger)deckSize {
-  return _cards.count;
+- (BOOL)isEmpty {
+  return self.cards.count == 0;
 }
 
 @end

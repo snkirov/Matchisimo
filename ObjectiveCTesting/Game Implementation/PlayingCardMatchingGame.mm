@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (PlayingCard *)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank {
-  for (Card *card in self.cards) {
+  for (Card *card in self.cardsInPlay) {
     if (![card isKindOfClass:[PlayingCard class]]) {
       LogDebug(@"Card in getCardForSuit is not of kind PlayingCard.");
       return nil;

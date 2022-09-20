@@ -20,8 +20,8 @@
 - (Card *)drawRandomCard;
 /// Adds a card to the deck.
 - (void)addCard:(Card *)card;
-/// Returns the size of the deck.
-- (NSUInteger)deckSize;
+/// Returns whether the deck is empty.
+- (BOOL)isEmpty;
 
 @end
 

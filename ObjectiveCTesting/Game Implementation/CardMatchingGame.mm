@@ -12,9 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @class CardView;
 
 @interface CardMatchingGame()
+@property (nonatomic, readwrite)Deck *deckToBeDrawn;
 @property (nonatomic, readwrite)NSInteger score;
 @property (nonatomic)NSInteger matchCount;
-@property (nonatomic)NSInteger indexOfNextCardToBeDrawn;
 @end
 
 @implementation CardMatchingGame
@@ -26,20 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initUsingDeck:(Deck *)deck
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super init]) {
-    _cards = [[NSMutableArray<Card *> alloc] init];
-    _matchCount = matchCount;
-    _indexOfNextCardToBeDrawn = 0;
-    auto deckSize = [deck deckSize];
-    for(int i = 0; i < deckSize; i ++) {
-      Card* card = [deck drawRandomCard];
-      if (!card) {
-        LogDebug(@"Can't initialise CardMatchingGame with a nil card. Deck drawRandomCard returned nil for i: %u.", i);
-        // Not sure if this is necessary. Just return nil could work fine as well.
-        _cards = nil;
-        return nil;
-      }
-      [_cards addObject:card];
-    }
+    self.cardsInPlay = [[NSMutableArray<Card *> alloc] init];
+    self.matchCount = matchCount;
+    self.deckToBeDrawn = deck;
   }
   return self;
 }
@@ -48,8 +37,7 @@ static const int MISMATCH_PENALTY = 2;
 static const int GUESS_PENALTY = 1;
 
 - (void)removeCard:(Card *)card {
-  [_cards removeObject:card];
-  _indexOfNextCardToBeDrawn--;
+  [_cardsInPlay removeObject:card];
 }
 
 - (void)chooseCard:(Card *)card {
@@ -73,7 +61,7 @@ static const int GUESS_PENALTY = 1;
   NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
   auto extraCardsRequiredForMatch = _matchCount - 1;
 
-  for (Card *otherCard in self.cards) {
+  for (Card *otherCard in self.cardsInPlay) {
     if (otherCard.isChosen && !otherCard.isMatched) {
 
       [chosenCards addObject:otherCard];
@@ -109,13 +97,13 @@ static const int GUESS_PENALTY = 1;
     LogDebug(@"Can't draw next card.");
     return nil;
   }
-  auto nextCard = _cards[_indexOfNextCardToBeDrawn];
-  _indexOfNextCardToBeDrawn++;
+  auto nextCard = [self.deckToBeDrawn drawRandomCard];
+  [self.cardsInPlay addObject:nextCard];
   return nextCard;
 }
 
 - (BOOL)canDrawMore {
-  return _indexOfNextCardToBeDrawn < _cards.count;
+  return ![self.deckToBeDrawn isEmpty];
 }
 
 @end
