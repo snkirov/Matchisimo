@@ -13,10 +13,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseGameViewController()
+@property (nonatomic, strong)Grid *cardGrid;
+
+@property (nonatomic)NSMutableArray<CardView *> *cardViews;
 @property (nonatomic, strong)UIView *cardCanvas;
 @property (nonatomic, strong)UIButton *drawButton;
 @property (nonatomic, strong)UILabel *scoreLabel;
-@property (nonatomic)NSMutableArray<CardView *> *cardViews;
 @end
 
 @implementation BaseGameViewController

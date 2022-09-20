@@ -5,12 +5,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Defines a model of a normal playing card.
 @interface PlayingCard : Card
 
-- (instancetype) initWithSuit:(NSString *)suit withRank:(NSUInteger)rank;
-
+/// The suit of the card.
 @property (nonatomic, readonly) NSString *suit;
+/// The rank of the card.
 @property (nonatomic, readonly) NSUInteger rank;
+
+- (instancetype) initWithSuit:(NSString *)suit withRank:(NSUInteger)rank;
 
 @end
 

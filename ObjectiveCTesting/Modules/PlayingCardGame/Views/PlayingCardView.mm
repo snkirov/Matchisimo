@@ -1,9 +1,11 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import "PlayingCardView.h"
+#import "CardView+Protected.h"
 #import "PlayingCard.h"
 #import "PlayingCardUtil.h"
+#import "PlayingCardView.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 

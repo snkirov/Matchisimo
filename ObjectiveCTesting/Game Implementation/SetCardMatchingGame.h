@@ -8,8 +8,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class SetCard;
 
+/// Handles `SetCard` specific game logic.
 @interface SetCardMatchingGame : CardMatchingGame
 
+/// Retrieves the `SetCard` model from the `cards` array for the given shape, color, fill and number of shapes.
 - (SetCard *)getCardForShape:(CARD_Shape)shape
                     andColor:(CARD_Color)color
                      andFill:(CARD_Fill)fill

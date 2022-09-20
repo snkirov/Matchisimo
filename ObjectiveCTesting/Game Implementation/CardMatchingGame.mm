@@ -63,6 +63,13 @@ static const int GUESS_PENALTY = 1;
     return;
   }
 
+  [self checkForMatchWithCard:card];
+
+  _score -= GUESS_PENALTY;
+  card.isChosen = TRUE;
+}
+
+- (void)checkForMatchWithCard:(Card *)card {
   NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
   auto extraCardsRequiredForMatch = _matchCount - 1;
 
@@ -74,15 +81,13 @@ static const int GUESS_PENALTY = 1;
       if (chosenCards.count == extraCardsRequiredForMatch) {
         NSArray *immutableChosenCards = [chosenCards copy];
         [self evaluateMatch:card withCards:immutableChosenCards];
+        return;
       }
     }
   }
-
-  _score -= GUESS_PENALTY;
-  card.isChosen = TRUE;
 }
 
-- (void) evaluateMatch:(Card *)card withCards:(NSArray<Card *> *)chosenCards {
+- (void)evaluateMatch:(Card *)card withCards:(NSArray<Card *> *)chosenCards {
   auto matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
     auto pointsForThisRound = matchScore * 4;

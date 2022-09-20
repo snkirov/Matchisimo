@@ -5,6 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// ViewController for the Set CardGame.
 @interface SetCardGameViewController : BaseGameViewController
 
 @end

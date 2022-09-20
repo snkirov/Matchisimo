@@ -2,6 +2,7 @@
 // Created by Svilen Kirov.
 
 #import "CardView.h"
+#import "CardView+Protected.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -46,11 +47,6 @@ static const CGFloat cornerRadiusNotScaled = 12;
   [self drawCardInterior];
 }
 
-- (void)drawCardInterior {
-  [NSException raise:@"Draw Card Interior should be overwritten."
-              format:@"drawCardInterior is an abstract method, which should be overwritten by all children."];
-}
-
 - (instancetype)init {
   if (self = [super init]) {
     self.opaque = NO;
@@ -72,9 +68,14 @@ static const CGFloat cornerRadiusNotScaled = 12;
 // MARK: - Abstract
 
 - (UIViewAnimationOptions)animationOptionForTap {
-  [NSException raise:@"Draw Card Interior should be overwritten."
-              format:@"DrawCardInterior is an abstract method, which should be overwritten by all children."];
+  [NSException raise:@"AnimationOptionForTap should be overwritten."
+              format:@"AnimationOptionForTap is an abstract method, which should be overwritten by all children."];
   return 0;
+}
+
+- (void)drawCardInterior {
+  [NSException raise:@"Draw Card Interior should be overwritten."
+              format:@"drawCardInterior is an abstract method, which should be overwritten by all children."];
 }
 
 @end

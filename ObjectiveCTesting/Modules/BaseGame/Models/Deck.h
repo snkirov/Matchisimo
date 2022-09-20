@@ -11,11 +11,16 @@
 
 @class Card;
 
+/// This class defines a simple deck data structure, which manipulates an array of cards.
+/// Cards can be added to or drawn from the deck.
 @interface Deck : NSObject
 
+/// Returns a random `Card` from the deck.
+/// Returns nil if the deck is empty.
 - (Card *)drawRandomCard;
+/// Adds a card to the deck.
 - (void)addCard:(Card *)card;
-
+/// Returns the size of the deck.
 - (NSUInteger)deckSize;
 
 @end

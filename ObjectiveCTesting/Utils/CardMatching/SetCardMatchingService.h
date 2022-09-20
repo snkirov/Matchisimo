@@ -5,6 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// The CardMatchingService responsible for matching `SetCard`-s.
 @interface SetCardMatchingService : NSObject <CardMatchingServiceProtocol>
 
 @end

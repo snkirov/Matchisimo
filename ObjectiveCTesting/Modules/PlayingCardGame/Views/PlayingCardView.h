@@ -7,12 +7,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class PlayingCard;
 
+/// A `CardView` which represents a `PlayingCard` model.
 @interface PlayingCardView : CardView
 
-- (void)setupWithPlayingCard:(PlayingCard *)card;
-
+/// The rank of the underlying card.
 @property (nonatomic, readonly) NSUInteger rank;
+/// The suit of the underlying card.
 @property (nonatomic, readonly) NSString *suit;
+
+/// Sets up the view with the provided `SetCard`.
+- (void)setupWithPlayingCard:(PlayingCard *)card;
 
 @end
 

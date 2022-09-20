@@ -1,6 +1,7 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
+#import "CardView+Protected.h"
 #import "SetCardView.h"
 #import "SetCardUtil.h"
 #import "SetCard.h"

@@ -3,11 +3,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Utility class with helper methods for `PlayingCard`
 @interface PlayingCardUtil : NSObject
 
-+ (NSArray *)validSuits;
-+ (NSArray *)rankStrings;
-+ (NSUInteger)maxRank;
+/// Returns an array with all valid suits.
+@property(class, nonatomic, readonly)NSArray *validSuits;
+/// Returns an array with all valid ranks as strings.
+@property(class, nonatomic, readonly)NSArray *rankStrings;
+/// Returns the maximum valid rank.
+@property(class, nonatomic, readonly)NSUInteger maxRank;
 
 @end
 

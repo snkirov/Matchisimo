@@ -55,6 +55,7 @@
 		4F48FA5128BE17D500D322FE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4F88F13F28D4B912007AFEF6 /* BaseGameViewController+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BaseGameViewController+Protected.h"; sourceTree = "<group>"; };
 		4F88F8AE28D4CFEE007AFEF6 /* CardMatchingGame+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardMatchingGame+Protected.h"; sourceTree = "<group>"; };
+		4F88F8AF28D4DC39007AFEF6 /* CardView+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardView+Protected.h"; sourceTree = "<group>"; };
 		4FB79B5C28AB9E0400BB1766 /* Deck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		4FB79B5E28AB9E0D00BB1766 /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		4FBFED1028ABF2F500D22997 /* PlayingCard.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCard.mm; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				4F0616ED28CA27C800115680 /* CardView.h */,
+				4F88F8AF28D4DC39007AFEF6 /* CardView+Protected.h */,
 				4F0616EC28CA27C800115680 /* CardView.mm */,
 			);
 			path = Views;

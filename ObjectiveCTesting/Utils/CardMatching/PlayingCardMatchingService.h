@@ -5,6 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// The CardMatchingService responsible for matching `PlayingCard`-s.
 @interface PlayingCardMatchingService : NSObject <CardMatchingServiceProtocol>
 
 @end
