@@ -20,14 +20,7 @@ static const CGFloat cornerRadiusNotScaled = 12;
 }
 
 - (void)selectCard {
-  [UIView transitionWithView:self
-                            duration:0.5
-                             options:self.animationOptionForTap
-                          animations:^{
-    self.selected = !self.selected;
-  } completion:^(BOOL completed){
-    self.didTapView();
-  }];
+  self.didTapView();
 }
 
 - (void)drawCardOutline {

@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic)BOOL selected;
 /// Action to be triggered when the view is tapped.
 @property (nonatomic)void (^didTapView)(void);
+/// Animation option to be used when the user selects the view. It may be different from the animation for deselecting it.
+@property (nonatomic, readonly)UIViewAnimationOptions animationOptionForTap;
 
 /// Selects or deselects the `CardView` and updates it accordingly.
 - (void)selectCard;

@@ -9,16 +9,17 @@
 #import "DeckFactory.h"
 #import "Grid.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseGameViewController()
+@interface BaseGameViewController() <UIDynamicAnimatorDelegate>
+@property (nonatomic)BOOL shouldFloatCards;
 @property (nonatomic, strong)Grid *cardGrid;
-
 @property (nonatomic)NSMutableArray<CardView *> *cardViews;
 @property (nonatomic, strong)UIView *cardCanvas;
 @property (nonatomic, strong)UIButton *drawButton;
 @property (nonatomic, strong)UILabel *scoreLabel;
+@property (strong, nonatomic) UIDynamicAnimator *animator;
+@property (strong, nonatomic) UIAttachmentBehavior *attachment;
 @end
 
 @implementation BaseGameViewController
@@ -27,12 +28,21 @@ static const CGFloat cellAspectRatio = 0.5625;
 static const NSUInteger defaultCardCount = 12;
 static const CGFloat edgeOffset = 20;
 
+- (UIDynamicAnimator *)animator {
+    if (!_animator) {
+        _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
+        _animator.delegate = self;
+    }
+    return _animator;
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self setupCardMatchingGame];
   [self initialGridSetup];
   [self setupPlayingSection];
   [self setupBottomBar];
+  [self addGestures];
   [self.cardCanvas layoutIfNeeded];
 }
 
@@ -43,19 +53,19 @@ static const CGFloat edgeOffset = 20;
   [self reloadScreenAnimated:FALSE];
 }
 
-// MARK: - Setup Methods
+// MARK: - Setup
 
 - (void)initialGridSetup {
-  _cardGrid = [[Grid alloc] init];
-  _cardGrid.cellAspectRatio = cellAspectRatio;
-  _cardGrid.minCellWidth = 30;
-  _cardGrid.minCellHeight = 30 * 16 / 9;
+  self.cardGrid = [[Grid alloc] init];
+  self.cardGrid.cellAspectRatio = cellAspectRatio;
+  self.cardGrid.minCellWidth = 30;
+  self.cardGrid.minCellHeight = 30 * 16 / 9;
 }
 
 - (void)evaluateDefaultGrid {
   // The size is evaluated here, since the cardCanvas needs to be initialised to use it's frame.
-  _cardGrid.size = _cardCanvas.frame.size;
-  _cardGrid.minimumNumberOfCells = defaultCardCount;
+  self.cardGrid.size = self.cardCanvas.frame.size;
+  self.cardGrid.minimumNumberOfCells = defaultCardCount;
 }
 
 - (void)setupPlayingSection {
@@ -66,24 +76,24 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)setupCardCanvas {
-  _cardCanvas = [[UIView alloc] init];
-  [self.view addSubview:_cardCanvas];
-  _cardCanvas.backgroundColor = UIColor.clearColor;
+  self.cardCanvas = [[UIView alloc] init];
+  [self.view addSubview:self.cardCanvas];
+  self.cardCanvas.backgroundColor = UIColor.clearColor;
   [self setupCardCanvasConstraints];
-  [_cardCanvas layoutIfNeeded];
+  [self.cardCanvas layoutIfNeeded];
 }
 
 - (void)setupCards {
-  _cardViews = [[NSMutableArray alloc] init];
-  for (int i = 0; i < _cardGrid.rowCount; i++) {
-    for (int j = 0; j < _cardGrid.columnCount; j++) {
+  self.cardViews = [[NSMutableArray alloc] init];
+  for (int i = 0; i < self.cardGrid.rowCount; i++) {
+    for (int j = 0; j < self.cardGrid.columnCount; j++) {
       CardView *cardView = [self generateCardView];
-      auto frame = [_cardGrid frameOfCellAtRow:i inColumn:j];
+      auto frame = [self.cardGrid frameOfCellAtRow:i inColumn:j];
       [self drawCardViewWithRedrawAnimation:cardView withFrame:frame];
       [self addDidTapActionToCardView:cardView];
-      [_cardViews addObject:cardView];
-      [_cardCanvas addSubview:cardView];
-      if ([_cardViews count] == defaultCardCount) {
+      [self.cardViews addObject:cardView];
+      [self.cardCanvas addSubview:cardView];
+      if ([self.cardViews count] == defaultCardCount) {
         return;
       }
     }
@@ -106,6 +116,10 @@ static const CGFloat edgeOffset = 20;
   [cardView setDidTapView:^{
     auto strongSelf = weakSelf;
     auto strongCardView = weakCardView;
+    if (strongSelf.shouldFloatCards) {
+      [self reloadScreenAnimated:TRUE];
+      return;
+    }
     [strongSelf didTapCardView:strongCardView];
   }];
 }
@@ -128,12 +142,11 @@ static const CGFloat edgeOffset = 20;
   [self.view addSubview:textView];
   [self setupScoreTextConstraints:textView];
   [textView layoutIfNeeded];
-  _scoreLabel = textView;
+  self.scoreLabel = textView;
 }
 
 - (NSString *)getCurrentScoreString {
-  auto scoreString =
-    [[NSString alloc] initWithFormat:@"Score: %ld", (long)[_cardMatchingGame score]];
+  auto scoreString = [[NSString alloc] initWithFormat:@"Score: %ld", (long)[self.cardMatchingGame score]];
   return scoreString;
 }
 
@@ -143,14 +156,14 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)setupDrawButton {
-  _drawButton = [[UIButton alloc] init];
-  [_drawButton setTitle:@"Draw" forState:UIControlStateNormal];
-  [_drawButton setTitle:@"Deck Empty" forState:UIControlStateDisabled];
-  [_drawButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-  [_drawButton addTarget:self action:@selector(didTapDraw:) forControlEvents:UIControlEventTouchUpInside];
-  [self.view addSubview:_drawButton];
-  [self setupDrawButtonConstraints:_drawButton];
-  [_drawButton layoutIfNeeded];
+  self.drawButton = [[UIButton alloc] init];
+  [self.drawButton setTitle:@"Draw" forState:UIControlStateNormal];
+  [self.drawButton setTitle:@"Deck Empty" forState:UIControlStateDisabled];
+  [self.drawButton setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+  [self.drawButton addTarget:self action:@selector(didTapDraw:) forControlEvents:UIControlEventTouchUpInside];
+  [self.view addSubview:self.drawButton];
+  [self setupDrawButtonConstraints:self.drawButton];
+  [self.drawButton layoutIfNeeded];
 }
 
 - (void)didTapDraw:(UIButton *)button {
@@ -158,19 +171,19 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)disableDrawButtonIfNeeded {
-  if (!_drawButton.isEnabled) {
+  if (!self.drawButton.isEnabled) {
     return;
   }
-  [_drawButton setEnabled:FALSE];
-  [_drawButton layoutIfNeeded];
+  [self.drawButton setEnabled:FALSE];
+  [self.drawButton layoutIfNeeded];
 }
 
 - (void)resetDrawButtonIfNeeded {
-  if (_drawButton.isEnabled) {
+  if (self.drawButton.isEnabled) {
     return;
   }
-  [_drawButton setEnabled:TRUE];
-  [_drawButton layoutIfNeeded];
+  [self.drawButton setEnabled:TRUE];
+  [self.drawButton layoutIfNeeded];
 }
 
 - (void)setupRedealButton {
@@ -189,15 +202,17 @@ static const CGFloat edgeOffset = 20;
 
 - (void)didTapCardView:(CardView *)cardView {
   auto card = [self getCardForView:cardView];
-  [_cardMatchingGame chooseCard:card];
+  [self.cardMatchingGame chooseCard:card];
   [self updateUI];
   [self.view layoutIfNeeded];
 }
 
+// MARK: - Update
+
 - (void)updateUI {
   // This is needed, since we can't modify an array which is being iterated over.
-  NSArray *newCards = [_cardViews copy];
-  for (CardView *cardView in newCards) {
+  NSArray *cardViewsCopy = [self.cardViews copy];
+  for (CardView *cardView in cardViewsCopy) {
     [self updateCardView:cardView];
   }
   [self reloadScreenAnimated:TRUE];
@@ -205,31 +220,43 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)updateScore {
-  _scoreLabel.text = [self getCurrentScoreString];
+  self.scoreLabel.text = [self getCurrentScoreString];
 }
 
 - (void)updateCardView:(CardView *)cardView {
   auto card = [self getCardForView:cardView];
+
   if (card.isMatched) {
-    [cardView removeFromSuperview];
-    [_cardViews removeObject:cardView];
-    [_cardMatchingGame removeCard:card];
+    [self removeCard:card andView:cardView];
     return;
   }
+
   if (card.isChosen) {
-    [cardView setSelected:TRUE];
-  } else {
-    if (cardView.selected)
     [UIView transitionWithView:cardView
-                              duration:0.3
-                               options:UIViewAnimationOptionTransitionCrossDissolve
-                            animations:^{
-      [cardView setSelected:FALSE];
+                      duration:0.3
+                       options:cardView.animationOptionForTap
+                    animations:^{
+      [cardView setSelected:TRUE];
     } completion:nil];
+    return;
   }
+
+  if (cardView.selected)
+  [UIView transitionWithView:cardView
+                    duration:0.3
+                     options:UIViewAnimationOptionTransitionCrossDissolve
+                  animations:^{
+    [cardView setSelected:FALSE];
+  } completion:nil];
 }
 
-// MARK: - Reloading
+- (void)removeCard:(Card *)card andView:(CardView *)cardView {
+  [cardView removeFromSuperview];
+  [self.cardViews removeObject:cardView];
+  [self.cardMatchingGame removeCard:card];
+}
+
+// MARK: - Reload
 
 - (void)drawMoreCards {
   auto cardsPerDraw = 3;
@@ -238,9 +265,9 @@ static const CGFloat edgeOffset = 20;
     // Make the card appear from the bottom left corner
     cardView.frame = CGRectMake(0, self.cardCanvas.frame.size.height, 0, 0);
     [self addDidTapActionToCardView:cardView];
-    [_cardViews addObject:cardView];
-    [_cardCanvas addSubview:cardView];
-    if (![_cardMatchingGame canDrawMore]) {
+    [self.cardViews addObject:cardView];
+    [self.cardCanvas addSubview:cardView];
+    if (![self.cardMatchingGame canDrawMore]) {
       [self disableDrawButtonIfNeeded];
       break;
     }
@@ -249,14 +276,15 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)reloadScreenAnimated:(Boolean)isAnimated {
+  self.shouldFloatCards = FALSE;
   [self reevaluateGrid];
   [self reloadCardsAnimated:isAnimated];
 }
 
 - (void)reevaluateGrid {
   /// When drawing new cards the first line is called even though it is not needed. No bad side effect.
-  _cardGrid.size = _cardCanvas.frame.size;
-  _cardGrid.minimumNumberOfCells = _cardViews.count;
+  self.cardGrid.size = self.cardCanvas.frame.size;
+  self.cardGrid.minimumNumberOfCells = self.cardViews.count;
 }
 
 - (void)reloadCardsAnimated:(Boolean)isAnimated {
@@ -268,23 +296,23 @@ static const CGFloat edgeOffset = 20;
 }
 
 - (void)reloadCardsAnimated {
-  for (int i = 0; i < _cardViews.count; i++) {
-    auto row = [_cardGrid getRowForIndex:i];
-    auto column = [_cardGrid getColumnForIndex:i];
+  for (int i = 0; i < self.cardViews.count; i++) {
+    auto row = [self.cardGrid getRowForIndex:i];
+    auto column = [self.cardGrid getColumnForIndex:i];
     [UIView animateWithDuration:1.0 animations:^{
       self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
     }];
   }
-  [_cardCanvas layoutSubviews];
+  [self.cardCanvas layoutSubviews];
 }
 
 - (void)reloadCardsNotAnimated {
-  for (int i = 0; i < _cardViews.count; i++) {
-    auto row = [_cardGrid getRowForIndex:i];
-    auto column = [_cardGrid getColumnForIndex:i];
+  for (int i = 0; i < self.cardViews.count; i++) {
+    auto row = [self.cardGrid getRowForIndex:i];
+    auto column = [self.cardGrid getColumnForIndex:i];
     self.cardViews[i].frame = [self.cardGrid frameOfCellAtRow:row inColumn:column];
   }
-  [_cardCanvas layoutSubviews];
+  [self.cardCanvas layoutSubviews];
 }
 
 - (void)redealGame {
@@ -295,22 +323,103 @@ static const CGFloat edgeOffset = 20;
   [self resetDrawButtonIfNeeded];
 }
 
-// MARK: - Constraint methods
+// MARK: - Gestures
+
+- (void)addGestures {
+  [self addPinchGesture];
+  [self addDoubleTapGesture];
+  [self addPanGesture];
+}
+
+- (void)addPinchGesture {
+  auto pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(userDidPinch:)];
+  [self.view addGestureRecognizer:pinchGesture];
+}
+
+- (void)addDoubleTapGesture {
+  auto tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidDoubleTap:)];
+  tapGesture.numberOfTapsRequired = 2;
+  [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)addPanGesture {
+  auto panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(userDidPan:)];
+  [self.view addGestureRecognizer:panGesture];
+}
+
+- (void)userDidPinch:(UIPinchGestureRecognizer *)selector {
+  if (self.shouldFloatCards) {
+    return;
+  }
+  self.shouldFloatCards = TRUE;
+  for (CardView *cardView in self.cardViews) {
+    [UIView animateWithDuration:1.0 animations:^{
+      [cardView setCenter:[selector locationInView:self.view]];
+    }];
+  }
+}
+
+- (void)userDidPan:(UIPanGestureRecognizer *)selector {
+  if (!self.shouldFloatCards || self.cardViews.count == 0) {
+    return;
+  }
+  CGPoint gesturePoint = [selector locationInView:self.view];
+  auto attachedCardView = self.cardViews[0];
+  if (selector.state == UIGestureRecognizerStateBegan) {
+    [self createAttachmentBehvaiourForCardView:attachedCardView atAnchor:gesturePoint];
+  } else if (selector.state == UIGestureRecognizerStateChanged) {
+    [self changedPanGestureForAttachedCardView:attachedCardView movedToPoint:gesturePoint];
+  } else if (selector.state == UIGestureRecognizerStateEnded) {
+    [self endPanGestureForAttachedCardView:attachedCardView];
+  }
+}
+
+- (void)createAttachmentBehvaiourForCardView:(CardView *)attachedCardView atAnchor:(CGPoint)gesturePoint {
+  self.attachment = [[UIAttachmentBehavior alloc] initWithItem:attachedCardView attachedToAnchor:gesturePoint];
+  [self.animator addBehavior:self.attachment];
+}
+
+- (void)changedPanGestureForAttachedCardView:(CardView *)attachedCardView movedToPoint:(CGPoint)gesturePoint {
+  self.attachment.anchorPoint = gesturePoint;
+  auto delayIncr = 0.0;
+  for (CardView *cardView in self.cardViews) {
+    [UIView animateWithDuration:0.1 delay:delayIncr options:UIViewAnimationOptionCurveEaseIn animations:^{
+      [cardView setCenter:attachedCardView.center];
+    } completion:nil];
+    delayIncr += 0.01;
+  }
+}
+
+- (void)endPanGestureForAttachedCardView:(CardView *)attachedCardView {
+  [self.animator removeBehavior:self.attachment];
+  for (CardView *cardView in self.cardViews) {
+    [cardView setCenter:attachedCardView.center];
+  }
+}
+
+- (void)userDidDoubleTap:(UITapGestureRecognizer *)selector {
+  if (!self.shouldFloatCards) {
+    return;
+  }
+  [self reloadScreenAnimated:TRUE];
+}
+
+// MARK: - Constraints
 - (void)setupCardCanvasConstraints {
-  _cardCanvas.translatesAutoresizingMaskIntoConstraints = NO;
+  self.cardCanvas.translatesAutoresizingMaskIntoConstraints = NO;
 
   UILayoutGuide *guide = self.view.safeAreaLayoutGuide;
   auto bottomOffset = self.view.frame.size.height / 8;
-  auto leadingConstraint = [_cardCanvas.leadingAnchor
+  auto leadingConstraint = [self.cardCanvas.leadingAnchor
                             constraintEqualToAnchor:guide.leadingAnchor
                             constant:edgeOffset];
-  auto trailingConstraint = [_cardCanvas.trailingAnchor
+  auto trailingConstraint = [self.cardCanvas.trailingAnchor
                              constraintEqualToAnchor:guide.trailingAnchor
                              constant:-edgeOffset];
-  auto topConstraint = [_cardCanvas.topAnchor
+  auto topConstraint = [self.cardCanvas.topAnchor
                         constraintEqualToAnchor:guide.topAnchor
                         constant:edgeOffset];
-  auto bottomConstraint = [_cardCanvas.bottomAnchor
+  auto bottomConstraint = [self.cardCanvas.bottomAnchor
                            constraintEqualToAnchor:guide.bottomAnchor
                            constant:-bottomOffset];
 
