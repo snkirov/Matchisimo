@@ -9,15 +9,21 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayingCardMatchingGame()
+
 @property (nonatomic, readwrite) id <CardMatchingServiceProtocol> matchingService;
+
 @end
 
 @implementation PlayingCardMatchingGame
 
 @synthesize matchingService = _matchingService;
 
+- (instancetype)initUsingDeck:(Deck *)deck {
+  return [self initUsingDeck:deck withMatchCount:2];
+}
+
 - (instancetype)initUsingDeck:(Deck *)deck
-                   withMatchCount:(NSUInteger) matchCount {
+               withMatchCount:(NSUInteger) matchCount {
   if (self = [super initUsingDeck:deck withMatchCount:matchCount]) {
     self.matchingService = [[PlayingCardMatchingService alloc] init];
   }
@@ -28,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
   for (Card *card in self.cardsInPlay) {
     if (![card isKindOfClass:[PlayingCard class]]) {
       LogDebug(@"Card in getCardForSuit is not of kind PlayingCard.");
-      return nil;
+      continue;
     }
     auto playingCard = (PlayingCard *)card;
     if (playingCard.suit == suit && playingCard.rank == rank) {

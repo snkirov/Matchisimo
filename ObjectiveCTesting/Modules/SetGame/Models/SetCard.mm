@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCard
 
-- (instancetype) initWithShape:(CARD_Shape)shape withColor:(CARD_Color)color withFill:(CARD_Fill)fill withNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {
+- (instancetype)initWithShape:(CARD_Shape)shape withColor:(CARD_Color)color withFill:(CARD_Fill)fill withNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {
   if (self = [super init]) {
     auto shapesCount = [[SetCardUtil shapesArray] count];
     auto colorsCount = [[SetCardUtil colorsArray] count];

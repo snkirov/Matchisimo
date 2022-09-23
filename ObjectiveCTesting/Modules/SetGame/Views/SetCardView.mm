@@ -99,12 +99,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)drawOvalforRect:(CGRect)rect {
   auto path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:30];
-  [self fillShapeForPath:path];
+  [self colorShapeForPath:path];
 }
 
 - (void)drawDiamondforRect:(CGRect)rect {
   auto path = [self generateDiamondPathForRect:rect];
-  [self fillShapeForPath:path];
+  [self colorShapeForPath:path];
 }
 
 - (UIBezierPath *)generateDiamondPathForRect:(CGRect)rect {
@@ -127,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)drawSquiggleforRect:(CGRect)rect {
   auto path = [self generateSquigglePathForRect:rect];
-  [self fillShapeForPath:path];
+  [self colorShapeForPath:path];
 }
 
 - (UIBezierPath *)generateSquigglePathForRect:(CGRect)rect {
@@ -169,8 +169,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 // MARK: - Fill
 
-- (void)fillShapeForPath:(UIBezierPath *) path {
-
+- (void)colorShapeForPath:(UIBezierPath *) path {
   [self strokeShapeFromPath:path];
 
   switch (_fill) {

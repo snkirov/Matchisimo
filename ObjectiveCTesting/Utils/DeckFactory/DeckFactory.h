@@ -6,6 +6,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class Deck;
+
 /// Factory class for deck generation.
 @interface DeckFactory : NSObject
 

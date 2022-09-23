@@ -12,14 +12,17 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseGameViewController() <UIDynamicAnimatorDelegate>
-@property (nonatomic)BOOL shouldFloatCards;
-@property (nonatomic, strong)Grid *cardGrid;
-@property (nonatomic)NSMutableArray<CardView *> *cardViews;
-@property (nonatomic, strong)UIView *cardCanvas;
-@property (nonatomic, strong)UIButton *drawButton;
-@property (nonatomic, strong)UILabel *scoreLabel;
+/// Shows whether the screen is in the flow cards state.
+/// This state can be entered and exited via a gesture and while it is active the game is paused.
+@property (nonatomic) BOOL shouldFloatCards;
+@property (nonatomic, strong) Grid *cardGrid;
+@property (nonatomic) NSMutableArray<CardView *> *cardViews;
+@property (nonatomic, strong) UIView *cardCanvas;
+@property (nonatomic, strong) UIButton *drawButton;
+@property (nonatomic, strong) UILabel *scoreLabel;
 @property (strong, nonatomic) UIDynamicAnimator *animator;
 @property (strong, nonatomic) UIAttachmentBehavior *attachment;
+
 @end
 
 @implementation BaseGameViewController
@@ -62,12 +65,6 @@ static const CGFloat edgeOffset = 20;
   self.cardGrid.minCellHeight = 30 * 16 / 9;
 }
 
-- (void)evaluateDefaultGrid {
-  // The size is evaluated here, since the cardCanvas needs to be initialised to use it's frame.
-  self.cardGrid.size = self.cardCanvas.frame.size;
-  self.cardGrid.minimumNumberOfCells = defaultCardCount;
-}
-
 - (void)setupPlayingSection {
   [self setupCardCanvas];
   [self evaluateDefaultGrid];
@@ -83,11 +80,17 @@ static const CGFloat edgeOffset = 20;
   [self.cardCanvas layoutIfNeeded];
 }
 
+- (void)evaluateDefaultGrid {
+  // The size is evaluated here, since the cardCanvas needs to be initialised to use it's frame.
+  self.cardGrid.size = self.cardCanvas.frame.size;
+  self.cardGrid.minimumNumberOfCells = defaultCardCount;
+}
+
 - (void)setupCards {
   self.cardViews = [[NSMutableArray alloc] init];
   for (int i = 0; i < self.cardGrid.rowCount; i++) {
     for (int j = 0; j < self.cardGrid.columnCount; j++) {
-      CardView *cardView = [self generateCardView];
+      CardView *cardView = [self drawCardAndCreateView];
       auto frame = [self.cardGrid frameOfCellAtRow:i inColumn:j];
       [self drawCardViewWithRedrawAnimation:cardView withFrame:frame];
       [self addDidTapActionToCardView:cardView];
@@ -211,7 +214,7 @@ static const CGFloat edgeOffset = 20;
 
 - (void)updateUI {
   // This is needed, since we can't modify an array which is being iterated over.
-  NSArray *cardViewsCopy = [self.cardViews copy];
+  NSArray<CardView *> *cardViewsCopy = [self.cardViews copy];
   for (CardView *cardView in cardViewsCopy) {
     [self updateCardView:cardView];
   }
@@ -231,7 +234,7 @@ static const CGFloat edgeOffset = 20;
     return;
   }
 
-  if (card.isChosen) {
+  if (card.isSelected) {
     [UIView transitionWithView:cardView
                       duration:0.3
                        options:cardView.animationOptionForTap
@@ -261,7 +264,7 @@ static const CGFloat edgeOffset = 20;
 - (void)drawMoreCards {
   auto cardsPerDraw = 3;
   for (int i = 0; i < cardsPerDraw; i++) {
-    auto cardView = [self generateCardView];
+    auto cardView = [self drawCardAndCreateView];
     // Make the card appear from the bottom left corner
     cardView.frame = CGRectMake(0, self.cardCanvas.frame.size.height, 0, 0);
     [self addDidTapActionToCardView:cardView];
@@ -479,9 +482,9 @@ static const CGFloat edgeOffset = 20;
               format:@"SetupCardMatchingGame is an abstract method, which should be overwritten by all children."];
 }
 
-- (CardView *)generateCardView {
-  [NSException raise:@"addCardViewAtIndex should be overwritten."
-              format:@"addCardViewAtIndex is an abstract method, which should be overwritten by all children."];
+- (CardView *)drawCardAndCreateView {
+  [NSException raise:@"drawCardAndCreateView should be overwritten."
+              format:@"drawCardAndCreateView is an abstract method, which should be overwritten by all children."];
   return nil;
 }
 

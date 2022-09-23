@@ -7,16 +7,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCardUtil
 
-static NSArray *_validSuits = @[@"♥️",@"♦️",@"♠️",@"♣️"];
-static NSArray *_rankStrings = @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",
+static NSArray<NSString *> *_validSuits = @[@"♥️",@"♦️",@"♠️",@"♣️"];
+static NSArray<NSString *> *_rankStrings = @[@"?",@"A",@"2",@"3",@"4",@"5",@"6",
                                  @"7",@"8",@"9",@"10",@"J",@"Q",@"K"];
 
 
-+ (NSArray *)validSuits {
++ (NSArray<NSString *> *)validSuits {
   return _validSuits;
 }
 
-+ (NSArray *)rankStrings {
++ (NSArray<NSString *> *)rankStrings {
   return _rankStrings;
 }
 

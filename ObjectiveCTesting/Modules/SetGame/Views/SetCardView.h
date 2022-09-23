@@ -11,13 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SetCardView : CardView
 
 /// The shape of the underlying card.
-@property (nonatomic, readonly)CARD_Shape shape;
+@property (nonatomic, readonly) CARD_Shape shape;
 /// The color of the underlying card.
-@property (nonatomic, readonly)CARD_Color color;
+@property (nonatomic, readonly) CARD_Color color;
 /// The fill of the underlying card.
-@property (nonatomic, readonly)CARD_Fill fill;
+@property (nonatomic, readonly) CARD_Fill fill;
 /// The number of shapes of the underlying card.
-@property (nonatomic, readonly)CARD_NumberOfShapes numberOfShapes;
+@property (nonatomic, readonly) CARD_NumberOfShapes numberOfShapes;
 
 /// Sets up the view with the provided `SetCard`.
 -(void)setupWithSetCard:(SetCard *)card;

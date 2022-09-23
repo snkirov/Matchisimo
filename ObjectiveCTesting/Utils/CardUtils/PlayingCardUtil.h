@@ -7,11 +7,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlayingCardUtil : NSObject
 
 /// Returns an array with all valid suits.
-@property(class, nonatomic, readonly)NSArray *validSuits;
+@property(class, nonatomic, readonly) NSArray<NSString *> *validSuits;
 /// Returns an array with all valid ranks as strings.
-@property(class, nonatomic, readonly)NSArray *rankStrings;
+@property(class, nonatomic, readonly) NSArray<NSString *> *rankStrings;
 /// Returns the maximum valid rank.
-@property(class, nonatomic, readonly)NSUInteger maxRank;
+@property(class, nonatomic, readonly) NSUInteger maxRank;
 
 @end
 

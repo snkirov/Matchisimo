@@ -12,15 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 @class CardView;
 
 @interface CardMatchingGame()
-@property (nonatomic, readwrite)Deck *deckToBeDrawn;
-@property (nonatomic, readwrite)NSInteger score;
-@property (nonatomic)NSInteger matchCount;
+
+@property (nonatomic, readwrite) Deck *deckToBeDrawn;
+@property (nonatomic, readwrite) NSInteger score;
+@property (nonatomic) NSInteger matchCount;
+
 @end
 
 @implementation CardMatchingGame
 
 - (instancetype)initUsingDeck:(Deck *)deck {
-  return [self initUsingDeck:deck withMatchCount:2];
+  [NSException raise:@"Init Using Deck should be overwritten."
+              format:@"Init Using Deck is an abstract method, which should be overwritten by all children."];
+  return nil;
 }
 
 - (instancetype)initUsingDeck:(Deck *)deck
@@ -33,8 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-static const int MISMATCH_PENALTY = 2;
-static const int GUESS_PENALTY = 1;
+static const int correctGuessMultiplier = 4;
+static const int mismatchPenalty = 2;
+static const int guessPenalty = 1;
 
 - (void)removeCard:(Card *)card {
   [_cardsInPlay removeObject:card];
@@ -46,15 +51,15 @@ static const int GUESS_PENALTY = 1;
     return;
   }
 
-  if (card.isChosen) {
-    card.isChosen = NO;
+  if (card.isSelected) {
+    card.isSelected = NO;
     return;
   }
 
   [self checkForMatchWithCard:card];
 
-  _score -= GUESS_PENALTY;
-  card.isChosen = TRUE;
+  _score -= guessPenalty;
+  card.isSelected = TRUE;
 }
 
 - (void)checkForMatchWithCard:(Card *)card {
@@ -62,12 +67,12 @@ static const int GUESS_PENALTY = 1;
   auto extraCardsRequiredForMatch = _matchCount - 1;
 
   for (Card *otherCard in self.cardsInPlay) {
-    if (otherCard.isChosen && !otherCard.isMatched) {
+    if (otherCard.isSelected && !otherCard.isMatched) {
 
       [chosenCards addObject:otherCard];
 
       if (chosenCards.count == extraCardsRequiredForMatch) {
-        NSArray *immutableChosenCards = [chosenCards copy];
+        NSArray<Card *> *immutableChosenCards = [chosenCards copy];
         [self evaluateMatch:card withCards:immutableChosenCards];
         return;
       }
@@ -78,16 +83,15 @@ static const int GUESS_PENALTY = 1;
 - (void)evaluateMatch:(Card *)card withCards:(NSArray<Card *> *)chosenCards {
   auto matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
-    auto pointsForThisRound = matchScore * 4;
+    auto pointsForThisRound = matchScore * correctGuessMultiplier;
     _score += pointsForThisRound;
-    card.isMatched = TRUE;
-    for (Card * chosenCard in chosenCards) {
+    for (Card * chosenCard in [chosenCards arrayByAddingObject:card]) {
       chosenCard.isMatched = TRUE;
     }
   } else {
-    _score -= MISMATCH_PENALTY;
+    _score -= mismatchPenalty;
     for (Card * chosenCard in chosenCards) {
-      chosenCard.isChosen = FALSE;
+      chosenCard.isSelected = FALSE;
     }
   }
 }

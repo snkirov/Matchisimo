@@ -8,12 +8,14 @@
 #import "Deck.h"
 
 @interface Deck()
+
 @property (strong, nonatomic) NSMutableArray<Card *> *cards;
+
 @end
 
 @implementation Deck
 
-- (instancetype) init {
+- (instancetype)init {
   if (self = [super init]) {
     self.cards = [NSMutableArray<Card *> array];
   }
@@ -21,8 +23,7 @@
 }
 
 - (Card *)drawRandomCard {
-
-  if (![self.cards count]) {
+  if ([self isEmpty]) {
     LogDebug(@"Deck is empty, cannot drawRandomCard.");
     return nil;
   }

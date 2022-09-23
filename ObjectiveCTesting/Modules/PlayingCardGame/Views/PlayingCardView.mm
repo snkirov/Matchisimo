@@ -10,8 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PlayingCardView()
+
 @property (nonatomic, readwrite) NSUInteger rank;
 @property (nonatomic, readwrite) NSString *suit;
+
 @end
 
 @implementation PlayingCardView
@@ -31,21 +33,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)drawCardInterior {
   if (self.selected) {
     [self drawFaceUpCard];
-    return;
+  } else {
+    [self drawFaceDownCard];
   }
-  [self drawFaceDownCard];
 }
 
 - (void)drawFaceUpCard {
-
   auto imageName = [NSString stringWithFormat:@"%@%@", [self rankAsString], self.suit];
   auto faceImage = [UIImage imageNamed:imageName];
   if (faceImage) {
     [self drawFaceUpCardWithImage:faceImage];
-    [self drawCorners];
-    return;
+  } else {
+    [self drawPips];
   }
-  [self drawPips];
   [self drawCorners];
 }
 
@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)drawCorners {
   auto cornerText = [self generateCornerText];
   // Draw in top left corner
-  auto textBounds = [self createBoundsForAttributedString:cornerText];
+  auto textBounds = [self createBoundsForCornerString:cornerText];
   [cornerText drawInRect:textBounds];
 
   // Copy and translate to bottom right corner
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSFontAttributeName : cornerFont, NSParagraphStyleAttributeName : paragraphStyle }];
 }
 
-- (CGRect)createBoundsForAttributedString:(NSAttributedString *)attributedString {
+- (CGRect)createBoundsForCornerString:(NSAttributedString *)attributedString {
   CGRect textBounds;
   textBounds.origin = CGPointMake([self cornerOffset], [self cornerOffset]);
   textBounds.size = [attributedString size];
@@ -149,7 +149,6 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 - (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
                       verticalOffset:(CGFloat)verticalOffset
                   mirroredVertically:(Boolean)mirroredVertically {
-
   [self drawPipsWithHorizontalOffset:horizontalOffset
                       verticalOffset:verticalOffset
                           upsideDown:FALSE];
@@ -162,7 +161,7 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 
 - (void)drawPipsWithHorizontalOffset:(CGFloat)horizontalOffset
                       verticalOffset:(CGFloat)verticalOffset
-                  upsideDown:(Boolean)upsideDown {
+                          upsideDown:(Boolean)upsideDown {
   if (!upsideDown) {
     [self drawPipsWithHorizontalOffset:horizontalOffset verticalOffset:verticalOffset];
     return;

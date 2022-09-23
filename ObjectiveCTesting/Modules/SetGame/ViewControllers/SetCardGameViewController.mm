@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
   return card;
 }
 
-- (CardView *)generateCardView {
+- (CardView *)drawCardAndCreateView {
   auto cardView = [[SetCardView alloc] init];
   auto setCard = (SetCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithSetCard:setCard];

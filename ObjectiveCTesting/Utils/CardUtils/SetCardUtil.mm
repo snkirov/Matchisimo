@@ -7,12 +7,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardUtil
 
-static NSArray *_shapesArray = nil;
-static NSArray *_colorsArray = nil;
-static NSArray *_fillsArray = nil;
-static NSArray *_numberOfShapesArray = nil;
+static NSArray<NSNumber *> *_shapesArray = nil;
+static NSArray<NSNumber *> *_colorsArray = nil;
+static NSArray<NSNumber *> *_fillsArray = nil;
+static NSArray<NSNumber *> *_numberOfShapesArray = nil;
 
-+ (NSArray *)shapesArray {
++ (NSArray<NSNumber *> *)shapesArray {
   if (_shapesArray == nil) {
     auto shapes = [[NSMutableArray alloc] init];
     for (int i = 1; i < shapesCount; i++) {
@@ -23,7 +23,7 @@ static NSArray *_numberOfShapesArray = nil;
   return _shapesArray;
 }
 
-+ (NSArray *)colorsArray {
++ (NSArray<NSNumber *> *)colorsArray {
   if (_colorsArray == nil) {
     auto colors = [[NSMutableArray alloc] init];
     for (int i = 1; i < colorsCount; i++) {
@@ -34,7 +34,7 @@ static NSArray *_numberOfShapesArray = nil;
   return _colorsArray;
 }
 
-+ (NSArray *)fillsArray {
++ (NSArray<NSNumber *> *)fillsArray {
   if (_fillsArray == nil) {
     auto fills = [[NSMutableArray alloc] init];
     for (int i = 1; i < fillsCount; i++) {
@@ -45,7 +45,7 @@ static NSArray *_numberOfShapesArray = nil;
   return _fillsArray;
 }
 
-+ (NSArray *)numberOfShapesArray {
++ (NSArray<NSNumber *> *)numberOfShapesArray {
   if (_numberOfShapesArray == nil) {
     auto numberOfShapes = [[NSMutableArray alloc] init];
     for (int i = 1; i < numberOfShapesCount; i++) {

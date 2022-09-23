@@ -4,16 +4,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class Card, Deck;
-@protocol CardMatchingServiceProtocol;
 
 /// Base class used to define the common behaviour for other `CardMatchingGame` objects.
 /// Handles game and score logic.
 @interface CardMatchingGame : NSObject
 
 /// Shows whether more cards can be drawn.
-@property (nonatomic, readonly)BOOL canDrawMore;
+@property (nonatomic, readonly) BOOL canDrawMore;
 /// Shows the current score.
-@property (nonatomic, readonly)NSInteger score;
+@property (nonatomic, readonly) NSInteger score;
 
 /// Initializes the game with a given deck and the number of cards required for a match.
 - (instancetype)initUsingDeck:(Deck *)deck

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// The rank of the card.
 @property (nonatomic, readonly) NSUInteger rank;
 
-- (instancetype) initWithSuit:(NSString *)suit withRank:(NSUInteger)rank;
+- (instancetype)initWithSuit:(NSString *)suit withRank:(NSUInteger)rank;
 
 @end
 

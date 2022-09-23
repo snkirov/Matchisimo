@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// The suit of the underlying card.
 @property (nonatomic, readonly) NSString *suit;
 
-/// Sets up the view with the provided `SetCard`.
+/// Sets up the view with the provided `PlayingCard`.
 - (void)setupWithPlayingCard:(PlayingCard *)card;
 
 @end

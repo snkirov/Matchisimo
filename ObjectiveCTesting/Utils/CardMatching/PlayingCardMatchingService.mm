@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCardMatchingService
 
-- (int)matchCard:(Card *)card withOtherCards:(NSArray *)otherCards {
+- (int)matchCard:(Card *)card withOtherCards:(NSArray<Card *> *)otherCards {
   if (![card isKindOfClass:[PlayingCard class]]) {
     LogDebug(@"Wrong type of card passed into PlayingCardMatchingService matchCard().");
     return 0;
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
   int score = 0;
 
   for (PlayingCard *otherCard in otherCards) {
-    if(playingCard.rank == otherCard.rank) {
+    if (playingCard.rank == otherCard.rank) {
       score += 4;
     }
     if (playingCard.suit == otherCard.suit) {

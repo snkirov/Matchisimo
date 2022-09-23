@@ -6,12 +6,14 @@
 
 #import "CardMatchingGame.h"
 
+@protocol CardMatchingServiceProtocol;
+
 @interface CardMatchingGame ()
 
 /// The underlying array of cards currently in play.
-@property (nonatomic, strong)NSMutableArray<Card *> *cardsInPlay;
+@property (nonatomic, strong) NSMutableArray<Card *> *cardsInPlay;
 /// The matching service which is responsible for evaluating a match.
-@property (nonatomic, readonly)id <CardMatchingServiceProtocol> matchingService;
+@property (nonatomic, readonly) id <CardMatchingServiceProtocol> matchingService;
 
 @end
 

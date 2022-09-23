@@ -14,6 +14,22 @@ static const CGFloat cornerRadiusNotScaled = 12;
 - (CGFloat)cornerScaleFactor { return self.bounds.size.height / cornerFontStandardHeight; }
 - (CGFloat)cornerRadius { return cornerRadiusNotScaled * [self cornerScaleFactor]; }
 
+- (instancetype)init {
+  if (self = [super init]) {
+    self = [self initWithFrame:CGRectZero];
+  }
+  return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    self.opaque = NO;
+    self.contentMode = UIViewContentModeRedraw;
+    self.selected = FALSE;
+  }
+  return self;
+}
+
 - (void)setSelected:(BOOL)selected {
   _selected = selected;
   [self setNeedsDisplay];
@@ -38,24 +54,6 @@ static const CGFloat cornerRadiusNotScaled = 12;
 - (void)drawRect:(CGRect)rect {
   [self drawCardOutline];
   [self drawCardInterior];
-}
-
-- (instancetype)init {
-  if (self = [super init]) {
-    self.opaque = NO;
-    self.contentMode = UIViewContentModeRedraw;
-    self.selected = FALSE;
-  }
-  return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-  if (self = [super initWithFrame:frame]) {
-    self.opaque = NO;
-    self.contentMode = UIViewContentModeRedraw;
-    self.selected = FALSE;
-  }
-  return self;
 }
 
 // MARK: - Abstract

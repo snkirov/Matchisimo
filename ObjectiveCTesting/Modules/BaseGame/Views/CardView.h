@@ -10,11 +10,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CardView : UIView
 
 /// Shows whether the view is selected.
-@property (nonatomic)BOOL selected;
+@property (nonatomic) BOOL selected;
 /// Action to be triggered when the view is tapped.
-@property (nonatomic)void (^didTapView)(void);
+@property (nonatomic) void (^didTapView)(void);
 /// Animation option to be used when the user selects the view. It may be different from the animation for deselecting it.
-@property (nonatomic, readonly)UIViewAnimationOptions animationOptionForTap;
+/// Abstract property, should be overwritten by subclasses.
+@property (nonatomic, readonly) UIViewAnimationOptions animationOptionForTap;
 
 /// Selects or deselects the `CardView` and updates it accordingly.
 - (void)selectCard;

@@ -37,14 +37,15 @@ typedef enum {
 
 /// Utility class with helper methods for `SetCard`
 @interface SetCardUtil : NSObject
+
 /// Returns an array with all valid shapes.
-@property(class, nonatomic, readonly)NSArray *shapesArray;
+@property(class, nonatomic, readonly) NSArray<NSNumber *> *shapesArray;
 /// Returns an array with all valid colors.
-@property(class, nonatomic, readonly)NSArray *colorsArray;
+@property(class, nonatomic, readonly) NSArray<NSNumber *> *colorsArray;
 /// Returns an array with all valid fills.
-@property(class, nonatomic, readonly)NSArray *fillsArray;
+@property(class, nonatomic, readonly) NSArray<NSNumber *> *fillsArray;
 /// Returns an array with all valid numbers of shapes.
-@property(class, nonatomic, readonly)NSArray *numberOfShapesArray;
+@property(class, nonatomic, readonly) NSArray<NSNumber *> *numberOfShapesArray;
 
 @end
 
