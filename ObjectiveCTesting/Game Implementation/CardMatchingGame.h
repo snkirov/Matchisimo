@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeCard:(Card *)card;
 
 /// Adds another card to the game.
-- (Card *)drawNextCard;
+- (nullable Card *)drawNextCard;
 
 @end
 

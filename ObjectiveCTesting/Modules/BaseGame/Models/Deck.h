@@ -9,6 +9,8 @@
 #ifndef Deck_h
 #define Deck_h
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class Card;
 
 /// This class defines a simple deck data structure, which manipulates an array of cards.
@@ -17,7 +19,7 @@
 
 /// Returns a random `Card` from the deck.
 /// Returns nil if the deck is empty.
-- (Card *)drawRandomCard;
+- (nullable Card *)drawRandomCard;
 /// Adds a card to the deck.
 - (void)addCard:(Card *)card;
 /// Returns whether the deck is empty.
@@ -25,5 +27,6 @@
 
 @end
 
+NS_ASSUME_NONNULL_END
 
 #endif /* Deck_h */

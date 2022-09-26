@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
   self.cardMatchingGame = [[SetCardMatchingGame alloc] initUsingDeck:setDeck withMatchCount:3];
 }
 
-- (Card *)getCardForView:(CardView *)cardView {
+- (nullable Card *)getCardForView:(CardView *)cardView {
   if (![cardView isKindOfClass:[SetCardView class]]) {
     LogDebug(@"CardView in getCardForView is not of kind SetCardView.");
     return nil;
@@ -38,7 +38,11 @@ NS_ASSUME_NONNULL_BEGIN
   return card;
 }
 
-- (CardView *)drawCardAndCreateView {
+- (nullable CardView *)drawCardAndCreateView {
+  if (!self.cardMatchingGame.canDrawMore) {
+    LogDebug(@"Couldn't drawCardAndCreateView, deck is empty.");
+    return nil;
+  }
   auto cardView = [[SetCardView alloc] init];
   auto setCard = (SetCard *)[self.cardMatchingGame drawNextCard];
   [cardView setupWithSetCard:setCard];

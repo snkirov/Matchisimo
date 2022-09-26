@@ -96,7 +96,7 @@ static const int guessPenalty = 1;
   }
 }
 
-- (Card *)drawNextCard {
+- (nullable Card *)drawNextCard {
   if (!self.canDrawMore) {
     LogDebug(@"Can't draw next card.");
     return nil;

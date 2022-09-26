@@ -22,7 +22,7 @@
   return self;
 }
 
-- (Card *)drawRandomCard {
+- (nullable Card *)drawRandomCard {
   if ([self isEmpty]) {
     LogDebug(@"Deck is empty, cannot drawRandomCard.");
     return nil;

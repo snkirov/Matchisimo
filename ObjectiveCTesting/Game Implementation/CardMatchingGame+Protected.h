@@ -6,6 +6,8 @@
 
 #import "CardMatchingGame.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol CardMatchingServiceProtocol;
 
 @interface CardMatchingGame ()
@@ -16,5 +18,7 @@
 @property (nonatomic, readonly) id <CardMatchingServiceProtocol> matchingService;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif

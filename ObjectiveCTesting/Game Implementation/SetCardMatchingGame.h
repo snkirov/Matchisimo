@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SetCardMatchingGame : CardMatchingGame
 
 /// Retrieves the `SetCard` model from the `cards` array for the given shape, color, fill and number of shapes.
-- (SetCard *)getCardForShape:(CARD_Shape)shape
+- (nullable SetCard *)getCardForShape:(CARD_Shape)shape
                     andColor:(CARD_Color)color
                      andFill:(CARD_Fill)fill
            andNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes;

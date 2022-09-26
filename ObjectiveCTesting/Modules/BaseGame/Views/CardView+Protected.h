@@ -6,6 +6,8 @@
 #ifndef ObjectiveCTesting____FILEBASENAMEASIDENTIFIER_______FILEEXTENSION___
 #define ObjectiveCTesting____FILEBASENAMEASIDENTIFIER_______FILEEXTENSION___
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface CardView()
 
 /// ScaleFactor used for corner radius and corner text.
@@ -17,5 +19,7 @@
 - (void)drawCardInterior;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif

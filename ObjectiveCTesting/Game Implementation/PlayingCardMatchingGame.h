@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PlayingCardMatchingGame : CardMatchingGame
 
 /// Retrieves the `PlayingCard` model from the `cards` array for the given suit and rank.
-- (PlayingCard *)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank;
+- (nullable PlayingCard *)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank;
 
 @end
 

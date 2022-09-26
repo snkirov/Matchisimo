@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (SetCard *)getCardForShape:(CARD_Shape)shape
+- (nullable SetCard *)getCardForShape:(CARD_Shape)shape
                     andColor:(CARD_Color)color
                      andFill:(CARD_Fill)fill
            andNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {

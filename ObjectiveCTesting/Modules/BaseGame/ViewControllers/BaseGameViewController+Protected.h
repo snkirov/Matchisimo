@@ -6,6 +6,8 @@
 
 #import "BaseGameViewController.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface BaseGameViewController ()
 
 /// The `CardMatchingGame` object which handles the game rules and logic.
@@ -16,11 +18,13 @@
 - (void)setupCardMatchingGame;
 /// Generates a `CardView` object.
 /// Each `BaseGameViewController` subclass is responsible for overwritting this method.
-- (CardView *)drawCardAndCreateView;
+- (nullable CardView *)drawCardAndCreateView;
 /// Returns the `Card` object from the `CardMatchingGame` for the given `CardView`.
 /// Each `BaseGameViewController` subclass is responsible for overwritting this method.
-- (Card *)getCardForView:(CardView *)cardView;
+- (nullable Card *)getCardForView:(CardView *)cardView;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif

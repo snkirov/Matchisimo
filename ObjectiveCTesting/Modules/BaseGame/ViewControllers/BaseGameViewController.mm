@@ -482,13 +482,13 @@ static const CGFloat edgeOffset = 20;
               format:@"SetupCardMatchingGame is an abstract method, which should be overwritten by all children."];
 }
 
-- (CardView *)drawCardAndCreateView {
+- (nullable CardView *)drawCardAndCreateView {
   [NSException raise:@"drawCardAndCreateView should be overwritten."
               format:@"drawCardAndCreateView is an abstract method, which should be overwritten by all children."];
   return nil;
 }
 
-- (Card *)getCardForView:(CardView *)cardView {
+- (nullable Card *)getCardForView:(CardView *)cardView {
   [NSException raise:@"GetCardForView should be overwritten."
               format:@"GetCardForView is an abstract method, which should be overwritten by all children."];
   return nil;
