@@ -1,7 +1,7 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#include "Card.h"
+#include "CardProtocol.h"
 #include "SetCardUtil.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class UIColor;
 
 /// Defines a model of a card for the `SetCardGame`.
-@interface SetCard : Card
+@interface SetCard : NSObject <CardProtocol>
 
 /// The shape(s) on the card.
 @property (nonatomic, readonly) CARD_Shape shape;

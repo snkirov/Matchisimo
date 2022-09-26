@@ -8,9 +8,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCardMatchingService
 
-- (int)matchCard:(Card *)card withOtherCards:(NSArray<Card *> *)otherCards {
+- (int)matchCard:(id <CardProtocol>)card withOtherCards:(NSArray<id <CardProtocol>> *)otherCards {
 
-  for (Card *maybePlayingCard in [otherCards arrayByAddingObject:card]) {
+  for (id <CardProtocol> maybePlayingCard in [otherCards arrayByAddingObject:card]) {
     if (![maybePlayingCard isKindOfClass:[PlayingCard class]]) {
       LogDebug(@"Wrong type of card passed into PlayingCardMatchingService matchCard().");
       return 0;

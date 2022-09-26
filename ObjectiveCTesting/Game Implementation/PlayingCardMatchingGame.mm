@@ -30,8 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
-- (nullable PlayingCard *)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank {
-  for (Card *card in self.cardsInPlay) {
+- (nullable id <CardProtocol>)getCardForSuit:(NSString *)suit andRank:(NSUInteger)rank {
+  for (id <CardProtocol> card in self.cardsInPlay) {
     if (![card isKindOfClass:[PlayingCard class]]) {
       LogDebug(@"Card in getCardForSuit is not of kind PlayingCard.");
       continue;

@@ -31,7 +31,6 @@
 		4FDCAE8628AB8F610041B31B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8528AB8F610041B31B /* Assets.xcassets */; };
 		4FDCAE8928AB8F610041B31B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8728AB8F610041B31B /* LaunchScreen.storyboard */; };
 		4FDCAE8C28AB8F610041B31B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8B28AB8F610041B31B /* main.m */; };
-		4FDCAE9728AB8FD90041B31B /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE9628AB8FD90041B31B /* Card.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,8 +86,7 @@
 		4FDCAE8828AB8F610041B31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FDCAE8A28AB8F610041B31B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDCAE8B28AB8F610041B31B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4FDCAE9228AB8FA50041B31B /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
-		4FDCAE9628AB8FD90041B31B /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		4FDCAE9228AB8FA50041B31B /* CardProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,8 +254,7 @@
 		4FCA80C928B8D90C00D962C6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4FDCAE9228AB8FA50041B31B /* Card.h */,
-				4FDCAE9628AB8FD90041B31B /* Card.m */,
+				4FDCAE9228AB8FA50041B31B /* CardProtocol.h */,
 				4FB79B5E28AB9E0D00BB1766 /* Deck.h */,
 				4FB79B5C28AB9E0400BB1766 /* Deck.m */,
 			);
@@ -411,7 +408,6 @@
 				4FCA80E428B9095000D962C6 /* SetCard.mm in Sources */,
 				4FCA80F028B90DEF00D962C6 /* SetCardMatchingGame.mm in Sources */,
 				4FBFED1228ABF2F500D22997 /* PlayingCard.mm in Sources */,
-				4FDCAE9728AB8FD90041B31B /* Card.m in Sources */,
 				4FCA80E728B9096900D962C6 /* SetCardGameViewController.mm in Sources */,
 				4FDCAE7B28AB8F600041B31B /* AppDelegate.m in Sources */,
 				4F0616F328CB4F0500115680 /* Grid.m in Sources */,

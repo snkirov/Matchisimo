@@ -8,6 +8,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCard
 
+@synthesize isMatched;
+@synthesize isSelected;
+
 - (instancetype)initWithShape:(CARD_Shape)shape withColor:(CARD_Color)color withFill:(CARD_Fill)fill withNumberOfShapes:(CARD_NumberOfShapes)numberOfShapes {
   if (self = [super init]) {
     auto shapesCount = [[SetCardUtil shapesArray] count];

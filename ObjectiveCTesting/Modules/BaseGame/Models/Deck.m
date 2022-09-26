@@ -9,7 +9,7 @@
 
 @interface Deck()
 
-@property (strong, nonatomic) NSMutableArray<Card *> *cards;
+@property (strong, nonatomic) NSMutableArray<id <CardProtocol>> *cards;
 
 @end
 
@@ -17,25 +17,25 @@
 
 - (instancetype)init {
   if (self = [super init]) {
-    self.cards = [NSMutableArray<Card *> array];
+    self.cards = [NSMutableArray<id <CardProtocol>> array];
   }
   return self;
 }
 
-- (nullable Card *)drawRandomCard {
+- (nullable id <CardProtocol>)drawRandomCard {
   if ([self isEmpty]) {
     LogDebug(@"Deck is empty, cannot drawRandomCard.");
     return nil;
   }
 
   unsigned index = arc4random() % [self.cards count];
-  Card *randomCard = self.cards[index];
+  id <CardProtocol> randomCard = self.cards[index];
   [self.cards removeObjectAtIndex:index];
 
   return randomCard;
 }
 
-- (void)addCard:(Card *)card {
+- (void)addCard:(id <CardProtocol>)card {
   [self.cards addObject:card];
 }
 

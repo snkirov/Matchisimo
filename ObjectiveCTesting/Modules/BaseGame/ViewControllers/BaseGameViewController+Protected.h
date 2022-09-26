@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable CardView *)drawCardAndCreateView;
 /// Returns the `Card` object from the `CardMatchingGame` for the given `CardView`.
 /// Each `BaseGameViewController` subclass is responsible for overwritting this method.
-- (nullable Card *)getCardForView:(CardView *)cardView;
+- (nullable id <CardProtocol>)getCardForView:(CardView *)cardView;
 
 @end
 

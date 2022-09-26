@@ -1,7 +1,7 @@
 // Copyright (c) 2022 Lightricks. All rights reserved.
 // Created by Svilen Kirov.
 
-#import "Card.h"
+#import "CardProtocol.h"
 #import "CardMatchingGame.h"
 #import "CardMatchingGame+Protected.h"
 #import "CardMatchingServiceProtocol.h"
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initUsingDeck:(Deck *)deck
                    withMatchCount:(NSUInteger) matchCount {
   if (self = [super init]) {
-    self.cardsInPlay = [[NSMutableArray<Card *> alloc] init];
+    self.cardsInPlay = [[NSMutableArray<id <CardProtocol>> alloc] init];
     self.matchCount = matchCount;
     self.deckToBeDrawn = deck;
   }
@@ -41,11 +41,11 @@ static const int correctGuessMultiplier = 4;
 static const int mismatchPenalty = 2;
 static const int guessPenalty = 1;
 
-- (void)removeCard:(Card *)card {
+- (void)removeCard:(id <CardProtocol>)card {
   [_cardsInPlay removeObject:card];
 }
 
-- (void)chooseCard:(Card *)card {
+- (void)chooseCard:(id <CardProtocol>)card {
 
   if (card.isMatched) {
     return;
@@ -62,17 +62,17 @@ static const int guessPenalty = 1;
   card.isSelected = TRUE;
 }
 
-- (void)checkForMatchWithCard:(Card *)card {
-  NSMutableArray<Card *> *chosenCards = [NSMutableArray<Card *> array];
+- (void)checkForMatchWithCard:(id <CardProtocol>)card {
+  NSMutableArray<id <CardProtocol>> *chosenCards = [NSMutableArray<id <CardProtocol>> array];
   auto extraCardsRequiredForMatch = _matchCount - 1;
 
-  for (Card *otherCard in self.cardsInPlay) {
+  for (id <CardProtocol> otherCard in self.cardsInPlay) {
     if (otherCard.isSelected && !otherCard.isMatched) {
 
       [chosenCards addObject:otherCard];
 
       if (chosenCards.count == extraCardsRequiredForMatch) {
-        NSArray<Card *> *immutableChosenCards = [chosenCards copy];
+        NSArray<id <CardProtocol>> *immutableChosenCards = [chosenCards copy];
         [self evaluateMatch:card withCards:immutableChosenCards];
         return;
       }
@@ -80,23 +80,23 @@ static const int guessPenalty = 1;
   }
 }
 
-- (void)evaluateMatch:(Card *)card withCards:(NSArray<Card *> *)chosenCards {
+- (void)evaluateMatch:(id <CardProtocol>)card withCards:(NSArray<id <CardProtocol>> *)chosenCards {
   auto matchScore = [self.matchingService matchCard:card withOtherCards:chosenCards];
   if (matchScore) {
     auto pointsForThisRound = matchScore * correctGuessMultiplier;
     _score += pointsForThisRound;
-    for (Card * chosenCard in [chosenCards arrayByAddingObject:card]) {
+    for (id <CardProtocol> chosenCard in [chosenCards arrayByAddingObject:card]) {
       chosenCard.isMatched = TRUE;
     }
   } else {
     _score -= mismatchPenalty;
-    for (Card * chosenCard in chosenCards) {
+    for (id <CardProtocol> chosenCard in chosenCards) {
       chosenCard.isSelected = FALSE;
     }
   }
 }
 
-- (nullable Card *)drawNextCard {
+- (nullable id <CardProtocol>)drawNextCard {
   if (!self.canDrawMore) {
     LogDebug(@"Can't draw next card.");
     return nil;

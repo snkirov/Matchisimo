@@ -8,8 +8,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation SetCardMatchingService
 
-- (int)matchCard:(Card *)card withOtherCards:(NSArray<Card *> *)otherCards {
-  for (Card *maybeSetCard in [otherCards arrayByAddingObject:card]) {
+- (int)matchCard:(id <CardProtocol>)card withOtherCards:(NSArray<id <CardProtocol>> *)otherCards {
+  for (id <CardProtocol> maybeSetCard in [otherCards arrayByAddingObject:card]) {
     if (![maybeSetCard isKindOfClass:[SetCard class]]) {
       LogDebug(@"Wrong type of card passed into SetCardMatchingService matchCard().");
       return 0;
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
   int score = 0;
 
-  NSArray<Card *> *cards = [otherCards arrayByAddingObject:card];
+  NSArray<id <CardProtocol>> *cards = [otherCards arrayByAddingObject:card];
   
   if ([self hasFoundMatchForCards:cards]) {
     score = 4;
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
   return score;
 }
 
-- (BOOL)hasFoundMatchForCards:(NSArray<Card *> *)cards {
+- (BOOL)hasFoundMatchForCards:(NSArray<id <CardProtocol>> *)cards {
   // All components of the different cards should be matched in order for the cards to match.
   auto hasMatched = [self evaluateShapesForCards:cards] && [self evaluateColorsForCards:cards]
     && [self evaluateFillsForCards:cards] && [self evaluateNumberOfShapesForCards:cards];
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1. Create an array with all possible shapes.
 /// 2. Iterate through each card and remove the coresponding shape from the array.
 /// 3. A match is formed if either all shapes have been removed from the array or if only one shape has been removed.
-- (BOOL)evaluateShapesForCards:(NSArray<Card *> *)cards {
+- (BOOL)evaluateShapesForCards:(NSArray<id <CardProtocol>> *)cards {
   NSMutableArray *shapes = [[SetCardUtil shapesArray] mutableCopy];
   auto shapesOriginalCount = shapes.count;
   for (SetCard *card in cards) {
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1. Create an array with all possible colors.
 /// 2. Iterate through each card and remove the coresponding color from the array.
 /// 3. A match is formed if either all colors have been removed from the array or if only one color has been removed.
-- (BOOL)evaluateColorsForCards:(NSArray<Card *> *)cards {
+- (BOOL)evaluateColorsForCards:(NSArray<id <CardProtocol>> *)cards {
   NSMutableArray *colors = [[SetCardUtil colorsArray] mutableCopy];
   auto colorsOriginalCount = colors.count;
   for (SetCard *card in cards) {
@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1. Create an array with all possible fills.
 /// 2. Iterate through each card and remove the coresponding fill from the array.
 /// 3. A match is formed if either all fills have been removed from the array or if only one fill has been removed.
-- (BOOL)evaluateFillsForCards:(NSArray<Card *> *)cards {
+- (BOOL)evaluateFillsForCards:(NSArray<id <CardProtocol>> *)cards {
   NSMutableArray *fills = [[SetCardUtil fillsArray] mutableCopy];
   auto fillsOriginalCount = fills.count;
   for (SetCard *card in cards) {
@@ -97,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1. Create an array with all possible numbers of shapes.
 /// 2. Iterate through each card and remove the coresponding number from the array.
 /// 3. A match is formed if either all numbers have been removed from the array or if only one number has been removed.
-- (BOOL)evaluateNumberOfShapesForCards:(NSArray<Card *> *)cards {
+- (BOOL)evaluateNumberOfShapesForCards:(NSArray<id <CardProtocol>> *)cards {
   NSMutableArray *numberOfShapes = [[SetCardUtil numberOfShapesArray] mutableCopy];
   auto numberOfShapesOriginalCount = numberOfShapes.count;
   for (SetCard *card in cards) {

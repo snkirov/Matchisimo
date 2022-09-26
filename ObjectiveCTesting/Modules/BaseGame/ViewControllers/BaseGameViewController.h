@@ -3,7 +3,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class Card, CardView, Grid, CardMatchingGame;
+@protocol CardProtocol;
+
+@class CardView, Grid, CardMatchingGame;
 NS_ASSUME_NONNULL_BEGIN
 
 /// Base class used to define the common behaviour for other `GameViewController` objects.

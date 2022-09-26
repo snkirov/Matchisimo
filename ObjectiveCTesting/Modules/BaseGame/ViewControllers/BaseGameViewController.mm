@@ -3,7 +3,7 @@
 
 #import "BaseGameViewController.h"
 #import "BaseGameViewController+Protected.h"
-#import "Card.h"
+#import "CardProtocol.h"
 #import "CardMatchingGame.h"
 #import "CardView.h"
 #import "DeckFactory.h"
@@ -253,7 +253,7 @@ static const CGFloat edgeOffset = 20;
   } completion:nil];
 }
 
-- (void)removeCard:(Card *)card andView:(CardView *)cardView {
+- (void)removeCard:(id <CardProtocol>)card andView:(CardView *)cardView {
   [cardView removeFromSuperview];
   [self.cardViews removeObject:cardView];
   [self.cardMatchingGame removeCard:card];
@@ -497,7 +497,7 @@ static const CGFloat edgeOffset = 20;
   return nil;
 }
 
-- (nullable Card *)getCardForView:(CardView *)cardView {
+- (nullable id <CardProtocol>)getCardForView:(CardView *)cardView {
   [NSException raise:@"GetCardForView should be overwritten."
               format:@"GetCardForView is an abstract method, which should be overwritten by all children."];
   return nil;

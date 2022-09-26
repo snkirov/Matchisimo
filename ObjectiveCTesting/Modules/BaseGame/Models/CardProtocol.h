@@ -7,8 +7,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Base class used to define the common behaviour for other `Card` objects.
-@interface Card : NSObject
+/// Protocol used to define the common behaviour for `Card` objects.
+@protocol CardProtocol <NSObject>
 
 /// Shows whether the `Card` is selected.
 @property (nonatomic) BOOL isSelected;

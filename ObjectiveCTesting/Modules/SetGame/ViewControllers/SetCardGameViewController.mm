@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
   self.cardMatchingGame = [[SetCardMatchingGame alloc] initUsingDeck:setDeck withMatchCount:3];
 }
 
-- (nullable Card *)getCardForView:(CardView *)cardView {
+- (nullable id <CardProtocol>)getCardForView:(CardView *)cardView {
   if (![cardView isKindOfClass:[SetCardView class]]) {
     LogDebug(@"CardView in getCardForView is not of kind SetCardView.");
     return nil;

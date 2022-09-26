@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Card;
+@protocol CardProtocol;
 
 /// Protocol that defines the expected behaviour of a CardMatchingService.
 @protocol CardMatchingServiceProtocol <NSObject>
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Returns:
 /// If the match is successful, the points awarded for it.
 /// Otherwise, `0`.
-- (int)matchCard:(Card *)card withOtherCards:(NSArray<Card *> *)cards;
+- (int)matchCard:(id <CardProtocol>)card withOtherCards:(NSArray<id <CardProtocol>> *)cards;
 
 @end
 

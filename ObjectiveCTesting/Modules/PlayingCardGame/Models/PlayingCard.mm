@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PlayingCard
 
+@synthesize isMatched;
+@synthesize isSelected;
+
 - (instancetype)initWithSuit:(NSString *)suit withRank:(NSUInteger)rank {
   if (self = [super init]) {
     auto isValidSuit = [[PlayingCardUtil validSuits] containsObject:suit];

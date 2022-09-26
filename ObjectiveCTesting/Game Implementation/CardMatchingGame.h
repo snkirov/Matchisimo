@@ -3,7 +3,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Card, Deck;
+@protocol CardProtocol;
+
+@class Deck;
 
 /// Base class used to define the common behaviour for other `CardMatchingGame` objects.
 /// Handles game and score logic.
@@ -21,12 +23,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initUsingDeck:(Deck *)deck;
 
 /// Choses the given card and tries to match it, if enough cards have been selected.
-- (void)chooseCard:(Card *)card;
+- (void)chooseCard:(id <CardProtocol>)card;
 /// Removes the given card from the game.
-- (void)removeCard:(Card *)card;
+- (void)removeCard:(id <CardProtocol>)card;
 
 /// Adds another card to the game.
-- (nullable Card *)drawNextCard;
+- (nullable id <CardProtocol>)drawNextCard;
 
 @end
 

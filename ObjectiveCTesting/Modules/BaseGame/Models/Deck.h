@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Card;
+@protocol CardProtocol;
 
 /// This class defines a simple deck data structure, which manipulates an array of cards.
 /// Cards can be added to or drawn from the deck.
@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Returns a random `Card` from the deck.
 /// Returns nil if the deck is empty.
-- (nullable Card *)drawRandomCard;
+- (nullable id <CardProtocol>)drawRandomCard;
 /// Adds a card to the deck.
-- (void)addCard:(Card *)card;
+- (void)addCard:(id <CardProtocol>)card;
 /// Returns whether the deck is empty.
 - (BOOL)isEmpty;
 
