@@ -51,19 +51,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)drawFaceUpCardWithImage:(UIImage *)faceImage {
   const CGFloat defaultFaceCardScaleFactor = 0.90;
-  CGRect imageRect = CGRectInset(self.bounds,
-                                 self.bounds.size.width * (1.0 - defaultFaceCardScaleFactor),
-                                 self.bounds.size.height * (1.0 - defaultFaceCardScaleFactor));
+  CGRect imageRect = [self getBoundsInsetRectWithScaleFactor:defaultFaceCardScaleFactor];
   [faceImage drawInRect:imageRect];
 }
 
 - (void)drawFaceDownCard {
   const CGFloat defaultFaceDownCardScaleFactor = 0.95;
   auto backImage = [UIImage imageNamed:@"cardback"];
-  CGRect imageRect = CGRectInset(self.bounds,
-                                 self.bounds.size.width * (1.0 - defaultFaceDownCardScaleFactor),
-                                 self.bounds.size.height * (1.0 - defaultFaceDownCardScaleFactor));
+  CGRect imageRect = [self getBoundsInsetRectWithScaleFactor:defaultFaceDownCardScaleFactor];
   [backImage drawInRect:imageRect];
+}
+
+- (CGRect)getBoundsInsetRectWithScaleFactor:(CGFloat)scaleFactor {
+  CGRect rect = CGRectInset(self.bounds,
+                            self.bounds.size.width * (1.0 - scaleFactor),
+                            self.bounds.size.height * (1.0 - scaleFactor));
+  return rect;
 }
 
 // MARK: - Draw Corners
@@ -177,6 +180,8 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
   auto centre = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
   NSAttributedString *attributedSuit = [self generateAttributedSuit];
   CGSize pipSize = [attributedSuit size];
+  
+//  auto pipOriginX =
   auto pipOrigin = CGPointMake(centre.x - pipSize.width /
                                pipOriginConstant - horizontalOffset * self.bounds.size.width,
                                centre.y - pipSize.height /
@@ -202,7 +207,7 @@ static double pipOriginConstant = 2.0; // Pretty much a magic number, no idea ho
 // MARK: - Utility methods
 
 - (NSString *)rankAsString {
-  return [PlayingCardUtil rankStrings][self.rank];
+  return [PlayingCardUtil rankStrings][self.rank - 1];
 }
 
 - (void)pushContextAndRotateUpsideDown {

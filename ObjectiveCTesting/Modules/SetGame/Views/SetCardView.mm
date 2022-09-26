@@ -24,27 +24,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)drawCardInterior {
   self.alpha = self.selected ? 0.5 : 1.0;
-  auto offsetForThreeShapes = self.bounds.size.height / 4;
-  auto offsetForTwoShapes = offsetForThreeShapes / 2;
-  auto offsetForOneShape = 0;
-
-  switch (_numberOfShapes) {
-    case One:
-      [self drawShapeAtOffset:offsetForOneShape];
-      return;
-    case Two:
-      [self drawShapeAtOffset:offsetForTwoShapes];
-      [self drawShapeAtOffset:-offsetForTwoShapes];
-      return;
-    case Three:
-      [self drawShapeAtOffset:offsetForOneShape];
-      [self drawShapeAtOffset:offsetForThreeShapes];
-      [self drawShapeAtOffset:-offsetForThreeShapes];
-      return;
-    case numberOfShapesCount:
-      LogDebug(@"NumberOfShapes shouldn't be set to numberOfShapesCount in SetCardView.getColor");
-      return;
+  // According to the number of shapes on the card we create a corresponding amount of offsets.
+  // Then we draw the shapes with the given offsets.
+  for (NSNumber *offset in [self calculateShapeOffsets]) {
+    [self drawShapeAtOffset:[offset floatValue]];
   }
+}
+
+- (NSArray<NSNumber *> *)calculateShapeOffsets {
+  switch (self.numberOfShapes) {
+      case One:
+        return @[@0];
+      case Two:
+        return @[@(self.bounds.size.height / 8), @(-self.bounds.size.height / 8)];
+      case Three:
+        return @[@(self.bounds.size.height / 4), @0, @(-self.bounds.size.height / 4)];
+      case numberOfShapesCount:
+        LogDebug(@"NumberOfShapes shouldn't be set to numberOfShapesCount in SetCardView");
+        return @[];
+    }
 }
 
 - (UIColor *)getColor {

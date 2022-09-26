@@ -439,11 +439,16 @@ static const CGFloat edgeOffset = 20;
   auto bottomConstraint = [redealButton.bottomAnchor
                            constraintEqualToAnchor:guide.bottomAnchor
                            constant:-edgeOffset];
+  auto leadingConstraint = [redealButton.leadingAnchor
+                           constraintGreaterThanOrEqualToAnchor:self.scoreLabel.trailingAnchor
+                           constant:10];
   auto trailingConstraint = [redealButton.trailingAnchor
                              constraintEqualToAnchor:guide.trailingAnchor
                              constant:-edgeOffset];
 
+
   bottomConstraint.active = TRUE;
+  leadingConstraint.active = TRUE;
   trailingConstraint.active = TRUE;
 }
 
@@ -454,11 +459,15 @@ static const CGFloat edgeOffset = 20;
   auto bottomConstraint = [drawButton.bottomAnchor
                            constraintEqualToAnchor:guide.bottomAnchor
                            constant:-edgeOffset];
-  auto trailingConstraint = [drawButton.leadingAnchor
+  auto leadingConstraint = [drawButton.leadingAnchor
                              constraintEqualToAnchor:guide.leadingAnchor
                              constant:edgeOffset];
+  auto trailingConstraint = [self.scoreLabel.leadingAnchor
+                           constraintGreaterThanOrEqualToAnchor:drawButton.trailingAnchor
+                           constant:10];
 
   bottomConstraint.active = TRUE;
+  leadingConstraint.active = TRUE;
   trailingConstraint.active = TRUE;
 }
 

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (NSString *)debugDescription {
-  return [[PlayingCardUtil rankStrings][self.rank]
+  return [[PlayingCardUtil rankStrings][self.rank - 1]
           stringByAppendingString:self.suit];
 }
 
