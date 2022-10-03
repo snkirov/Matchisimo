@@ -7,43 +7,86 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F00E78C28CA003B007A7829 /* DeckFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F00E78B28CA003B007A7829 /* DeckFactory.mm */; };
+		4F00E78F28CA0341007A7829 /* PlayingCardUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F00E78D28CA0341007A7829 /* PlayingCardUtil.mm */; };
+		4F0616EE28CA27C800115680 /* CardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F0616EC28CA27C800115680 /* CardView.mm */; };
+		4F0616F328CB4F0500115680 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0616F128CB4F0500115680 /* Grid.m */; };
+		4F2F1D7928BF8C9500C08DF4 /* SetCardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */; };
+		4F2F1D7E28BFA25F00C08DF4 /* SetCardUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F2F1D7D28BFA25F00C08DF4 /* SetCardUtil.mm */; };
+		4F48F9FA28BE048E00D322FE /* BaseGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F48F9F828BE048E00D322FE /* BaseGameViewController.mm */; };
+		4F48F9FD28BE04C600D322FE /* PlayingCardGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F48F9FB28BE04C600D322FE /* PlayingCardGameViewController.mm */; };
 		4FB79B5D28AB9E0400BB1766 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB79B5C28AB9E0400BB1766 /* Deck.m */; };
 		4FBFED1228ABF2F500D22997 /* PlayingCard.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFED1028ABF2F500D22997 /* PlayingCard.mm */; };
-		4FBFED1528ABFAB100D22997 /* PlayingCardDeck.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFED1328ABFAB100D22997 /* PlayingCardDeck.mm */; };
 		4FBFED1828AD312300D22997 /* CardMatchingGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FBFED1628AD312300D22997 /* CardMatchingGame.mm */; };
+		4FCA80DB28B9017900D962C6 /* PlayingCardMatchingService.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80D928B9017900D962C6 /* PlayingCardMatchingService.mm */; };
+		4FCA80DE28B9034D00D962C6 /* SetCardMatchingService.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80DC28B9034D00D962C6 /* SetCardMatchingService.mm */; };
+		4FCA80E428B9095000D962C6 /* SetCard.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80E228B9095000D962C6 /* SetCard.mm */; };
+		4FCA80E728B9096900D962C6 /* SetCardGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80E628B9096900D962C6 /* SetCardGameViewController.mm */; };
+		4FCA80ED28B90DE100D962C6 /* PlayingCardMatchingGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80EB28B90DE100D962C6 /* PlayingCardMatchingGame.mm */; };
+		4FCA80F028B90DEF00D962C6 /* SetCardMatchingGame.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80EE28B90DEF00D962C6 /* SetCardMatchingGame.mm */; };
+		4FCA80F728B91EF700D962C6 /* PlayingCardView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA80F528B91EF700D962C6 /* PlayingCardView.mm */; };
 		4FDCAE7B28AB8F600041B31B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE7A28AB8F600041B31B /* AppDelegate.m */; };
 		4FDCAE7E28AB8F600041B31B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE7D28AB8F600041B31B /* SceneDelegate.m */; };
-		4FDCAE8128AB8F600041B31B /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8028AB8F600041B31B /* CardViewController.m */; };
 		4FDCAE8428AB8F600041B31B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8228AB8F600041B31B /* Main.storyboard */; };
 		4FDCAE8628AB8F610041B31B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8528AB8F610041B31B /* Assets.xcassets */; };
 		4FDCAE8928AB8F610041B31B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8728AB8F610041B31B /* LaunchScreen.storyboard */; };
 		4FDCAE8C28AB8F610041B31B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE8B28AB8F610041B31B /* main.m */; };
-		4FDCAE9728AB8FD90041B31B /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCAE9628AB8FD90041B31B /* Card.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F00E78928C9F9B2007A7829 /* MacrosHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacrosHeader.h; sourceTree = "<group>"; };
+		4F00E78A28CA003B007A7829 /* DeckFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeckFactory.h; sourceTree = "<group>"; };
+		4F00E78B28CA003B007A7829 /* DeckFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DeckFactory.mm; sourceTree = "<group>"; };
+		4F00E78D28CA0341007A7829 /* PlayingCardUtil.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardUtil.mm; sourceTree = "<group>"; };
+		4F00E78E28CA0341007A7829 /* PlayingCardUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardUtil.h; sourceTree = "<group>"; };
+		4F0616EC28CA27C800115680 /* CardView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CardView.mm; sourceTree = "<group>"; };
+		4F0616ED28CA27C800115680 /* CardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardView.h; sourceTree = "<group>"; };
+		4F0616F128CB4F0500115680 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grid.m; sourceTree = "<group>"; };
+		4F0616F228CB4F0500115680 /* Grid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grid.h; sourceTree = "<group>"; };
+		4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardView.mm; sourceTree = "<group>"; };
+		4F2F1D7828BF8C9500C08DF4 /* SetCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCardView.h; sourceTree = "<group>"; };
+		4F2F1D7B28BF9C2400C08DF4 /* SetCardUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SetCardUtil.h; path = ObjectiveCTesting/Utils/CardUtils/SetCardUtil.h; sourceTree = SOURCE_ROOT; };
+		4F2F1D7D28BFA25F00C08DF4 /* SetCardUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardUtil.mm; sourceTree = "<group>"; };
+		4F48F9F828BE048E00D322FE /* BaseGameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BaseGameViewController.mm; sourceTree = "<group>"; };
+		4F48F9F928BE048E00D322FE /* BaseGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseGameViewController.h; sourceTree = "<group>"; };
+		4F48F9FB28BE04C600D322FE /* PlayingCardGameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardGameViewController.mm; sourceTree = "<group>"; };
+		4F48F9FC28BE04C600D322FE /* PlayingCardGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardGameViewController.h; sourceTree = "<group>"; };
+		4F48FA5128BE17D500D322FE /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		4F88F13F28D4B912007AFEF6 /* BaseGameViewController+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BaseGameViewController+Protected.h"; sourceTree = "<group>"; };
+		4F88F8AE28D4CFEE007AFEF6 /* CardMatchingGame+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardMatchingGame+Protected.h"; sourceTree = "<group>"; };
+		4F88F8AF28D4DC39007AFEF6 /* CardView+Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardView+Protected.h"; sourceTree = "<group>"; };
 		4FB79B5C28AB9E0400BB1766 /* Deck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		4FB79B5E28AB9E0D00BB1766 /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		4FBFED1028ABF2F500D22997 /* PlayingCard.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCard.mm; sourceTree = "<group>"; };
 		4FBFED1128ABF2F500D22997 /* PlayingCard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
-		4FBFED1328ABFAB100D22997 /* PlayingCardDeck.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardDeck.mm; sourceTree = "<group>"; };
-		4FBFED1428ABFAB100D22997 /* PlayingCardDeck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardDeck.h; sourceTree = "<group>"; };
 		4FBFED1628AD312300D22997 /* CardMatchingGame.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CardMatchingGame.mm; sourceTree = "<group>"; };
 		4FBFED1728AD312300D22997 /* CardMatchingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
+		4FCA80D228B8FE9500D962C6 /* CardMatchingServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardMatchingServiceProtocol.h; sourceTree = "<group>"; };
+		4FCA80D928B9017900D962C6 /* PlayingCardMatchingService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardMatchingService.mm; sourceTree = "<group>"; };
+		4FCA80DA28B9017900D962C6 /* PlayingCardMatchingService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardMatchingService.h; sourceTree = "<group>"; };
+		4FCA80DC28B9034D00D962C6 /* SetCardMatchingService.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardMatchingService.mm; sourceTree = "<group>"; };
+		4FCA80DD28B9034D00D962C6 /* SetCardMatchingService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCardMatchingService.h; sourceTree = "<group>"; };
+		4FCA80DF28B9095000D962C6 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCard.h; sourceTree = "<group>"; };
+		4FCA80E228B9095000D962C6 /* SetCard.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCard.mm; sourceTree = "<group>"; };
+		4FCA80E528B9096900D962C6 /* SetCardGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCardGameViewController.h; sourceTree = "<group>"; };
+		4FCA80E628B9096900D962C6 /* SetCardGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardGameViewController.mm; sourceTree = "<group>"; };
+		4FCA80EB28B90DE100D962C6 /* PlayingCardMatchingGame.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardMatchingGame.mm; sourceTree = "<group>"; };
+		4FCA80EC28B90DE100D962C6 /* PlayingCardMatchingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardMatchingGame.h; sourceTree = "<group>"; };
+		4FCA80EE28B90DEF00D962C6 /* SetCardMatchingGame.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SetCardMatchingGame.mm; sourceTree = "<group>"; };
+		4FCA80EF28B90DEF00D962C6 /* SetCardMatchingGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetCardMatchingGame.h; sourceTree = "<group>"; };
+		4FCA80F528B91EF700D962C6 /* PlayingCardView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PlayingCardView.mm; sourceTree = "<group>"; };
+		4FCA80F628B91EF700D962C6 /* PlayingCardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayingCardView.h; sourceTree = "<group>"; };
 		4FDCAE7628AB8F600041B31B /* ObjectiveCTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObjectiveCTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDCAE7928AB8F600041B31B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FDCAE7A28AB8F600041B31B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4FDCAE7C28AB8F600041B31B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		4FDCAE7D28AB8F600041B31B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		4FDCAE7F28AB8F600041B31B /* CardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
-		4FDCAE8028AB8F600041B31B /* CardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
 		4FDCAE8328AB8F600041B31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FDCAE8528AB8F610041B31B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FDCAE8828AB8F610041B31B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FDCAE8A28AB8F610041B31B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FDCAE8B28AB8F610041B31B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4FDCAE9228AB8FA50041B31B /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
-		4FDCAE9628AB8FD90041B31B /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		4FDCAE9228AB8FA50041B31B /* CardProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +100,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F00E79028CA0353007A7829 /* CardUtils */ = {
+			isa = PBXGroup;
+			children = (
+				4F2F1D7B28BF9C2400C08DF4 /* SetCardUtil.h */,
+				4F2F1D7D28BFA25F00C08DF4 /* SetCardUtil.mm */,
+				4F00E78E28CA0341007A7829 /* PlayingCardUtil.h */,
+				4F00E78D28CA0341007A7829 /* PlayingCardUtil.mm */,
+			);
+			path = CardUtils;
+			sourceTree = "<group>";
+		};
+		4F00E79128CA0362007A7829 /* DeckFactory */ = {
+			isa = PBXGroup;
+			children = (
+				4F00E78A28CA003B007A7829 /* DeckFactory.h */,
+				4F00E78B28CA003B007A7829 /* DeckFactory.mm */,
+			);
+			path = DeckFactory;
+			sourceTree = "<group>";
+		};
+		4F0616EF28CA27CD00115680 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F0616ED28CA27C800115680 /* CardView.h */,
+				4F88F8AF28D4DC39007AFEF6 /* CardView+Protected.h */,
+				4F0616EC28CA27C800115680 /* CardView.mm */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4F0616F028CB4EF500115680 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				4F0616F228CB4F0500115680 /* Grid.h */,
+				4F0616F128CB4F0500115680 /* Grid.m */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
+		4F2F1D7628BF8B7B00C08DF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F2F1D7828BF8C9500C08DF4 /* SetCardView.h */,
+				4F2F1D7728BF8C9500C08DF4 /* SetCardView.mm */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4FB79B5F28ABB75300BB1766 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4F00E78928C9F9B2007A7829 /* MacrosHeader.h */,
 				4FDCAE7928AB8F600041B31B /* AppDelegate.h */,
 				4FDCAE7A28AB8F600041B31B /* AppDelegate.m */,
 				4FDCAE7C28AB8F600041B31B /* SceneDelegate.h */,
@@ -69,21 +161,146 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4FB79B6028ABD0ED00BB1766 /* Model */ = {
+		4FB79B6028ABD0ED00BB1766 /* Game Implementation */ = {
 			isa = PBXGroup;
 			children = (
-				4FDCAE9228AB8FA50041B31B /* Card.h */,
-				4FDCAE9628AB8FD90041B31B /* Card.m */,
-				4FB79B5E28AB9E0D00BB1766 /* Deck.h */,
-				4FB79B5C28AB9E0400BB1766 /* Deck.m */,
+				4FBFED1728AD312300D22997 /* CardMatchingGame.h */,
+				4F88F8AE28D4CFEE007AFEF6 /* CardMatchingGame+Protected.h */,
+				4FBFED1628AD312300D22997 /* CardMatchingGame.mm */,
+				4FCA80EC28B90DE100D962C6 /* PlayingCardMatchingGame.h */,
+				4FCA80EB28B90DE100D962C6 /* PlayingCardMatchingGame.mm */,
+				4FCA80EF28B90DEF00D962C6 /* SetCardMatchingGame.h */,
+				4FCA80EE28B90DEF00D962C6 /* SetCardMatchingGame.mm */,
+			);
+			path = "Game Implementation";
+			sourceTree = "<group>";
+		};
+		4FCA80C128B8D87300D962C6 /* PlayingCardGame */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80F428B91ED800D962C6 /* Views */,
+				4FCA80C328B8D89200D962C6 /* ViewControllers */,
+				4FCA80C228B8D88D00D962C6 /* Models */,
+			);
+			path = PlayingCardGame;
+			sourceTree = "<group>";
+		};
+		4FCA80C228B8D88D00D962C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
 				4FBFED1128ABF2F500D22997 /* PlayingCard.h */,
 				4FBFED1028ABF2F500D22997 /* PlayingCard.mm */,
-				4FBFED1428ABFAB100D22997 /* PlayingCardDeck.h */,
-				4FBFED1328ABFAB100D22997 /* PlayingCardDeck.mm */,
-				4FBFED1728AD312300D22997 /* CardMatchingGame.h */,
-				4FBFED1628AD312300D22997 /* CardMatchingGame.mm */,
 			);
-			path = Model;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA80C328B8D89200D962C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F48F9FC28BE04C600D322FE /* PlayingCardGameViewController.h */,
+				4F48F9FB28BE04C600D322FE /* PlayingCardGameViewController.mm */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FCA80C428B8D8A300D962C6 /* SetGame */ = {
+			isa = PBXGroup;
+			children = (
+				4F2F1D7628BF8B7B00C08DF4 /* Views */,
+				4FCA80C528B8D8B100D962C6 /* ViewControllers */,
+				4FCA80C628B8D8BA00D962C6 /* Models */,
+			);
+			path = SetGame;
+			sourceTree = "<group>";
+		};
+		4FCA80C528B8D8B100D962C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80E528B9096900D962C6 /* SetCardGameViewController.h */,
+				4FCA80E628B9096900D962C6 /* SetCardGameViewController.mm */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FCA80C628B8D8BA00D962C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80DF28B9095000D962C6 /* SetCard.h */,
+				4FCA80E228B9095000D962C6 /* SetCard.mm */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA80C728B8D8D600D962C6 /* BaseGame */ = {
+			isa = PBXGroup;
+			children = (
+				4F0616EF28CA27CD00115680 /* Views */,
+				4FCA80C828B8D90300D962C6 /* ViewControllers */,
+				4FCA80C928B8D90C00D962C6 /* Models */,
+			);
+			path = BaseGame;
+			sourceTree = "<group>";
+		};
+		4FCA80C828B8D90300D962C6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F48F9F928BE048E00D322FE /* BaseGameViewController.h */,
+				4F88F13F28D4B912007AFEF6 /* BaseGameViewController+Protected.h */,
+				4F48F9F828BE048E00D322FE /* BaseGameViewController.mm */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4FCA80C928B8D90C00D962C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4FDCAE9228AB8FA50041B31B /* CardProtocol.h */,
+				4FB79B5E28AB9E0D00BB1766 /* Deck.h */,
+				4FB79B5C28AB9E0400BB1766 /* Deck.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FCA80CA28B8D97F00D962C6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80C728B8D8D600D962C6 /* BaseGame */,
+				4FCA80C428B8D8A300D962C6 /* SetGame */,
+				4FCA80C128B8D87300D962C6 /* PlayingCardGame */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4FCA80CB28B8E4D700D962C6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4F0616F028CB4EF500115680 /* Grid */,
+				4F00E79128CA0362007A7829 /* DeckFactory */,
+				4F00E79028CA0353007A7829 /* CardUtils */,
+				4FCA80D528B8FFF800D962C6 /* CardMatching */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4FCA80D528B8FFF800D962C6 /* CardMatching */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80D228B8FE9500D962C6 /* CardMatchingServiceProtocol.h */,
+				4FCA80DA28B9017900D962C6 /* PlayingCardMatchingService.h */,
+				4FCA80D928B9017900D962C6 /* PlayingCardMatchingService.mm */,
+				4FCA80DD28B9034D00D962C6 /* SetCardMatchingService.h */,
+				4FCA80DC28B9034D00D962C6 /* SetCardMatchingService.mm */,
+			);
+			path = CardMatching;
+			sourceTree = "<group>";
+		};
+		4FCA80F428B91ED800D962C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4FCA80F628B91EF700D962C6 /* PlayingCardView.h */,
+				4FCA80F528B91EF700D962C6 /* PlayingCardView.mm */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		4FDCAE6D28AB8F600041B31B = {
@@ -105,14 +322,15 @@
 		4FDCAE7828AB8F600041B31B /* ObjectiveCTesting */ = {
 			isa = PBXGroup;
 			children = (
-				4FB79B6028ABD0ED00BB1766 /* Model */,
+				4FCA80CB28B8E4D700D962C6 /* Utils */,
+				4FCA80CA28B8D97F00D962C6 /* Modules */,
+				4FB79B6028ABD0ED00BB1766 /* Game Implementation */,
 				4FB79B5F28ABB75300BB1766 /* Supporting Files */,
-				4FDCAE7F28AB8F600041B31B /* CardViewController.h */,
-				4FDCAE8028AB8F600041B31B /* CardViewController.m */,
 				4FDCAE8228AB8F600041B31B /* Main.storyboard */,
 				4FDCAE8B28AB8F610041B31B /* main.m */,
 				4FDCAE8528AB8F610041B31B /* Assets.xcassets */,
 				4FDCAE8A28AB8F610041B31B /* Info.plist */,
+				4F48FA5128BE17D500D322FE /* PrefixHeader.pch */,
 			);
 			path = ObjectiveCTesting;
 			sourceTree = "<group>";
@@ -187,15 +405,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FDCAE8128AB8F600041B31B /* CardViewController.m in Sources */,
-				4FBFED1528ABFAB100D22997 /* PlayingCardDeck.mm in Sources */,
+				4FCA80E428B9095000D962C6 /* SetCard.mm in Sources */,
+				4FCA80F028B90DEF00D962C6 /* SetCardMatchingGame.mm in Sources */,
 				4FBFED1228ABF2F500D22997 /* PlayingCard.mm in Sources */,
-				4FDCAE9728AB8FD90041B31B /* Card.m in Sources */,
+				4FCA80E728B9096900D962C6 /* SetCardGameViewController.mm in Sources */,
 				4FDCAE7B28AB8F600041B31B /* AppDelegate.m in Sources */,
+				4F0616F328CB4F0500115680 /* Grid.m in Sources */,
+				4F2F1D7928BF8C9500C08DF4 /* SetCardView.mm in Sources */,
+				4F0616EE28CA27C800115680 /* CardView.mm in Sources */,
+				4FCA80DB28B9017900D962C6 /* PlayingCardMatchingService.mm in Sources */,
 				4FDCAE8C28AB8F610041B31B /* main.m in Sources */,
+				4F00E78F28CA0341007A7829 /* PlayingCardUtil.mm in Sources */,
+				4F00E78C28CA003B007A7829 /* DeckFactory.mm in Sources */,
 				4FB79B5D28AB9E0400BB1766 /* Deck.m in Sources */,
 				4FDCAE7E28AB8F600041B31B /* SceneDelegate.m in Sources */,
+				4F48F9FA28BE048E00D322FE /* BaseGameViewController.mm in Sources */,
 				4FBFED1828AD312300D22997 /* CardMatchingGame.mm in Sources */,
+				4FCA80ED28B90DE100D962C6 /* PlayingCardMatchingGame.mm in Sources */,
+				4FCA80F728B91EF700D962C6 /* PlayingCardView.mm in Sources */,
+				4F48F9FD28BE04C600D322FE /* PlayingCardGameViewController.mm in Sources */,
+				4F2F1D7E28BFA25F00C08DF4 /* SetCardUtil.mm in Sources */,
+				4FCA80DE28B9034D00D962C6 /* SetCardMatchingService.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,10 +565,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LJ2765778Z;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(TARGET_NAME)/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ObjectiveCTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,7 +585,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.snkirov.ObjectiveCTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -362,10 +593,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LJ2765778Z;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(TARGET_NAME)/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ObjectiveCTesting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -381,7 +613,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.snkirov.ObjectiveCTesting;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
